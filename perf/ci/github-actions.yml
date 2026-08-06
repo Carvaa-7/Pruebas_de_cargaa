@@ -1,5 +1,5 @@
 
-name: perf-register-voter
+name: perf-register-person
 on:
   workflow_dispatch:
   pull_request:
@@ -22,14 +22,16 @@ jobs:
         env:
           BASE_URL: ${{ secrets.PERF_BASE_URL }}
         run: |
-          k6 run perf/scripts/register_voter_k6.js             -o json=perf/results/baseline.json             --env BASE_URL="${BASE_URL}"             --env SCENARIO="baseline"
+          mkdir -p perf/results
+          k6 run perf/scripts/register_person_k6.js -o json=perf/results/baseline.json --env BASE_URL="${BASE_URL}" --env SCENARIO="baseline"
       - name: Load
         env:
           BASE_URL: ${{ secrets.PERF_BASE_URL }}
         run: |
-          k6 run perf/scripts/register_voter_k6.js             -o json=perf/results/load.json             --env BASE_URL="${BASE_URL}"             --env SCENARIO="load"
+          mkdir -p perf/results
+          k6 run perf/scripts/register_person_k6.js -o json=perf/results/load.json --env BASE_URL="${BASE_URL}" --env SCENARIO="load"
       - name: Upload artifacts
         uses: actions/upload-artifact@v4
         with:
-          name: perf-register-voter-results
+          name: perf-register-person-results
           path: perf/results/**

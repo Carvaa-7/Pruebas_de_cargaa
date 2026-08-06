@@ -242,16 +242,18 @@ curl -X POST http://localhost:8080/register \
 ### 2) Baseline (calentamiento + medición corta)
 
 ```bash
-set BASE_URL="http://localhost:8080" 
-set SCENARIO="baseline" 
-set k6 run perf/scripts/register_person_k6.js -o json=perf/results/baseline.json
+mkdir -p perf/results
+export BASE_URL="http://localhost:8080"
+export SCENARIO="baseline"
+k6 run perf/scripts/register_person_k6.js -o json=perf/results/baseline.json
 ```
 
 ### 3) Carga (rampa hasta 200 VUs)
 
 ```bash
-set BASE_URL=http://localhost:8080
-set SCENARIO='load' 
+mkdir -p perf/results
+export BASE_URL="http://localhost:8080"
+export SCENARIO="load"
 k6 run perf/scripts/register_person_k6.js -o json=perf/results/load.json
 ```
 
@@ -368,8 +370,8 @@ Estructura mínima sugerida:
 
 - ≥ **3 escenarios** (baseline, carga, estrés) implementados y versionados.
 
-- `perf/scripts/register_voter_k6.js`
-- `perf/data/voter.csv` (≥ 200 filas)
+- `perf/scripts/register_person_k6.js`
+- `perf/data/persons.csv` (≥ 200 filas)
 - `perf/results/*` (`baseline.json`, `load.json`)
 - Breve análisis: p95/p99, error rate, hallazgos y próximas acciones.
 
