@@ -1,501 +1,501 @@
-documentId,fullName,age,gender,cityCode,address,phone,email
-7744287142,Camilo Rodríguez,21,O,13001,Calle 63 #29-9,3768040250,camilo.rodríguez@mail.com
-5702202126,Ana González,31,M,54001,Calle 25 #46-23,3687593586,ana.gonzález@correo.co
-2032298363,Sofia Martínez,65,F,08001,Calle 69 #10-39,3652429623,sofia.martínez@mail.com
-1165354259,Camilo Sánchez,36,F,76001,Calle 64 #72-35,3258329500,camilo.sánchez@mail.com
-5131999541,Camilo Rodríguez,52,O,68001,Calle 29 #38-28,3107797516,camilo.rodríguez@example.org
-4257239645,Sofia Hernández,48,M,08001,Calle 146 #11-6,3789516915,sofia.hernández@example.org
-4578524406,María López,46,M,68001,Calle 6 #76-36,3220629802,maría.lópez@example.org
-4850989981,Sofia Pérez,70,F,11001,Calle 26 #8-26,3781151148,sofia.pérez@mail.com
-1207030495,Paula Sánchez,45,F,11001,Calle 43 #49-1,3927449957,paula.sánchez@mail.com
-6321649906,Juan Ramírez,28,M,05001,Calle 18 #31-26,3182564559,juan.ramírez@mail.com
-5659182871,Laura Rodríguez,27,O,08001,Calle 130 #34-9,3988318769,laura.rodríguez@example.org
-1475196103,Luis Torres,44,O,68001,Calle 53 #34-33,3498042076,luis.torres@correo.co
-8988073988,Jorge Martínez,73,M,11001,Calle 79 #47-3,3822178461,jorge.martínez@mail.com
-9263959191,Ana Hernández,38,O,05001,Calle 98 #5-31,3284372013,ana.hernández@mail.com
-9714996619,Luis García,31,O,54001,Calle 89 #41-28,3653527095,luis.garcía@example.org
-4564424971,Jorge Hernández,70,F,54001,Calle 76 #71-9,3163715483,jorge.hernández@mail.com
-5733168887,María Hernández,83,O,76036,Calle 86 #12-49,3238109674,maría.hernández@example.org
-4941847827,Ana Martínez,84,F,11001,Calle 143 #32-8,3486959867,ana.martínez@example.org
-4249568730,Paula López,53,F,05001,Calle 74 #31-18,3380131243,paula.lópez@correo.co
-5956048123,Sofia Hernández,67,F,17001,Calle 140 #78-15,3424367789,sofia.hernández@example.org
-1011652671,Paula González,61,F,13001,Calle 108 #33-6,3470920900,paula.gonzález@mail.com
-8619734353,Laura Rodríguez,38,F,05001,Calle 149 #4-20,3593915826,laura.rodríguez@correo.co
-8808246308,Andrés Sánchez,31,F,68001,Calle 118 #20-28,3156697485,andrés.sánchez@correo.co
-7402426353,Carlos Sánchez,45,F,13001,Calle 88 #36-39,3720907476,carlos.sánchez@example.org
-9521121052,Valentina Ramírez,60,F,66001,Calle 70 #40-17,3273796172,valentina.ramírez@example.org
-5618902545,Juan Ramírez,55,O,76001,Calle 126 #14-1,3544109484,juan.ramírez@mail.com
-2514640228,Laura López,84,F,66001,Calle 114 #39-38,3936679226,laura.lópez@mail.com
-4434254587,María López,51,O,76036,Calle 51 #55-8,3569801375,maría.lópez@correo.co
-4894431144,Laura Hernández,21,M,08001,Calle 148 #76-2,3962074691,laura.hernández@example.org
-7672594619,Camilo Pérez,22,F,05001,Calle 81 #33-21,3178808405,camilo.pérez@example.org
-4444115710,Laura López,38,F,17001,Calle 4 #71-27,3099418475,laura.lópez@correo.co
-9238434939,Andrés González,82,F,11001,Calle 73 #39-38,3568443739,andrés.gonzález@mail.com
-7263036596,Camilo Martínez,81,M,76001,Calle 129 #76-22,3884547461,camilo.martínez@correo.co
-2315571086,Paula Ramírez,22,O,05001,Calle 61 #37-15,3740684690,paula.ramírez@mail.com
-6439813326,Ana Sánchez,36,M,66001,Calle 66 #59-17,3684250992,ana.sánchez@correo.co
-7610607031,Juan Pérez,53,M,76036,Calle 13 #78-48,3492763666,juan.pérez@example.org
-4072663850,Luis González,71,M,08001,Calle 34 #70-24,3598284873,luis.gonzález@mail.com
-9208934193,Andrés García,51,O,05001,Calle 117 #48-44,3723636469,andrés.garcía@correo.co
-4903498065,Paula Rodríguez,30,M,17001,Calle 35 #50-30,3396557868,paula.rodríguez@example.org
-2283190811,Camilo González,25,F,13001,Calle 49 #16-30,3026903972,camilo.gonzález@example.org
-5159078549,Luis Martínez,32,O,11001,Calle 34 #2-23,3723107574,luis.martínez@correo.co
-4607867724,Juan Sánchez,69,F,05001,Calle 126 #57-5,3831165735,juan.sánchez@correo.co
-3109564894,Ana Pérez,61,F,54001,Calle 107 #13-21,3463190800,ana.pérez@example.org
-8986609821,Valentina García,54,O,13001,Calle 91 #14-37,3514835122,valentina.garcía@correo.co
-7750016626,Valentina Hernández,61,F,11001,Calle 47 #19-37,3607905341,valentina.hernández@correo.co
-3212307137,Paula Torres,74,F,13001,Calle 56 #66-8,3316553290,paula.torres@mail.com
-8689082553,Jorge Ramírez,63,M,54001,Calle 11 #56-2,3403446249,jorge.ramírez@mail.com
-1170964556,Luis González,46,F,76001,Calle 20 #66-41,3159378821,luis.gonzález@mail.com
-0886545784,Laura Torres,59,O,68001,Calle 39 #57-5,3467530403,laura.torres@correo.co
-5132435760,Laura López,59,O,66001,Calle 129 #20-4,3488906079,laura.lópez@example.org
-6317999065,María Ramírez,67,F,13001,Calle 39 #43-6,3513963593,maría.ramírez@correo.co
-8651166970,Juan González,57,M,08001,Calle 88 #63-13,3210817880,juan.gonzález@correo.co
-5411680439,Sofia López,74,O,13001,Calle 115 #30-35,3297916547,sofia.lópez@correo.co
-3302307310,Valentina Ramírez,33,F,05001,Calle 42 #35-29,3914924300,valentina.ramírez@example.org
-6608456572,Paula Martínez,78,F,76036,Calle 2 #11-2,3285751230,paula.martínez@correo.co
-6920737677,Juan Torres,63,M,76036,Calle 107 #24-43,3653957508,juan.torres@mail.com
-8333840628,Sofia Martínez,23,F,17001,Calle 87 #23-50,3694117902,sofia.martínez@mail.com
-0685306364,Juan González,52,M,68001,Calle 112 #52-48,3493163720,juan.gonzález@correo.co
-8641263901,Valentina Sánchez,62,F,11001,Calle 91 #79-28,3299063869,valentina.sánchez@mail.com
-7266921017,Paula González,65,F,05001,Calle 147 #18-34,3332901591,paula.gonzález@correo.co
-2435491803,María González,62,O,05001,Calle 141 #70-19,3887967512,maría.gonzález@mail.com
-4901113739,Valentina Sánchez,85,F,54001,Calle 148 #10-9,3964638761,valentina.sánchez@mail.com
-0809722560,Luis Rodríguez,50,M,17001,Calle 71 #17-41,3355191676,luis.rodríguez@example.org
-7891353422,Camilo Ramírez,55,O,13001,Calle 124 #32-44,3446144318,camilo.ramírez@correo.co
-9592304864,María García,55,F,76036,Calle 108 #32-11,3897119484,maría.garcía@mail.com
-6193739715,Jorge García,31,F,76001,Calle 68 #47-49,3400532345,jorge.garcía@example.org
-5545403143,Jorge García,23,M,76001,Calle 86 #61-34,3465361972,jorge.garcía@correo.co
-1031647987,Valentina García,78,F,76036,Calle 148 #30-47,3045773825,valentina.garcía@example.org
-6125292227,Juan Martínez,84,M,17001,Calle 84 #62-34,3394556868,juan.martínez@correo.co
-9672825217,Sofia Sánchez,62,O,13001,Calle 74 #16-37,3639898227,sofia.sánchez@correo.co
-4193690557,Ana López,24,O,17001,Calle 58 #30-4,3134619916,ana.lópez@correo.co
-5498411142,Juan Martínez,71,M,11001,Calle 102 #64-12,3999805192,juan.martínez@example.org
-0342355232,Carlos García,61,F,76036,Calle 50 #23-40,3888506113,carlos.garcía@mail.com
-3797887657,Camilo Rodríguez,77,F,76001,Calle 104 #65-46,3766932944,camilo.rodríguez@example.org
-4840145563,Jorge Sánchez,85,O,68001,Calle 20 #73-8,3055513512,jorge.sánchez@example.org
-7964938936,Juan Pérez,50,M,08001,Calle 149 #10-3,3475089421,juan.pérez@mail.com
-8232971847,Camilo Ramírez,35,O,68001,Calle 31 #23-35,3319879474,camilo.ramírez@correo.co
-2955782895,Juan López,44,M,05001,Calle 9 #58-39,3682045771,juan.lópez@correo.co
-4837895951,Andrés Hernández,53,M,17001,Calle 45 #55-36,3499673413,andrés.hernández@example.org
-5483909919,Ana Hernández,44,F,05001,Calle 116 #48-6,3580360085,ana.hernández@example.org
-9345212954,Paula López,44,F,08001,Calle 142 #42-50,3246338487,paula.lópez@correo.co
-1749560089,Carlos López,60,M,54001,Calle 146 #32-32,3593747747,carlos.lópez@correo.co
-5052908689,Camilo García,18,F,76001,Calle 60 #9-46,3124069960,camilo.garcía@example.org
-6870350014,María Rodríguez,85,M,08001,Calle 50 #80-34,3237094262,maría.rodríguez@mail.com
-0218892558,Andrés González,30,O,11001,Calle 59 #28-45,3840098509,andrés.gonzález@correo.co
-6742531537,Camilo Ramírez,60,F,76001,Calle 21 #65-48,3904837937,camilo.ramírez@mail.com
-1454030533,Luis López,27,M,13001,Calle 40 #49-46,3713309471,luis.lópez@mail.com
-3974641038,Luis Pérez,67,M,17001,Calle 63 #74-34,3131340444,luis.pérez@mail.com
-3273919170,Andrés González,74,F,54001,Calle 35 #39-21,3664133769,andrés.gonzález@mail.com
-5984097859,Valentina Sánchez,44,F,13001,Calle 18 #53-44,3462677094,valentina.sánchez@correo.co
-6234661942,María López,63,M,76036,Calle 12 #73-42,3637940255,maría.lópez@example.org
-6619211592,María Rodríguez,36,F,13001,Calle 88 #59-14,3530740070,maría.rodríguez@correo.co
-7531164933,Andrés Martínez,41,O,54001,Calle 102 #4-48,3615372780,andrés.martínez@mail.com
-1355445991,Andrés Torres,32,F,68001,Calle 118 #80-12,3872601131,andrés.torres@example.org
-7415720227,Carlos Sánchez,54,M,76001,Calle 81 #58-40,3030189546,carlos.sánchez@correo.co
-7294384972,Laura Sánchez,83,M,76036,Calle 30 #35-50,3595774247,laura.sánchez@example.org
-5959817402,Valentina Torres,62,O,76036,Calle 110 #22-40,3122032537,valentina.torres@correo.co
-5293930777,Camilo Martínez,34,M,76001,Calle 83 #32-49,3831663077,camilo.martínez@correo.co
-0741840926,Paula González,26,O,54001,Calle 56 #55-14,3432518787,paula.gonzález@mail.com
-2055403186,Carlos Hernández,38,F,05001,Calle 93 #33-6,3391336267,carlos.hernández@mail.com
-6476146801,Paula Rodríguez,47,F,05001,Calle 27 #14-21,3323886605,paula.rodríguez@example.org
-2613677232,María Torres,67,F,54001,Calle 81 #18-16,3205667686,maría.torres@correo.co
-2007565470,Camilo Torres,27,O,11001,Calle 93 #41-9,3384514905,camilo.torres@mail.com
-7800446377,Jorge Ramírez,37,F,05001,Calle 80 #11-33,3991357663,jorge.ramírez@correo.co
-3452964508,María García,35,O,11001,Calle 42 #64-23,3577117287,maría.garcía@mail.com
-5974347203,Carlos González,38,F,05001,Calle 147 #15-15,3708003919,carlos.gonzález@mail.com
-6454719720,Jorge García,40,M,17001,Calle 12 #52-5,3887304327,jorge.garcía@example.org
-7098573900,Andrés García,47,O,68001,Calle 3 #43-1,3737329499,andrés.garcía@mail.com
-9171143137,Carlos Pérez,27,O,76036,Calle 16 #56-43,3922387732,carlos.pérez@mail.com
-6290447248,Paula Hernández,77,F,05001,Calle 24 #21-44,3376281793,paula.hernández@mail.com
-8088190947,Carlos Rodríguez,19,M,08001,Calle 34 #26-26,3366528009,carlos.rodríguez@correo.co
-0211856879,Paula García,66,O,54001,Calle 45 #46-14,3924166648,paula.garcía@correo.co
-7991628909,Valentina González,79,O,66001,Calle 89 #73-33,3320508284,valentina.gonzález@correo.co
-5100604368,Ana Torres,67,F,76001,Calle 46 #31-38,3373573519,ana.torres@correo.co
-3974643758,Sofia Martínez,59,M,11001,Calle 38 #76-46,3978893931,sofia.martínez@correo.co
-6992591729,Laura González,46,O,76036,Calle 45 #49-20,3721075875,laura.gonzález@mail.com
-3387572470,Carlos Rodríguez,60,F,11001,Calle 68 #27-16,3637704414,carlos.rodríguez@correo.co
-1811216772,Juan González,51,M,05001,Calle 88 #22-25,3109939874,juan.gonzález@example.org
-6941748263,Luis Hernández,48,M,11001,Calle 101 #74-36,3813426610,luis.hernández@mail.com
-2035969522,Sofia Pérez,65,M,66001,Calle 12 #34-29,3422076035,sofia.pérez@example.org
-2815378055,Andrés García,82,O,17001,Calle 147 #80-10,3171998149,andrés.garcía@correo.co
-8826541466,Luis Ramírez,76,M,76036,Calle 134 #54-8,3415799512,luis.ramírez@example.org
-3773760494,Andrés García,68,F,08001,Calle 13 #61-18,3808324608,andrés.garcía@mail.com
-4972856103,Paula Ramírez,65,M,17001,Calle 41 #9-20,3747551820,paula.ramírez@mail.com
-6624077096,Laura Sánchez,40,F,76036,Calle 142 #45-23,3187623159,laura.sánchez@mail.com
-9855264323,Laura García,46,F,76036,Calle 79 #36-28,3884235650,laura.garcía@example.org
-4759837664,Luis Hernández,56,M,76001,Calle 133 #31-4,3886667692,luis.hernández@correo.co
-2848354106,Camilo González,82,F,76001,Calle 143 #24-19,3012871630,camilo.gonzález@correo.co
-1810393042,Laura Torres,27,F,08001,Calle 129 #16-44,3320812459,laura.torres@correo.co
-1662631351,Carlos Torres,38,F,05001,Calle 34 #79-28,3649301303,carlos.torres@example.org
-2920517736,Juan Hernández,55,F,17001,Calle 135 #44-28,3893931994,juan.hernández@mail.com
-1567485627,Jorge Torres,24,O,11001,Calle 28 #3-4,3643541663,jorge.torres@example.org
-8610571229,Paula López,43,F,17001,Calle 52 #46-46,3415964200,paula.lópez@mail.com
-3468081492,Luis Hernández,77,M,05001,Calle 45 #6-19,3364188016,luis.hernández@correo.co
-6887844840,Andrés Sánchez,71,O,76001,Calle 29 #17-45,3798194546,andrés.sánchez@correo.co
-6188609544,Camilo González,19,O,17001,Calle 148 #73-15,3963570623,camilo.gonzález@example.org
-1461450066,Carlos Rodríguez,80,F,08001,Calle 85 #36-4,3553804504,carlos.rodríguez@correo.co
-2389257011,Luis Ramírez,44,O,66001,Calle 88 #47-4,3883757340,luis.ramírez@example.org
-1845590754,Valentina Pérez,31,F,76036,Calle 51 #25-8,3934771498,valentina.pérez@example.org
-9414772787,Laura Sánchez,83,M,76036,Calle 45 #17-7,3368539972,laura.sánchez@correo.co
-5647828850,Jorge López,43,M,76036,Calle 75 #45-44,3179156775,jorge.lópez@example.org
-5263576603,Carlos García,25,M,13001,Calle 42 #37-44,3286270818,carlos.garcía@example.org
-9216115345,Andrés González,24,M,13001,Calle 52 #80-50,3842673571,andrés.gonzález@example.org
-3210545022,Carlos Martínez,50,M,68001,Calle 120 #20-3,3130966453,carlos.martínez@example.org
-8371270575,Sofia González,64,F,08001,Calle 136 #61-36,3890649669,sofia.gonzález@example.org
-4157976971,Jorge Sánchez,80,M,13001,Calle 50 #42-33,3009756262,jorge.sánchez@example.org
-0707083526,Paula González,22,M,05001,Calle 14 #23-17,3552236406,paula.gonzález@example.org
-6908105350,Laura Rodríguez,54,F,54001,Calle 102 #4-31,3127782628,laura.rodríguez@example.org
-6062159362,Ana González,45,F,17001,Calle 37 #21-12,3281178899,ana.gonzález@correo.co
-7623634474,Luis Torres,26,M,68001,Calle 125 #58-22,3635533402,luis.torres@mail.com
-9559473277,María Martínez,28,F,76001,Calle 138 #26-17,3767886857,maría.martínez@mail.com
-6974324030,Luis Martínez,77,O,17001,Calle 24 #51-24,3568861541,luis.martínez@example.org
-3580292483,Ana Ramírez,64,F,66001,Calle 117 #6-3,3937588251,ana.ramírez@example.org
-1645642151,Paula Torres,18,O,76001,Calle 113 #22-15,3062137128,paula.torres@example.org
-8186781627,Jorge García,36,M,76001,Calle 67 #24-34,3955076204,jorge.garcía@correo.co
-5141688765,Sofia Sánchez,26,M,54001,Calle 99 #17-7,3059686195,sofia.sánchez@example.org
-5520705532,Sofia García,85,F,08001,Calle 124 #49-23,3577601428,sofia.garcía@correo.co
-3523377867,Sofia Pérez,64,M,76001,Calle 110 #75-17,3255693255,sofia.pérez@mail.com
-0200396575,Paula Martínez,30,M,17001,Calle 103 #44-36,3660368846,paula.martínez@mail.com
-7335570028,Carlos Sánchez,74,M,08001,Calle 133 #37-13,3055210201,carlos.sánchez@correo.co
-8569577944,Laura González,62,F,08001,Calle 50 #59-26,3524102989,laura.gonzález@example.org
-0680943829,Laura García,79,M,13001,Calle 18 #49-41,3727843572,laura.garcía@correo.co
-0898338852,Camilo López,81,O,08001,Calle 61 #31-17,3222611966,camilo.lópez@example.org
-4602536252,Carlos Ramírez,53,F,08001,Calle 148 #17-4,3549038741,carlos.ramírez@example.org
-2243191814,Paula Torres,61,F,76001,Calle 128 #55-14,3473445968,paula.torres@example.org
-5920189156,Camilo Ramírez,58,F,13001,Calle 65 #72-37,3001228072,camilo.ramírez@correo.co
-0336763879,Carlos Hernández,63,F,17001,Calle 125 #58-6,3326118365,carlos.hernández@mail.com
-5037021683,Valentina Torres,84,F,54001,Calle 43 #24-2,3122772309,valentina.torres@correo.co
-5547846594,Ana Hernández,74,O,76001,Calle 34 #68-11,3068349524,ana.hernández@example.org
-2775751842,Ana Rodríguez,74,F,68001,Calle 106 #34-10,3308834099,ana.rodríguez@correo.co
-1266261005,Valentina Pérez,66,M,13001,Calle 21 #55-41,3279862784,valentina.pérez@mail.com
-8907041888,Carlos Rodríguez,54,F,76001,Calle 113 #2-15,3002474360,carlos.rodríguez@mail.com
-9526188216,María López,67,F,08001,Calle 9 #26-30,3706239917,maría.lópez@example.org
-3970315143,Sofia García,39,F,76036,Calle 31 #51-16,3007453010,sofia.garcía@example.org
-7289501223,Jorge González,74,O,08001,Calle 6 #49-23,3720755455,jorge.gonzález@correo.co
-2430609101,Juan Ramírez,66,O,76001,Calle 5 #80-24,3727653545,juan.ramírez@example.org
-4637887065,Ana Rodríguez,22,O,54001,Calle 126 #68-40,3723609248,ana.rodríguez@mail.com
-7567417556,Valentina Rodríguez,56,M,08001,Calle 133 #13-7,3751526174,valentina.rodríguez@mail.com
-9437955933,Jorge Torres,74,F,68001,Calle 141 #42-24,3468325357,jorge.torres@correo.co
-0397771865,Ana López,58,M,13001,Calle 142 #66-36,3550412822,ana.lópez@correo.co
-9660535361,María Torres,56,M,76036,Calle 98 #11-50,3073848826,maría.torres@example.org
-7115461672,Camilo Pérez,75,O,76036,Calle 130 #12-15,3471347523,camilo.pérez@correo.co
-6492617072,María Hernández,73,F,76036,Calle 23 #15-43,3431367138,maría.hernández@correo.co
-6056012760,Laura Martínez,54,M,68001,Calle 29 #40-29,3437257569,laura.martínez@example.org
-1549025331,Camilo García,26,F,13001,Calle 93 #14-2,3283957945,camilo.garcía@mail.com
-6039662219,Sofia González,63,O,13001,Calle 61 #65-18,3868880521,sofia.gonzález@correo.co
-6510571810,Laura González,75,O,76001,Calle 53 #18-38,3588375199,laura.gonzález@mail.com
-3645673841,Sofia Pérez,70,F,66001,Calle 71 #20-50,3110966652,sofia.pérez@mail.com
-8476873955,Ana López,22,F,11001,Calle 70 #53-15,3797099843,ana.lópez@correo.co
-7212969460,Camilo García,84,M,66001,Calle 117 #6-16,3537556023,camilo.garcía@correo.co
-7711435375,Jorge Rodríguez,41,O,17001,Calle 35 #51-27,3304888036,jorge.rodríguez@example.org
-1126248508,Carlos Pérez,66,M,76001,Calle 86 #73-43,3811703792,carlos.pérez@mail.com
-1056301912,Ana López,78,F,54001,Calle 114 #11-39,3625658016,ana.lópez@mail.com
-3422059507,Camilo Torres,40,F,76036,Calle 93 #5-6,3738878041,camilo.torres@correo.co
-2114772640,Laura Hernández,72,O,68001,Calle 67 #68-37,3931556416,laura.hernández@example.org
-1894401148,Sofia Ramírez,45,M,08001,Calle 73 #33-5,3353063760,sofia.ramírez@mail.com
-8335161173,Sofia Sánchez,70,O,11001,Calle 134 #39-37,3735267839,sofia.sánchez@correo.co
-7913483370,Sofia García,52,F,05001,Calle 128 #31-24,3492317794,sofia.garcía@mail.com
-7076222576,Jorge Martínez,44,O,11001,Calle 118 #50-46,3813088381,jorge.martínez@example.org
-8500903037,Luis Martínez,38,F,05001,Calle 4 #80-36,3523317220,luis.martínez@example.org
-7491823193,Laura Sánchez,63,F,68001,Calle 51 #69-6,3974189446,laura.sánchez@example.org
-6754465933,Sofia Sánchez,80,M,05001,Calle 122 #15-23,3482355471,sofia.sánchez@example.org
-1901873460,Valentina Torres,73,F,76036,Calle 88 #70-45,3260954545,valentina.torres@correo.co
-7995658809,Carlos Torres,18,M,76001,Calle 116 #69-19,3351635939,carlos.torres@correo.co
-8342810618,Juan García,63,M,13001,Calle 8 #31-28,3733335641,juan.garcía@correo.co
-4772950043,Camilo Pérez,35,M,76001,Calle 107 #59-45,3641554316,camilo.pérez@example.org
-6950495339,Laura Sánchez,28,M,17001,Calle 72 #60-34,3080479067,laura.sánchez@correo.co
-0726227697,Luis Hernández,39,M,76036,Calle 78 #73-17,3041098620,luis.hernández@example.org
-2462736711,Camilo Sánchez,65,M,13001,Calle 61 #63-12,3783019149,camilo.sánchez@correo.co
-9053866228,Andrés Sánchez,56,F,17001,Calle 60 #49-44,3741809469,andrés.sánchez@example.org
-2210096896,Luis Torres,68,F,08001,Calle 50 #67-22,3693000456,luis.torres@correo.co
-7310733092,Valentina Rodríguez,29,O,76001,Calle 97 #73-12,3862496924,valentina.rodríguez@example.org
-7704600313,Paula Rodríguez,80,M,76036,Calle 101 #23-42,3417269710,paula.rodríguez@example.org
-3309638387,Andrés Torres,18,O,66001,Calle 123 #56-26,3877509845,andrés.torres@correo.co
-9237649890,Luis López,40,O,11001,Calle 99 #25-20,3686306711,luis.lópez@example.org
-4096260698,Sofia García,61,O,11001,Calle 104 #16-14,3864681590,sofia.garcía@mail.com
-5187753114,María Sánchez,39,O,05001,Calle 28 #15-32,3560238741,maría.sánchez@example.org
-5267411242,Valentina González,39,F,08001,Calle 149 #6-9,3086704010,valentina.gonzález@example.org
-5462011894,Carlos Torres,22,O,76001,Calle 128 #79-6,3673021503,carlos.torres@example.org
-1875316373,Carlos García,24,O,68001,Calle 73 #27-28,3268410510,carlos.garcía@example.org
-9216018413,María López,70,M,54001,Calle 57 #10-31,3504261341,maría.lópez@correo.co
-8242999840,Luis Torres,38,O,76036,Calle 44 #74-36,3808495827,luis.torres@example.org
-9061455941,Paula Ramírez,22,F,17001,Calle 101 #62-45,3842507912,paula.ramírez@example.org
-6395930340,Valentina Pérez,41,F,66001,Calle 1 #10-25,3830429577,valentina.pérez@mail.com
-5403458458,Sofia Martínez,26,O,08001,Calle 36 #43-16,3567787773,sofia.martínez@correo.co
-9046944701,Luis Sánchez,65,O,05001,Calle 49 #59-6,3082912648,luis.sánchez@example.org
-1249703419,Juan López,84,O,68001,Calle 106 #75-22,3674655458,juan.lópez@correo.co
-3513944143,Valentina Ramírez,54,M,76001,Calle 40 #21-16,3195432769,valentina.ramírez@mail.com
-6106233615,Juan Ramírez,82,F,13001,Calle 122 #38-49,3951594679,juan.ramírez@mail.com
-3239807498,Luis López,20,M,17001,Calle 115 #12-33,3346506374,luis.lópez@correo.co
-6214591824,Luis Martínez,72,O,54001,Calle 36 #76-39,3024890970,luis.martínez@correo.co
-6074953442,Luis Torres,56,F,17001,Calle 119 #29-2,3713661621,luis.torres@example.org
-0260167513,Camilo Sánchez,33,F,17001,Calle 148 #3-17,3103811249,camilo.sánchez@correo.co
-2186855571,Sofia Hernández,52,O,68001,Calle 25 #69-38,3311274912,sofia.hernández@example.org
-2812110670,Paula Rodríguez,32,M,11001,Calle 123 #45-20,3614959137,paula.rodríguez@mail.com
-1308993157,Paula Pérez,23,M,05001,Calle 9 #66-38,3012067792,paula.pérez@mail.com
-3549133221,Ana Ramírez,26,M,76036,Calle 4 #68-14,3791707998,ana.ramírez@correo.co
-2494888930,Sofia Rodríguez,77,M,17001,Calle 35 #64-49,3327043476,sofia.rodríguez@correo.co
-8424477578,Camilo Sánchez,31,F,66001,Calle 134 #11-8,3145199093,camilo.sánchez@example.org
-4016336765,Andrés González,78,O,76036,Calle 104 #63-33,3271246100,andrés.gonzález@mail.com
-4016781433,Paula Sánchez,43,F,66001,Calle 126 #65-17,3585079814,paula.sánchez@correo.co
-0513857634,María Torres,80,O,17001,Calle 139 #74-31,3485349639,maría.torres@correo.co
-5926593358,Sofia Pérez,62,M,08001,Calle 64 #31-42,3306811506,sofia.pérez@correo.co
-9427080308,María López,61,F,17001,Calle 87 #22-40,3292690822,maría.lópez@correo.co
-5146892688,Paula Pérez,44,F,05001,Calle 78 #65-20,3452464710,paula.pérez@example.org
-8626411284,Andrés Torres,25,O,08001,Calle 94 #60-10,3277848968,andrés.torres@correo.co
-3209868388,Jorge Pérez,72,O,11001,Calle 52 #21-18,3128618940,jorge.pérez@mail.com
-2122480561,Ana Rodríguez,82,M,17001,Calle 149 #68-17,3405738787,ana.rodríguez@correo.co
-2539381883,Jorge Pérez,78,O,08001,Calle 72 #19-24,3433690770,jorge.pérez@example.org
-7934911204,Andrés Hernández,56,M,08001,Calle 77 #27-11,3968740889,andrés.hernández@correo.co
-7867347268,Valentina Ramírez,59,F,11001,Calle 14 #24-41,3460235127,valentina.ramírez@example.org
-2806619150,Luis López,28,F,68001,Calle 47 #51-25,3982996699,luis.lópez@mail.com
-7117092425,Jorge Pérez,76,O,66001,Calle 31 #29-46,3298273422,jorge.pérez@correo.co
-9999570263,Camilo Sánchez,28,M,66001,Calle 35 #42-45,3323450509,camilo.sánchez@correo.co
-4923492895,Andrés González,34,O,11001,Calle 149 #23-17,3143407423,andrés.gonzález@mail.com
-0374488108,Andrés Martínez,58,O,66001,Calle 39 #72-43,3641014141,andrés.martínez@correo.co
-6635981086,Carlos Martínez,83,F,76036,Calle 150 #28-38,3907192403,carlos.martínez@correo.co
-9331980817,Paula Hernández,18,F,11001,Calle 116 #42-47,3997188277,paula.hernández@example.org
-7864403426,Luis Martínez,33,F,66001,Calle 111 #40-44,3630314326,luis.martínez@mail.com
-5955447835,Carlos Sánchez,85,O,17001,Calle 22 #38-30,3494119852,carlos.sánchez@mail.com
-2092640306,Jorge García,32,O,66001,Calle 46 #24-26,3047377483,jorge.garcía@mail.com
-4671344011,Paula Pérez,80,F,76036,Calle 93 #51-20,3011861041,paula.pérez@mail.com
-5790357998,Valentina Sánchez,80,F,11001,Calle 116 #75-16,3258006798,valentina.sánchez@example.org
-7445569874,Ana García,85,M,54001,Calle 148 #41-36,3084449360,ana.garcía@correo.co
-3200831880,Luis Pérez,71,O,68001,Calle 121 #21-40,3260411479,luis.pérez@correo.co
-6109797976,María González,73,M,76036,Calle 59 #16-36,3223308216,maría.gonzález@example.org
-1297084212,María Ramírez,23,O,05001,Calle 43 #16-14,3912457063,maría.ramírez@mail.com
-1089039107,Valentina Pérez,64,O,08001,Calle 39 #68-27,3714989569,valentina.pérez@correo.co
-7425766874,Camilo Martínez,25,O,17001,Calle 76 #54-26,3878733896,camilo.martínez@mail.com
-0752779103,Ana Hernández,28,M,17001,Calle 86 #50-47,3785525336,ana.hernández@mail.com
-2268513715,Camilo Ramírez,63,M,11001,Calle 32 #58-20,3503275796,camilo.ramírez@example.org
-5696974154,Ana González,76,M,76001,Calle 109 #53-6,3041206457,ana.gonzález@correo.co
-1393471508,Paula Martínez,83,O,05001,Calle 55 #59-31,3015918132,paula.martínez@example.org
-1167617066,Luis López,41,O,66001,Calle 1 #16-36,3384559747,luis.lópez@example.org
-1650514819,Andrés López,68,F,17001,Calle 12 #57-48,3201067366,andrés.lópez@mail.com
-3095217196,Carlos García,53,M,08001,Calle 149 #57-6,3864080448,carlos.garcía@correo.co
-4731044442,Juan Torres,59,M,11001,Calle 15 #39-25,3018298025,juan.torres@mail.com
-9508966109,Juan Hernández,30,M,17001,Calle 33 #39-37,3406293975,juan.hernández@correo.co
-8258896972,Luis Torres,50,O,54001,Calle 90 #28-38,3821500687,luis.torres@correo.co
-5760086638,Camilo González,61,M,66001,Calle 85 #3-45,3196001564,camilo.gonzález@correo.co
-8299047609,Laura González,67,M,11001,Calle 32 #60-24,3942029306,laura.gonzález@correo.co
-8872809666,Camilo Pérez,32,F,76036,Calle 129 #64-11,3565650102,camilo.pérez@example.org
-3338892699,Paula García,72,O,11001,Calle 83 #56-27,3264378224,paula.garcía@correo.co
-5205404199,Ana Martínez,60,F,05001,Calle 25 #4-31,3407982498,ana.martínez@correo.co
-7644461660,Andrés González,26,M,11001,Calle 114 #8-20,3641008464,andrés.gonzález@example.org
-1015563551,Jorge González,42,M,05001,Calle 4 #77-46,3071562474,jorge.gonzález@mail.com
-7366953596,Paula Hernández,61,F,68001,Calle 3 #67-38,3612850396,paula.hernández@mail.com
-2193001215,Andrés González,38,M,66001,Calle 11 #64-15,3966424788,andrés.gonzález@correo.co
-1683243315,Sofia García,21,M,08001,Calle 73 #23-15,3873510890,sofia.garcía@example.org
-7307889820,Laura Pérez,26,M,76001,Calle 34 #25-13,3563469758,laura.pérez@correo.co
-6284224318,Paula Torres,26,M,17001,Calle 100 #66-24,3443367424,paula.torres@example.org
-0420925502,Luis Ramírez,28,M,05001,Calle 76 #57-34,3354644483,luis.ramírez@correo.co
-7902874456,Ana Rodríguez,33,M,68001,Calle 10 #70-13,3362778161,ana.rodríguez@example.org
-4480183746,Paula Ramírez,37,F,08001,Calle 59 #27-31,3255483084,paula.ramírez@example.org
-5339034396,Sofia González,46,F,54001,Calle 104 #69-20,3307919366,sofia.gonzález@example.org
-5184115409,Luis Rodríguez,39,M,17001,Calle 46 #5-45,3601932254,luis.rodríguez@correo.co
-8598457284,Ana Martínez,44,F,54001,Calle 122 #21-39,3532742948,ana.martínez@example.org
-2629672495,Valentina Hernández,68,O,76001,Calle 107 #32-12,3874915392,valentina.hernández@mail.com
-0271644067,Sofia Rodríguez,31,O,68001,Calle 105 #58-11,3254067378,sofia.rodríguez@correo.co
-7854065661,Paula Martínez,78,F,76001,Calle 44 #3-39,3125307613,paula.martínez@mail.com
-6287811413,Valentina Hernández,74,M,76036,Calle 2 #7-50,3322910008,valentina.hernández@example.org
-6084749779,Jorge López,44,O,54001,Calle 110 #16-15,3231433408,jorge.lópez@example.org
-6536259268,Laura Martínez,50,M,76036,Calle 84 #50-44,3971176960,laura.martínez@mail.com
-1370748727,Luis López,72,M,76036,Calle 21 #8-9,3321209597,luis.lópez@correo.co
-1157254411,Sofia López,44,O,11001,Calle 64 #29-39,3851604909,sofia.lópez@mail.com
-7870387951,Andrés Martínez,49,F,13001,Calle 148 #58-41,3284933446,andrés.martínez@correo.co
-3443733908,Valentina Martínez,50,F,66001,Calle 79 #59-19,3360141105,valentina.martínez@example.org
-6666246269,María Pérez,38,M,54001,Calle 66 #45-33,3763034249,maría.pérez@correo.co
-7798157822,Carlos García,32,M,54001,Calle 102 #76-6,3514823963,carlos.garcía@correo.co
-5152278198,Valentina Pérez,57,M,76001,Calle 126 #1-7,3065671371,valentina.pérez@mail.com
-6702735924,Paula Torres,31,O,76001,Calle 21 #38-6,3323546107,paula.torres@mail.com
-8901597246,Sofia Torres,72,F,68001,Calle 88 #41-16,3963033146,sofia.torres@example.org
-4999897211,Paula Ramírez,70,O,08001,Calle 1 #42-2,3689762477,paula.ramírez@correo.co
-7604719972,Jorge Torres,82,M,76001,Calle 128 #12-20,3899489452,jorge.torres@mail.com
-3658821007,Luis Sánchez,33,O,76001,Calle 137 #63-6,3732590397,luis.sánchez@example.org
-6510838226,Ana Rodríguez,65,M,68001,Calle 98 #74-48,3005893367,ana.rodríguez@example.org
-1789279787,Carlos Torres,54,M,11001,Calle 82 #40-33,3919748473,carlos.torres@correo.co
-1758874116,Luis Martínez,20,O,54001,Calle 87 #55-44,3433072975,luis.martínez@mail.com
-9109659640,Luis Martínez,44,M,08001,Calle 3 #47-47,3817839610,luis.martínez@correo.co
-1169259460,Ana Pérez,80,F,76036,Calle 45 #49-50,3676786263,ana.pérez@mail.com
-4557717981,Laura Martínez,67,F,54001,Calle 77 #74-9,3009718055,laura.martínez@example.org
-1962099251,Laura Martínez,18,O,66001,Calle 81 #16-3,3121580953,laura.martínez@example.org
-3160239402,Paula González,84,F,76036,Calle 138 #66-14,3660018215,paula.gonzález@example.org
-2564309717,Andrés Martínez,44,M,13001,Calle 50 #48-37,3686419406,andrés.martínez@mail.com
-0037186758,Luis García,30,F,08001,Calle 97 #14-8,3173845785,luis.garcía@example.org
-4434295792,Andrés Sánchez,34,F,11001,Calle 132 #20-43,3137079726,andrés.sánchez@example.org
-6914665101,Camilo Rodríguez,57,F,68001,Calle 24 #11-5,3791075489,camilo.rodríguez@correo.co
-9131304193,Valentina García,72,O,17001,Calle 89 #32-48,3699960419,valentina.garcía@example.org
-8800421374,Camilo López,33,F,13001,Calle 124 #38-17,3275239680,camilo.lópez@correo.co
-5296417087,Juan Rodríguez,73,F,08001,Calle 22 #68-33,3849072433,juan.rodríguez@mail.com
-7378598311,María López,54,M,76001,Calle 102 #54-48,3306999144,maría.lópez@example.org
-7121276447,Juan Martínez,37,F,17001,Calle 4 #31-4,3639742472,juan.martínez@mail.com
-7924040139,María Ramírez,41,M,76036,Calle 39 #30-8,3109946004,maría.ramírez@correo.co
-1667138756,Valentina Pérez,49,F,11001,Calle 47 #6-1,3072491193,valentina.pérez@correo.co
-6347511478,Ana Hernández,44,O,54001,Calle 23 #14-9,3660988140,ana.hernández@example.org
-1845504553,Jorge González,64,F,05001,Calle 112 #9-31,3495056105,jorge.gonzález@example.org
-5102018927,Laura Hernández,44,M,11001,Calle 41 #74-14,3509557282,laura.hernández@correo.co
-6037220689,Camilo López,44,O,05001,Calle 1 #45-41,3630757463,camilo.lópez@mail.com
-0118147601,Laura Rodríguez,66,O,13001,Calle 142 #27-29,3225871273,laura.rodríguez@correo.co
-8760201609,Carlos Pérez,42,M,76001,Calle 19 #55-16,3464717003,carlos.pérez@mail.com
-8125819041,María Ramírez,61,O,05001,Calle 52 #18-31,3788342525,maría.ramírez@mail.com
-6155616383,Camilo Hernández,46,O,54001,Calle 29 #63-11,3929203390,camilo.hernández@mail.com
-5920913346,María Hernández,81,O,68001,Calle 68 #10-1,3897114798,maría.hernández@mail.com
-2032834119,Andrés Torres,60,M,08001,Calle 99 #54-36,3455835456,andrés.torres@example.org
-7608803005,Sofia Martínez,55,F,76001,Calle 142 #54-16,3227161764,sofia.martínez@mail.com
-1349472532,Andrés Martínez,41,F,76001,Calle 136 #39-31,3437621807,andrés.martínez@example.org
-4303421373,Carlos Hernández,29,O,54001,Calle 33 #28-26,3621758843,carlos.hernández@example.org
-0390323177,Ana Hernández,38,O,05001,Calle 17 #28-39,3091292050,ana.hernández@correo.co
-9226179596,Carlos Rodríguez,60,F,17001,Calle 26 #65-50,3153582148,carlos.rodríguez@mail.com
-9007387844,Jorge González,75,M,68001,Calle 75 #47-40,3848732601,jorge.gonzález@example.org
-9432466456,Carlos Hernández,38,M,13001,Calle 148 #47-23,3017242861,carlos.hernández@mail.com
-2130340469,Sofia González,28,O,54001,Calle 130 #58-17,3890907651,sofia.gonzález@mail.com
-1259708792,Paula Rodríguez,28,M,05001,Calle 102 #56-13,3403627145,paula.rodríguez@correo.co
-8492194579,Ana García,72,F,13001,Calle 46 #11-10,3042785628,ana.garcía@mail.com
-9437627998,Andrés González,67,M,17001,Calle 51 #10-47,3663997731,andrés.gonzález@correo.co
-3381494384,Camilo Sánchez,30,M,08001,Calle 49 #54-45,3513399508,camilo.sánchez@mail.com
-9816644790,Sofia Rodríguez,40,F,54001,Calle 96 #23-36,3553864269,sofia.rodríguez@mail.com
-7703228287,Paula Ramírez,22,O,13001,Calle 108 #28-15,3751893749,paula.ramírez@example.org
-1688516919,Andrés López,18,F,11001,Calle 4 #4-10,3785731545,andrés.lópez@correo.co
-0716595079,Jorge Martínez,73,M,05001,Calle 33 #65-8,3678625920,jorge.martínez@correo.co
-8191121089,Camilo González,41,M,08001,Calle 77 #25-35,3878320010,camilo.gonzález@example.org
-6681339505,Ana Pérez,30,F,11001,Calle 106 #10-32,3906339810,ana.pérez@mail.com
-2107648499,Luis Rodríguez,42,O,11001,Calle 138 #3-34,3518123279,luis.rodríguez@correo.co
-6645360105,Luis Martínez,43,O,13001,Calle 101 #14-38,3751274452,luis.martínez@correo.co
-3034785365,Laura Pérez,55,O,17001,Calle 91 #51-2,3184122313,laura.pérez@mail.com
-4652007504,María Ramírez,53,O,76036,Calle 20 #74-42,3473318494,maría.ramírez@mail.com
-6364891360,Carlos Pérez,22,O,17001,Calle 11 #44-42,3048433307,carlos.pérez@correo.co
-1903682114,Juan García,35,M,68001,Calle 112 #29-11,3078850608,juan.garcía@mail.com
-3826860426,Carlos González,36,O,54001,Calle 115 #16-34,3556937222,carlos.gonzález@mail.com
-3462404695,Paula Pérez,42,F,05001,Calle 88 #27-38,3753976811,paula.pérez@correo.co
-4343039111,María Martínez,77,M,05001,Calle 62 #3-30,3106429041,maría.martínez@example.org
-7317822732,Luis Ramírez,81,O,54001,Calle 28 #7-42,3211852528,luis.ramírez@example.org
-4312068595,Laura Hernández,18,M,76001,Calle 129 #80-31,3786161349,laura.hernández@example.org
-3562483356,Paula López,78,M,11001,Calle 5 #73-44,3985110374,paula.lópez@example.org
-9312659981,Laura Sánchez,32,F,17001,Calle 6 #19-27,3861427937,laura.sánchez@mail.com
-9464196632,Camilo González,60,F,76036,Calle 107 #36-20,3157817573,camilo.gonzález@mail.com
-9597174920,Luis García,76,M,08001,Calle 73 #76-8,3034602328,luis.garcía@example.org
-3056538414,Sofia López,67,F,54001,Calle 26 #34-20,3514881724,sofia.lópez@mail.com
-5155273408,Sofia Ramírez,63,F,68001,Calle 110 #60-27,3949070197,sofia.ramírez@example.org
-2174268339,Jorge Sánchez,24,M,11001,Calle 70 #14-22,3585681557,jorge.sánchez@example.org
-9885868646,Juan Sánchez,43,M,05001,Calle 1 #20-39,3852105392,juan.sánchez@correo.co
-1213506649,Carlos Martínez,48,M,17001,Calle 140 #26-31,3421532374,carlos.martínez@correo.co
-5481769084,Sofia Martínez,77,O,66001,Calle 71 #2-11,3385373063,sofia.martínez@example.org
-1947987281,Paula Torres,41,O,17001,Calle 135 #34-9,3655580072,paula.torres@example.org
-5124221881,Andrés Pérez,26,M,76036,Calle 65 #15-3,3807689363,andrés.pérez@example.org
-5436510430,Laura García,30,M,11001,Calle 36 #1-24,3758369751,laura.garcía@mail.com
-9058953061,María Martínez,84,F,05001,Calle 31 #64-15,3050828338,maría.martínez@mail.com
-8568830479,Paula Hernández,21,M,68001,Calle 108 #34-13,3371579682,paula.hernández@mail.com
-5867507644,Jorge Sánchez,34,F,11001,Calle 27 #5-32,3564389007,jorge.sánchez@mail.com
-9078011036,Carlos Rodríguez,74,M,76036,Calle 95 #46-13,3392004785,carlos.rodríguez@mail.com
-7265265097,Ana Hernández,34,O,54001,Calle 123 #16-43,3025473927,ana.hernández@correo.co
-0825390830,Laura Sánchez,53,M,08001,Calle 36 #67-15,3351770247,laura.sánchez@mail.com
-8573844770,Andrés Pérez,74,M,08001,Calle 53 #49-12,3656079973,andrés.pérez@correo.co
-9025336367,María Ramírez,67,O,13001,Calle 137 #60-28,3555137910,maría.ramírez@example.org
-2630172816,Laura García,33,F,76036,Calle 83 #34-12,3400036545,laura.garcía@mail.com
-5021510258,Carlos Torres,24,M,05001,Calle 10 #24-44,3543529990,carlos.torres@correo.co
-2151237777,Camilo Pérez,27,O,54001,Calle 73 #19-2,3373464961,camilo.pérez@mail.com
-6653159379,Ana Pérez,22,O,76001,Calle 98 #11-5,3995967518,ana.pérez@mail.com
-5815745122,Ana Sánchez,58,O,05001,Calle 62 #57-47,3940503427,ana.sánchez@mail.com
-7104691899,Sofia Rodríguez,28,F,54001,Calle 130 #19-37,3481141477,sofia.rodríguez@correo.co
-6747777585,Sofia Martínez,69,O,17001,Calle 62 #38-8,3383617099,sofia.martínez@correo.co
-8433118792,Carlos García,65,O,66001,Calle 98 #42-29,3172724055,carlos.garcía@example.org
-1287099570,Jorge Hernández,58,M,68001,Calle 73 #22-8,3242192612,jorge.hernández@correo.co
-9713077352,Juan González,44,F,76036,Calle 110 #57-34,3149791840,juan.gonzález@mail.com
-5821441416,Camilo Ramírez,27,O,68001,Calle 10 #56-7,3973868060,camilo.ramírez@mail.com
-8886465522,María Ramírez,45,M,54001,Calle 18 #63-36,3670666235,maría.ramírez@mail.com
-6022845364,Luis Pérez,75,F,08001,Calle 109 #15-12,3431677484,luis.pérez@correo.co
-6159037337,Paula Pérez,69,F,11001,Calle 69 #63-47,3260428571,paula.pérez@example.org
-0091341327,María García,84,M,68001,Calle 138 #26-11,3837213452,maría.garcía@mail.com
-6177163350,Ana García,52,O,05001,Calle 97 #52-9,3888057707,ana.garcía@example.org
-7977450744,Luis Sánchez,43,M,13001,Calle 148 #61-25,3209549520,luis.sánchez@correo.co
-7233135406,María Hernández,60,M,05001,Calle 25 #72-11,3295048587,maría.hernández@mail.com
-7149041847,Jorge Sánchez,81,F,08001,Calle 83 #60-46,3457794010,jorge.sánchez@example.org
-9364237991,Jorge Pérez,69,M,13001,Calle 31 #56-19,3782385126,jorge.pérez@example.org
-0683012947,Valentina Sánchez,19,F,54001,Calle 46 #20-31,3093165304,valentina.sánchez@mail.com
-7528864179,Sofia Torres,69,F,17001,Calle 139 #26-5,3512151563,sofia.torres@example.org
-3343558899,María Torres,36,M,76001,Calle 122 #1-21,3091844372,maría.torres@correo.co
-5993170450,Luis Martínez,73,O,66001,Calle 126 #33-44,3186188734,luis.martínez@example.org
-8996448780,Luis González,30,F,13001,Calle 129 #2-39,3266397205,luis.gonzález@mail.com
-0883795959,Juan Torres,37,O,76001,Calle 34 #11-27,3814738286,juan.torres@example.org
-2335654107,Andrés Pérez,25,M,08001,Calle 129 #19-47,3210664689,andrés.pérez@correo.co
-3225482192,Carlos González,20,M,11001,Calle 56 #48-30,3072869171,carlos.gonzález@mail.com
-4662395725,Paula Hernández,29,F,68001,Calle 149 #47-23,3758619515,paula.hernández@example.org
-3914391315,Ana Hernández,45,F,13001,Calle 9 #15-34,3611533507,ana.hernández@example.org
-1425511356,Juan Sánchez,76,O,76036,Calle 112 #52-31,3823363987,juan.sánchez@example.org
-2202683434,Jorge López,35,M,68001,Calle 14 #12-20,3713346213,jorge.lópez@mail.com
-3047526733,Camilo Pérez,45,F,54001,Calle 119 #32-49,3933933268,camilo.pérez@example.org
-9416840618,Juan Torres,68,M,08001,Calle 36 #64-13,3030311364,juan.torres@correo.co
-5778911478,Juan Martínez,58,M,76036,Calle 130 #50-44,3449473266,juan.martínez@correo.co
-3467022442,María Martínez,18,F,76036,Calle 67 #26-33,3874021438,maría.martínez@example.org
-8503067815,Juan Torres,32,F,11001,Calle 137 #51-16,3151148346,juan.torres@example.org
-6576052926,Valentina Rodríguez,61,O,13001,Calle 109 #52-2,3177709975,valentina.rodríguez@correo.co
-2030278563,Carlos Hernández,82,O,11001,Calle 103 #24-44,3202762476,carlos.hernández@mail.com
-6532932360,Andrés Sánchez,19,F,68001,Calle 82 #45-29,3184513465,andrés.sánchez@mail.com
-0295117744,Laura Torres,39,O,68001,Calle 145 #56-27,3909542916,laura.torres@mail.com
-0876605441,Ana Pérez,53,F,68001,Calle 28 #41-33,3538448491,ana.pérez@correo.co
-8658813819,Juan Torres,46,M,76036,Calle 129 #11-39,3540616690,juan.torres@example.org
-8927076454,Ana González,34,F,05001,Calle 8 #27-37,3426979516,ana.gonzález@correo.co
-7564112871,Andrés Rodríguez,71,F,17001,Calle 31 #78-42,3974808870,andrés.rodríguez@correo.co
-3422015085,Carlos González,70,O,68001,Calle 37 #32-31,3206084222,carlos.gonzález@correo.co
-5103585499,Valentina Hernández,57,O,76001,Calle 146 #40-31,3761816822,valentina.hernández@mail.com
-2776349988,Camilo Martínez,82,F,17001,Calle 96 #49-32,3684436022,camilo.martínez@mail.com
-2766264065,Jorge López,43,F,11001,Calle 103 #13-22,3529850745,jorge.lópez@mail.com
-4405520497,María López,26,M,17001,Calle 78 #8-14,3255457361,maría.lópez@mail.com
-5617108541,Paula López,76,M,13001,Calle 105 #77-18,3415592822,paula.lópez@example.org
-6313116354,Andrés Hernández,30,F,68001,Calle 138 #24-13,3772535136,andrés.hernández@example.org
-0461428262,Laura Pérez,52,M,13001,Calle 121 #39-24,3133744347,laura.pérez@correo.co
-4906694263,Sofia García,59,F,54001,Calle 84 #72-36,3776420179,sofia.garcía@example.org
-5435658617,María García,61,F,17001,Calle 95 #57-19,3117374112,maría.garcía@mail.com
-3405950405,Valentina González,64,F,08001,Calle 48 #42-30,3231926916,valentina.gonzález@correo.co
-9774248760,Sofia Ramírez,80,F,76036,Calle 86 #9-48,3005115854,sofia.ramírez@example.org
-5628987511,Camilo Torres,61,F,17001,Calle 111 #3-26,3508024226,camilo.torres@correo.co
-7089190882,Luis Martínez,30,M,17001,Calle 11 #17-35,3308962192,luis.martínez@mail.com
-3942054590,Juan Sánchez,74,F,08001,Calle 53 #49-38,3801971714,juan.sánchez@example.org
-7808105140,Andrés Pérez,69,M,68001,Calle 93 #40-5,3483906349,andrés.pérez@correo.co
-2438600047,Laura López,55,F,76036,Calle 107 #21-27,3199781811,laura.lópez@correo.co
-1663491636,Carlos Pérez,23,O,54001,Calle 135 #22-11,3132409448,carlos.pérez@correo.co
-1639655871,Valentina Rodríguez,79,F,76036,Calle 51 #17-15,3581677262,valentina.rodríguez@correo.co
-6854265127,Andrés González,36,O,11001,Calle 99 #7-13,3906823048,andrés.gonzález@mail.com
-9817134599,Sofia González,41,F,68001,Calle 125 #71-30,3663503691,sofia.gonzález@mail.com
-6911668297,Jorge Martínez,68,O,08001,Calle 37 #29-50,3073618583,jorge.martínez@mail.com
-3969041878,Jorge Torres,72,M,13001,Calle 13 #52-19,3354437207,jorge.torres@example.org
-4670131646,Ana Pérez,38,O,54001,Calle 101 #76-13,3232914756,ana.pérez@mail.com
-5079828474,Luis Rodríguez,76,M,05001,Calle 88 #35-3,3381458677,luis.rodríguez@mail.com
-2984656860,Juan Rodríguez,53,O,13001,Calle 65 #66-22,3489018245,juan.rodríguez@example.org
-0387492163,María Torres,30,O,05001,Calle 31 #31-24,3576870644,maría.torres@example.org
-5867771403,Luis Pérez,21,O,66001,Calle 65 #46-44,3392404927,luis.pérez@mail.com
-9315975753,Jorge López,58,F,05001,Calle 24 #52-21,3667284343,jorge.lópez@mail.com
-9328219026,Valentina Rodríguez,43,M,05001,Calle 104 #34-10,3753919882,valentina.rodríguez@example.org
-3593273843,Ana López,46,F,08001,Calle 38 #2-19,3206845548,ana.lópez@example.org
-7659450644,Ana González,63,M,76001,Calle 83 #32-35,3509975182,ana.gonzález@correo.co
-7136363275,Carlos García,75,O,11001,Calle 89 #62-46,3160759774,carlos.garcía@example.org
-8097304768,Andrés Martínez,58,M,76036,Calle 14 #46-38,3196577267,andrés.martínez@mail.com
-7506903195,Andrés Sánchez,35,F,76001,Calle 25 #40-23,3142022360,andrés.sánchez@correo.co
-3148758469,Juan González,67,F,11001,Calle 146 #73-24,3891612389,juan.gonzález@example.org
-9602194700,María Hernández,55,M,68001,Calle 47 #76-34,3101163468,maría.hernández@correo.co
-4344343472,Paula Torres,30,O,05001,Calle 83 #68-37,3553523419,paula.torres@correo.co
-0887513690,Camilo García,85,M,08001,Calle 23 #40-38,3751300933,camilo.garcía@example.org
-9983801268,Carlos López,58,M,08001,Calle 127 #27-37,3609269028,carlos.lópez@correo.co
-1601170517,Andrés Torres,57,M,13001,Calle 105 #2-27,3838172060,andrés.torres@correo.co
-4103060437,Camilo Pérez,54,O,13001,Calle 73 #73-17,3118895419,camilo.pérez@correo.co
-3952637048,Paula Torres,23,O,17001,Calle 49 #27-47,3359399326,paula.torres@correo.co
-6000358705,Laura Ramírez,54,O,76001,Calle 37 #71-21,3064561931,laura.ramírez@mail.com
-1619983081,Juan Sánchez,67,F,76036,Calle 100 #58-48,3242964848,juan.sánchez@mail.com
-2759773487,Paula Pérez,47,F,76001,Calle 91 #27-26,3447433337,paula.pérez@mail.com
-9490251967,Sofia Hernández,45,F,76001,Calle 121 #14-35,3638760251,sofia.hernández@correo.co
-0080839212,Camilo Pérez,43,M,54001,Calle 82 #60-16,3819396786,camilo.pérez@mail.com
-5496996147,María González,58,O,66001,Calle 122 #44-46,3138181194,maría.gonzález@example.org
-9801331976,Carlos Pérez,78,F,66001,Calle 44 #3-38,3689518995,carlos.pérez@correo.co
-3167293296,Camilo González,55,O,05001,Calle 91 #78-32,3084181259,camilo.gonzález@correo.co
-8743975429,Camilo Rodríguez,60,O,11001,Calle 34 #80-1,3703930663,camilo.rodríguez@example.org
-8616848711,Camilo Rodríguez,58,O,05001,Calle 6 #17-49,3103187800,camilo.rodríguez@correo.co
-7474758450,Valentina Martínez,43,O,05001,Calle 48 #12-46,3907200354,valentina.martínez@mail.com
-2487569270,Ana Hernández,36,O,76036,Calle 49 #16-45,3718723824,ana.hernández@example.org
-9573383345,María Sánchez,62,O,11001,Calle 111 #11-44,3770705936,maría.sánchez@example.org
-4013963076,Valentina López,47,O,76001,Calle 11 #46-27,3449894841,valentina.lópez@correo.co
-4484631976,Carlos Martínez,41,M,05001,Calle 5 #51-31,3130339524,carlos.martínez@example.org
-8839044232,Carlos López,84,F,08001,Calle 107 #63-1,3963366553,carlos.lópez@correo.co
-5838313549,Sofia Sánchez,53,O,68001,Calle 148 #43-45,3113692528,sofia.sánchez@correo.co
-9438281962,Valentina Hernández,26,F,54001,Calle 50 #36-46,3180263841,valentina.hernández@correo.co
+id,name,age,gender,alive,expected
+1001,Ana Martinez,28,FEMALE,false,DEAD
+1002,Laura Castro,1,FEMALE,true,UNDERAGE
+1003,Ana Gonzalez,21,MALE,false,DEAD
+1004,Mateo Rodriguez,54,MALE,false,DEAD
+1005,Sofia Torres,42,MALE,true,VALID
+1006,Mateo Castro,41,MALE,true,VALID
+1007,Andres Ramirez,15,FEMALE,true,UNDERAGE
+1008,Andres Ramirez,20,FEMALE,true,VALID
+1009,Ana Castro,22,MALE,true,VALID
+1010,Sofia Rodriguez,40,MALE,true,VALID
+1011,Andres Ramirez,38,MALE,true,VALID
+1012,Mateo Gonzalez,66,UNIDENTIFIED,true,VALID
+1013,Camilo Castro,26,FEMALE,true,VALID
+1014,Laura Martinez,45,UNIDENTIFIED,true,VALID
+1015,Sofia Gonzalez,56,UNIDENTIFIED,true,VALID
+1016,Laura Castro,71,FEMALE,true,VALID
+1017,Ana Gonzalez,37,UNIDENTIFIED,true,VALID
+1018,Sofia Rodriguez,44,FEMALE,true,VALID
+1019,Laura Torres,20,FEMALE,false,DEAD
+1020,Ana Ramirez,33,FEMALE,true,VALID
+1021,Sofia Castro,36,UNIDENTIFIED,true,VALID
+1022,Valentina Martinez,1,FEMALE,true,UNDERAGE
+1023,Ana Martinez,7,FEMALE,true,UNDERAGE
+1024,Mateo Castro,59,UNIDENTIFIED,true,VALID
+1025,Mateo Martinez,29,MALE,false,DEAD
+1026,Ana Rodriguez,26,MALE,true,VALID
+1027,Luis Martinez,19,UNIDENTIFIED,true,VALID
+1028,Mateo Gonzalez,16,MALE,true,UNDERAGE
+1029,Luis Gonzalez,39,FEMALE,true,VALID
+1030,Sofia Torres,33,FEMALE,true,VALID
+1031,Sofia Martinez,26,UNIDENTIFIED,false,DEAD
+1032,Valentina Gonzalez,65,UNIDENTIFIED,true,VALID
+1033,Sofia Ramirez,75,FEMALE,true,VALID
+1034,Andres Rodriguez,77,MALE,true,VALID
+1035,Sofia Martinez,32,UNIDENTIFIED,true,VALID
+1036,Laura Martinez,42,UNIDENTIFIED,true,VALID
+1037,Ana Martinez,22,MALE,true,VALID
+1038,Camilo Castro,50,UNIDENTIFIED,true,VALID
+1039,Laura Castro,76,FEMALE,true,VALID
+1040,Camilo Ramirez,6,FEMALE,true,UNDERAGE
+1041,Luis Ramirez,44,MALE,false,DEAD
+1042,Luis Martinez,50,MALE,true,VALID
+1043,Andres Ramirez,6,MALE,true,UNDERAGE
+1044,Mateo Rodriguez,62,FEMALE,true,VALID
+1045,Mateo Torres,61,FEMALE,true,VALID
+1046,Valentina Martinez,59,UNIDENTIFIED,true,VALID
+1047,Sofia Gonzalez,41,MALE,false,DEAD
+1048,Laura Torres,0,UNIDENTIFIED,true,UNDERAGE
+1049,Luis Rodriguez,33,FEMALE,false,DEAD
+1050,Mateo Gonzalez,76,FEMALE,true,VALID
+1051,Andres Torres,64,MALE,false,DEAD
+1052,Laura Martinez,42,UNIDENTIFIED,true,VALID
+1053,Camilo Rodriguez,48,MALE,true,VALID
+1054,Ana Rodriguez,29,FEMALE,false,DEAD
+1055,Andres Gonzalez,72,MALE,true,VALID
+1056,Mateo Castro,43,FEMALE,false,DEAD
+1057,Laura Rodriguez,42,FEMALE,false,DEAD
+1058,Camilo Gonzalez,40,UNIDENTIFIED,false,DEAD
+1059,Ana Torres,60,FEMALE,true,VALID
+1060,Laura Martinez,14,UNIDENTIFIED,true,UNDERAGE
+1061,Camilo Rodriguez,31,FEMALE,true,VALID
+1062,Laura Castro,26,UNIDENTIFIED,true,VALID
+1063,Andres Rodriguez,11,MALE,true,UNDERAGE
+1064,Camilo Rodriguez,51,UNIDENTIFIED,true,VALID
+1065,Sofia Martinez,37,MALE,true,VALID
+1066,Camilo Gonzalez,53,UNIDENTIFIED,true,VALID
+1067,Laura Ramirez,52,UNIDENTIFIED,true,VALID
+1068,Valentina Gonzalez,72,FEMALE,true,VALID
+1069,Ana Torres,71,UNIDENTIFIED,true,VALID
+1070,Mateo Castro,62,MALE,true,VALID
+1071,Valentina Torres,49,MALE,true,VALID
+1072,Laura Martinez,35,UNIDENTIFIED,true,VALID
+1073,Mateo Castro,74,MALE,true,VALID
+1074,Luis Martinez,7,MALE,true,UNDERAGE
+1075,Andres Martinez,34,FEMALE,true,VALID
+1076,Laura Castro,15,FEMALE,true,UNDERAGE
+1077,Sofia Martinez,62,MALE,true,VALID
+1078,Mateo Castro,1,FEMALE,true,UNDERAGE
+1079,Andres Martinez,75,FEMALE,true,VALID
+1080,Mateo Torres,3,MALE,true,UNDERAGE
+1081,Valentina Rodriguez,57,UNIDENTIFIED,true,VALID
+1082,Valentina Rodriguez,61,FEMALE,true,VALID
+1083,Sofia Rodriguez,16,FEMALE,true,UNDERAGE
+1084,Camilo Martinez,24,MALE,true,VALID
+1085,Mateo Castro,62,MALE,false,DEAD
+1086,Andres Gonzalez,33,MALE,true,VALID
+1087,Andres Rodriguez,67,UNIDENTIFIED,true,VALID
+1088,Ana Ramirez,59,MALE,true,VALID
+1089,Mateo Gonzalez,4,UNIDENTIFIED,true,UNDERAGE
+1090,Valentina Rodriguez,2,FEMALE,true,UNDERAGE
+1091,Mateo Ramirez,39,MALE,true,VALID
+1092,Camilo Torres,63,MALE,true,VALID
+1093,Laura Castro,70,MALE,true,VALID
+1094,Valentina Castro,47,FEMALE,false,DEAD
+1095,Ana Gonzalez,41,FEMALE,true,VALID
+1096,Luis Torres,35,FEMALE,true,VALID
+1097,Mateo Gonzalez,18,UNIDENTIFIED,true,VALID
+1098,Luis Castro,54,MALE,true,VALID
+1099,Valentina Martinez,23,MALE,true,VALID
+1100,Valentina Ramirez,41,MALE,false,DEAD
+1101,Andres Torres,10,UNIDENTIFIED,true,UNDERAGE
+1102,Sofia Gonzalez,38,UNIDENTIFIED,true,VALID
+1103,Sofia Martinez,13,MALE,true,UNDERAGE
+1104,Luis Ramirez,35,UNIDENTIFIED,true,VALID
+1105,Sofia Martinez,71,MALE,true,VALID
+1106,Ana Martinez,36,MALE,true,VALID
+1107,Sofia Torres,45,FEMALE,true,VALID
+1108,Luis Torres,68,FEMALE,true,VALID
+1109,Ana Martinez,34,FEMALE,true,VALID
+1110,Ana Rodriguez,13,MALE,true,UNDERAGE
+1111,Ana Martinez,68,UNIDENTIFIED,true,VALID
+1112,Ana Torres,18,UNIDENTIFIED,true,VALID
+1113,Mateo Gonzalez,35,UNIDENTIFIED,true,VALID
+1114,Camilo Torres,22,UNIDENTIFIED,true,VALID
+1115,Andres Gonzalez,64,FEMALE,true,VALID
+1116,Luis Torres,72,UNIDENTIFIED,true,VALID
+1117,Ana Torres,29,FEMALE,true,VALID
+1118,Sofia Gonzalez,52,MALE,true,VALID
+1119,Luis Torres,71,FEMALE,true,VALID
+1120,Valentina Castro,59,MALE,true,VALID
+1121,Mateo Martinez,54,FEMALE,true,VALID
+1122,Sofia Torres,21,UNIDENTIFIED,true,VALID
+1123,Laura Rodriguez,56,FEMALE,true,VALID
+1124,Andres Gonzalez,33,MALE,false,DEAD
+1125,Laura Torres,14,FEMALE,true,UNDERAGE
+1126,Ana Martinez,2,FEMALE,true,UNDERAGE
+1127,Andres Torres,51,UNIDENTIFIED,false,DEAD
+1128,Andres Ramirez,63,UNIDENTIFIED,true,VALID
+1129,Sofia Ramirez,49,MALE,true,VALID
+1130,Ana Rodriguez,56,UNIDENTIFIED,true,VALID
+1131,Luis Ramirez,64,FEMALE,true,VALID
+1132,Laura Ramirez,58,FEMALE,true,VALID
+1133,Luis Martinez,14,FEMALE,true,UNDERAGE
+1134,Laura Martinez,50,UNIDENTIFIED,true,VALID
+1135,Mateo Torres,64,FEMALE,true,VALID
+1136,Luis Gonzalez,49,FEMALE,true,VALID
+1137,Laura Castro,68,MALE,true,VALID
+1138,Luis Gonzalez,59,FEMALE,true,VALID
+1139,Ana Castro,14,FEMALE,true,UNDERAGE
+1140,Andres Gonzalez,72,MALE,true,VALID
+1141,Andres Ramirez,74,MALE,true,VALID
+1142,Camilo Castro,68,UNIDENTIFIED,true,VALID
+1143,Laura Rodriguez,16,FEMALE,true,UNDERAGE
+1144,Valentina Martinez,35,UNIDENTIFIED,true,VALID
+1145,Luis Rodriguez,23,MALE,true,VALID
+1146,Valentina Martinez,76,FEMALE,true,VALID
+1147,Ana Ramirez,8,MALE,true,UNDERAGE
+1148,Andres Martinez,27,FEMALE,true,VALID
+1149,Ana Gonzalez,1,FEMALE,true,UNDERAGE
+1150,Mateo Rodriguez,66,MALE,true,VALID
+1151,Camilo Torres,17,MALE,true,UNDERAGE
+1152,Sofia Martinez,56,UNIDENTIFIED,true,VALID
+1153,Andres Rodriguez,77,UNIDENTIFIED,true,VALID
+1154,Camilo Torres,32,FEMALE,true,VALID
+1155,Laura Martinez,65,MALE,true,VALID
+1156,Andres Torres,75,UNIDENTIFIED,true,VALID
+1157,Ana Castro,70,MALE,true,VALID
+1158,Laura Castro,7,MALE,true,UNDERAGE
+1159,Mateo Torres,57,MALE,true,VALID
+1160,Luis Castro,47,UNIDENTIFIED,true,VALID
+1161,Camilo Gonzalez,1,UNIDENTIFIED,true,UNDERAGE
+1162,Laura Gonzalez,51,MALE,true,VALID
+1163,Andres Martinez,55,MALE,true,VALID
+1164,Luis Rodriguez,23,FEMALE,true,VALID
+1165,Sofia Ramirez,54,FEMALE,true,VALID
+1166,Mateo Gonzalez,66,FEMALE,true,VALID
+1167,Mateo Gonzalez,64,MALE,true,VALID
+1168,Laura Ramirez,26,UNIDENTIFIED,true,VALID
+1169,Andres Torres,3,FEMALE,true,UNDERAGE
+1170,Valentina Torres,38,FEMALE,true,VALID
+1171,Luis Ramirez,9,FEMALE,true,UNDERAGE
+1172,Ana Torres,0,UNIDENTIFIED,true,UNDERAGE
+1173,Ana Ramirez,31,FEMALE,true,VALID
+1174,Laura Castro,7,UNIDENTIFIED,true,UNDERAGE
+1175,Laura Castro,14,MALE,true,UNDERAGE
+1176,Laura Martinez,18,FEMALE,true,VALID
+1177,Camilo Martinez,14,UNIDENTIFIED,true,UNDERAGE
+1178,Mateo Gonzalez,57,UNIDENTIFIED,true,VALID
+1179,Sofia Ramirez,35,UNIDENTIFIED,true,VALID
+1180,Andres Torres,75,FEMALE,true,VALID
+1181,Ana Martinez,26,MALE,false,DEAD
+1182,Camilo Martinez,19,MALE,true,VALID
+1183,Sofia Martinez,70,MALE,true,VALID
+1184,Camilo Ramirez,51,FEMALE,false,DEAD
+1185,Camilo Gonzalez,15,MALE,true,UNDERAGE
+1186,Mateo Rodriguez,73,UNIDENTIFIED,true,VALID
+1187,Sofia Torres,1,FEMALE,true,UNDERAGE
+1188,Camilo Gonzalez,64,FEMALE,true,VALID
+1189,Ana Rodriguez,74,FEMALE,true,VALID
+1190,Ana Gonzalez,30,FEMALE,true,VALID
+1191,Valentina Rodriguez,39,FEMALE,true,VALID
+1192,Sofia Gonzalez,53,UNIDENTIFIED,true,VALID
+1193,Luis Ramirez,35,FEMALE,true,VALID
+1194,Sofia Torres,18,FEMALE,true,VALID
+1195,Sofia Gonzalez,68,UNIDENTIFIED,true,VALID
+1196,Laura Ramirez,69,UNIDENTIFIED,true,VALID
+1197,Ana Gonzalez,7,UNIDENTIFIED,true,UNDERAGE
+1198,Camilo Castro,39,MALE,false,DEAD
+1199,Ana Rodriguez,65,UNIDENTIFIED,true,VALID
+1200,Valentina Torres,35,FEMALE,true,VALID
+1201,Sofia Torres,15,FEMALE,true,UNDERAGE
+1202,Sofia Martinez,50,FEMALE,true,VALID
+1203,Laura Ramirez,49,UNIDENTIFIED,true,VALID
+1204,Sofia Castro,60,MALE,true,VALID
+1205,Valentina Rodriguez,17,FEMALE,true,UNDERAGE
+1206,Mateo Torres,35,MALE,true,VALID
+1207,Sofia Rodriguez,4,FEMALE,true,UNDERAGE
+1208,Sofia Gonzalez,9,UNIDENTIFIED,true,UNDERAGE
+1209,Ana Rodriguez,56,FEMALE,false,DEAD
+1210,Ana Castro,13,FEMALE,true,UNDERAGE
+1211,Andres Rodriguez,28,MALE,true,VALID
+1212,Mateo Torres,5,MALE,true,UNDERAGE
+1213,Luis Ramirez,8,FEMALE,true,UNDERAGE
+1214,Andres Castro,48,MALE,true,VALID
+1215,Laura Martinez,25,MALE,true,VALID
+1216,Ana Martinez,41,UNIDENTIFIED,false,DEAD
+1217,Valentina Castro,9,UNIDENTIFIED,true,UNDERAGE
+1218,Ana Castro,53,FEMALE,true,VALID
+1219,Ana Castro,75,FEMALE,true,VALID
+1220,Luis Gonzalez,13,UNIDENTIFIED,true,UNDERAGE
+1221,Sofia Gonzalez,42,MALE,false,DEAD
+1222,Camilo Ramirez,58,MALE,true,VALID
+1223,Andres Ramirez,23,FEMALE,false,DEAD
+1224,Andres Martinez,13,UNIDENTIFIED,true,UNDERAGE
+1225,Camilo Ramirez,63,FEMALE,true,VALID
+1226,Andres Castro,61,UNIDENTIFIED,true,VALID
+1227,Mateo Castro,46,UNIDENTIFIED,true,VALID
+1228,Ana Rodriguez,22,UNIDENTIFIED,true,VALID
+1229,Luis Castro,40,MALE,false,DEAD
+1230,Camilo Ramirez,64,UNIDENTIFIED,true,VALID
+1231,Andres Castro,22,FEMALE,true,VALID
+1232,Valentina Ramirez,63,FEMALE,true,VALID
+1233,Luis Martinez,32,FEMALE,true,VALID
+1234,Camilo Martinez,15,FEMALE,true,UNDERAGE
+1235,Camilo Castro,58,UNIDENTIFIED,false,DEAD
+1236,Mateo Ramirez,10,FEMALE,true,UNDERAGE
+1237,Valentina Rodriguez,60,MALE,true,VALID
+1238,Sofia Martinez,19,MALE,true,VALID
+1239,Laura Torres,68,FEMALE,false,DEAD
+1240,Sofia Torres,13,MALE,true,UNDERAGE
+1241,Laura Torres,23,FEMALE,true,VALID
+1242,Valentina Ramirez,25,MALE,false,DEAD
+1243,Sofia Rodriguez,72,FEMALE,true,VALID
+1244,Mateo Rodriguez,51,FEMALE,true,VALID
+1245,Ana Torres,68,FEMALE,true,VALID
+1246,Ana Rodriguez,4,FEMALE,true,UNDERAGE
+1247,Luis Castro,13,FEMALE,true,UNDERAGE
+1248,Valentina Torres,32,FEMALE,true,VALID
+1249,Andres Gonzalez,19,MALE,true,VALID
+1250,Luis Gonzalez,0,MALE,true,UNDERAGE
+1251,Luis Torres,53,FEMALE,true,VALID
+1252,Valentina Castro,54,FEMALE,false,DEAD
+1253,Valentina Torres,42,MALE,false,DEAD
+1254,Valentina Torres,31,MALE,true,VALID
+1255,Andres Gonzalez,43,MALE,false,DEAD
+1256,Camilo Castro,16,UNIDENTIFIED,true,UNDERAGE
+1257,Andres Ramirez,65,UNIDENTIFIED,true,VALID
+1258,Luis Ramirez,58,MALE,true,VALID
+1259,Mateo Castro,18,UNIDENTIFIED,true,VALID
+1260,Laura Martinez,6,FEMALE,true,UNDERAGE
+1261,Ana Torres,51,MALE,false,DEAD
+1262,Camilo Castro,23,MALE,true,VALID
+1263,Mateo Castro,59,MALE,true,VALID
+1264,Valentina Castro,71,UNIDENTIFIED,true,VALID
+1265,Andres Torres,64,FEMALE,true,VALID
+1266,Luis Gonzalez,4,FEMALE,true,UNDERAGE
+1267,Luis Martinez,50,FEMALE,true,VALID
+1268,Valentina Castro,56,FEMALE,true,VALID
+1269,Camilo Ramirez,42,FEMALE,false,DEAD
+1270,Camilo Castro,24,UNIDENTIFIED,false,DEAD
+1271,Luis Castro,28,FEMALE,true,VALID
+1272,Camilo Gonzalez,14,UNIDENTIFIED,true,UNDERAGE
+1273,Laura Martinez,5,FEMALE,true,UNDERAGE
+1274,Mateo Torres,77,MALE,true,VALID
+1275,Luis Rodriguez,23,FEMALE,true,VALID
+1276,Luis Rodriguez,25,FEMALE,true,VALID
+1277,Luis Castro,63,UNIDENTIFIED,true,VALID
+1278,Laura Torres,41,FEMALE,true,VALID
+1279,Ana Rodriguez,29,UNIDENTIFIED,true,VALID
+1280,Laura Torres,61,MALE,true,VALID
+1281,Camilo Gonzalez,16,MALE,true,UNDERAGE
+1282,Ana Rodriguez,58,UNIDENTIFIED,false,DEAD
+1283,Sofia Rodriguez,36,MALE,false,DEAD
+1284,Laura Torres,21,UNIDENTIFIED,true,VALID
+1285,Valentina Torres,30,FEMALE,true,VALID
+1286,Valentina Ramirez,5,MALE,true,UNDERAGE
+1287,Sofia Castro,47,UNIDENTIFIED,true,VALID
+1288,Ana Torres,18,MALE,true,VALID
+1289,Luis Martinez,27,UNIDENTIFIED,true,VALID
+1290,Camilo Martinez,29,UNIDENTIFIED,true,VALID
+1291,Valentina Torres,77,FEMALE,true,VALID
+1292,Laura Torres,65,FEMALE,true,VALID
+1293,Ana Ramirez,61,UNIDENTIFIED,false,DEAD
+1294,Valentina Martinez,2,MALE,true,UNDERAGE
+1295,Luis Castro,37,UNIDENTIFIED,true,VALID
+1296,Sofia Castro,50,MALE,true,VALID
+1297,Sofia Gonzalez,70,MALE,true,VALID
+1298,Laura Castro,36,UNIDENTIFIED,true,VALID
+1299,Andres Gonzalez,25,MALE,false,DEAD
+1300,Laura Torres,36,UNIDENTIFIED,true,VALID
+1301,Sofia Torres,46,FEMALE,true,VALID
+1302,Sofia Castro,28,UNIDENTIFIED,false,DEAD
+1303,Valentina Martinez,27,UNIDENTIFIED,true,VALID
+1304,Luis Gonzalez,57,UNIDENTIFIED,true,VALID
+1305,Luis Martinez,69,UNIDENTIFIED,true,VALID
+1306,Laura Torres,75,FEMALE,true,VALID
+1307,Camilo Castro,26,FEMALE,false,DEAD
+1308,Sofia Gonzalez,46,FEMALE,true,VALID
+1309,Valentina Castro,63,FEMALE,true,VALID
+1310,Luis Rodriguez,7,MALE,true,UNDERAGE
+1311,Ana Torres,69,MALE,true,VALID
+1312,Mateo Rodriguez,55,UNIDENTIFIED,true,VALID
+1313,Andres Castro,69,MALE,false,DEAD
+1314,Mateo Ramirez,38,FEMALE,true,VALID
+1315,Camilo Castro,32,FEMALE,true,VALID
+1316,Laura Torres,24,MALE,false,DEAD
+1317,Laura Torres,38,UNIDENTIFIED,true,VALID
+1318,Andres Castro,68,UNIDENTIFIED,true,VALID
+1319,Andres Gonzalez,58,MALE,false,DEAD
+1320,Andres Ramirez,70,MALE,true,VALID
+1321,Ana Ramirez,70,FEMALE,true,VALID
+1322,Valentina Rodriguez,30,MALE,true,VALID
+1323,Mateo Gonzalez,27,MALE,true,VALID
+1324,Camilo Castro,52,MALE,true,VALID
+1325,Valentina Gonzalez,28,FEMALE,true,VALID
+1326,Ana Ramirez,15,FEMALE,true,UNDERAGE
+1327,Laura Torres,39,FEMALE,true,VALID
+1328,Andres Ramirez,46,UNIDENTIFIED,true,VALID
+1329,Andres Martinez,24,UNIDENTIFIED,true,VALID
+1330,Andres Torres,37,UNIDENTIFIED,true,VALID
+1331,Luis Ramirez,25,MALE,true,VALID
+1332,Camilo Rodriguez,72,FEMALE,true,VALID
+1333,Sofia Torres,64,MALE,true,VALID
+1334,Luis Torres,3,MALE,true,UNDERAGE
+1335,Andres Rodriguez,5,MALE,true,UNDERAGE
+1336,Mateo Gonzalez,7,MALE,true,UNDERAGE
+1337,Laura Rodriguez,32,FEMALE,false,DEAD
+1338,Luis Castro,48,FEMALE,true,VALID
+1339,Sofia Rodriguez,22,FEMALE,true,VALID
+1340,Mateo Rodriguez,48,MALE,true,VALID
+1341,Ana Gonzalez,20,FEMALE,true,VALID
+1342,Mateo Castro,69,MALE,true,VALID
+1343,Mateo Martinez,8,UNIDENTIFIED,true,UNDERAGE
+1344,Andres Ramirez,32,FEMALE,true,VALID
+1345,Andres Ramirez,25,FEMALE,true,VALID
+1346,Mateo Rodriguez,36,FEMALE,true,VALID
+1347,Andres Martinez,55,UNIDENTIFIED,true,VALID
+1348,Andres Martinez,6,UNIDENTIFIED,true,UNDERAGE
+1349,Laura Torres,12,MALE,true,UNDERAGE
+1350,Mateo Ramirez,52,FEMALE,true,VALID
+1351,Andres Gonzalez,42,MALE,true,VALID
+1352,Ana Torres,32,UNIDENTIFIED,true,VALID
+1353,Camilo Gonzalez,0,MALE,true,UNDERAGE
+1354,Mateo Torres,36,MALE,true,VALID
+1355,Laura Gonzalez,41,UNIDENTIFIED,true,VALID
+1356,Laura Rodriguez,5,FEMALE,true,UNDERAGE
+1357,Mateo Castro,37,FEMALE,true,VALID
+1358,Valentina Torres,1,UNIDENTIFIED,true,UNDERAGE
+1359,Laura Gonzalez,72,UNIDENTIFIED,true,VALID
+1360,Valentina Rodriguez,62,FEMALE,true,VALID
+1361,Sofia Rodriguez,58,FEMALE,true,VALID
+1362,Laura Gonzalez,6,UNIDENTIFIED,true,UNDERAGE
+1363,Valentina Martinez,30,FEMALE,true,VALID
+1364,Luis Torres,64,UNIDENTIFIED,true,VALID
+1365,Sofia Castro,54,FEMALE,true,VALID
+1366,Andres Gonzalez,64,MALE,true,VALID
+1367,Andres Ramirez,54,FEMALE,true,VALID
+1368,Andres Torres,44,UNIDENTIFIED,false,DEAD
+1369,Laura Castro,57,MALE,true,VALID
+1370,Mateo Castro,77,UNIDENTIFIED,true,VALID
+1371,Ana Ramirez,74,FEMALE,true,VALID
+1372,Sofia Gonzalez,68,MALE,true,VALID
+1373,Camilo Rodriguez,32,MALE,true,VALID
+1374,Ana Martinez,60,MALE,true,VALID
+1375,Andres Rodriguez,72,FEMALE,true,VALID
+1376,Andres Torres,11,UNIDENTIFIED,true,UNDERAGE
+1377,Laura Castro,51,UNIDENTIFIED,false,DEAD
+1378,Ana Rodriguez,14,FEMALE,true,UNDERAGE
+1379,Camilo Castro,65,MALE,false,DEAD
+1380,Laura Ramirez,20,FEMALE,false,DEAD
+1381,Ana Gonzalez,52,MALE,true,VALID
+1382,Sofia Castro,65,UNIDENTIFIED,true,VALID
+1383,Luis Torres,69,MALE,true,VALID
+1384,Luis Torres,8,UNIDENTIFIED,true,UNDERAGE
+1385,Andres Martinez,71,MALE,true,VALID
+1386,Mateo Martinez,28,MALE,true,VALID
+1387,Mateo Gonzalez,51,MALE,true,VALID
+1388,Mateo Castro,49,UNIDENTIFIED,false,DEAD
+1389,Laura Martinez,74,UNIDENTIFIED,true,VALID
+1390,Sofia Torres,0,FEMALE,true,UNDERAGE
+1391,Valentina Gonzalez,57,FEMALE,true,VALID
+1392,Ana Rodriguez,49,UNIDENTIFIED,false,DEAD
+1393,Laura Martinez,54,FEMALE,true,VALID
+1394,Ana Martinez,60,UNIDENTIFIED,true,VALID
+1395,Laura Rodriguez,45,MALE,true,VALID
+1396,Luis Torres,26,MALE,false,DEAD
+1397,Luis Torres,73,MALE,true,VALID
+1398,Luis Torres,54,MALE,true,VALID
+1399,Laura Torres,62,FEMALE,true,VALID
+1400,Sofia Rodriguez,55,FEMALE,true,VALID
+1401,Ana Rodriguez,49,UNIDENTIFIED,true,VALID
+1402,Luis Ramirez,41,UNIDENTIFIED,true,VALID
+1403,Laura Castro,67,MALE,true,VALID
+1404,Laura Castro,2,UNIDENTIFIED,true,UNDERAGE
+1405,Ana Torres,27,FEMALE,true,VALID
+1406,Valentina Martinez,21,UNIDENTIFIED,true,VALID
+1407,Sofia Torres,50,UNIDENTIFIED,true,VALID
+1408,Andres Torres,3,FEMALE,true,UNDERAGE
+1409,Mateo Gonzalez,60,FEMALE,false,DEAD
+1410,Camilo Rodriguez,57,MALE,false,DEAD
+1411,Laura Gonzalez,13,UNIDENTIFIED,true,UNDERAGE
+1412,Mateo Martinez,44,UNIDENTIFIED,false,DEAD
+1413,Luis Castro,18,UNIDENTIFIED,true,VALID
+1414,Laura Gonzalez,15,MALE,true,UNDERAGE
+1415,Andres Gonzalez,34,UNIDENTIFIED,true,VALID
+1416,Laura Torres,49,UNIDENTIFIED,true,VALID
+1417,Luis Ramirez,10,MALE,true,UNDERAGE
+1418,Ana Rodriguez,29,MALE,true,VALID
+1419,Valentina Martinez,46,FEMALE,true,VALID
+1420,Valentina Torres,60,FEMALE,false,DEAD
+1421,Laura Rodriguez,11,MALE,true,UNDERAGE
+1422,Camilo Castro,35,FEMALE,true,VALID
+1423,Andres Rodriguez,4,MALE,true,UNDERAGE
+1424,Laura Rodriguez,77,FEMALE,true,VALID
+1425,Valentina Gonzalez,18,UNIDENTIFIED,true,VALID
+1426,Camilo Martinez,51,FEMALE,true,VALID
+1427,Laura Castro,6,MALE,true,UNDERAGE
+1428,Andres Castro,53,UNIDENTIFIED,true,VALID
+1429,Mateo Ramirez,63,MALE,false,DEAD
+1430,Luis Ramirez,26,UNIDENTIFIED,true,VALID
+1431,Laura Gonzalez,60,FEMALE,true,VALID
+1432,Ana Gonzalez,55,MALE,true,VALID
+1433,Luis Martinez,63,UNIDENTIFIED,false,DEAD
+1434,Valentina Rodriguez,63,FEMALE,false,DEAD
+1435,Andres Rodriguez,7,FEMALE,true,UNDERAGE
+1436,Luis Gonzalez,41,FEMALE,true,VALID
+1437,Luis Martinez,56,FEMALE,true,VALID
+1438,Camilo Gonzalez,52,UNIDENTIFIED,true,VALID
+1439,Luis Ramirez,31,FEMALE,true,VALID
+1440,Valentina Castro,46,UNIDENTIFIED,false,DEAD
+1441,Sofia Gonzalez,61,MALE,true,VALID
+1442,Luis Rodriguez,14,MALE,true,UNDERAGE
+1443,Luis Castro,40,UNIDENTIFIED,true,VALID
+1444,Ana Torres,58,FEMALE,true,VALID
+1445,Mateo Martinez,53,MALE,true,VALID
+1446,Laura Torres,70,MALE,true,VALID
+1447,Luis Ramirez,57,MALE,false,DEAD
+1448,Laura Castro,57,FEMALE,true,VALID
+1449,Luis Rodriguez,28,UNIDENTIFIED,true,VALID
+1450,Ana Castro,52,MALE,true,VALID
+1451,Ana Torres,2,UNIDENTIFIED,true,UNDERAGE
+1452,Sofia Rodriguez,47,FEMALE,true,VALID
+1453,Valentina Martinez,11,FEMALE,true,UNDERAGE
+1454,Andres Gonzalez,33,UNIDENTIFIED,true,VALID
+1455,Sofia Rodriguez,40,UNIDENTIFIED,true,VALID
+1456,Valentina Castro,30,FEMALE,true,VALID
+1457,Luis Torres,52,MALE,true,VALID
+1458,Valentina Rodriguez,60,UNIDENTIFIED,true,VALID
+1459,Camilo Martinez,40,FEMALE,true,VALID
+1460,Andres Rodriguez,65,UNIDENTIFIED,true,VALID
+1461,Mateo Gonzalez,34,FEMALE,false,DEAD
+1462,Mateo Martinez,68,UNIDENTIFIED,false,DEAD
+1463,Mateo Gonzalez,55,UNIDENTIFIED,true,VALID
+1464,Laura Gonzalez,25,MALE,true,VALID
+1465,Valentina Martinez,9,MALE,true,UNDERAGE
+1466,Andres Castro,36,MALE,true,VALID
+1467,Valentina Rodriguez,65,FEMALE,true,VALID
+1468,Sofia Rodriguez,23,MALE,true,VALID
+1469,Camilo Martinez,57,MALE,true,VALID
+1470,Valentina Ramirez,50,UNIDENTIFIED,true,VALID
+1471,Valentina Ramirez,0,MALE,true,UNDERAGE
+1472,Sofia Gonzalez,3,FEMALE,true,UNDERAGE
+1473,Mateo Ramirez,3,MALE,true,UNDERAGE
+1474,Camilo Martinez,68,MALE,false,DEAD
+1475,Ana Gonzalez,12,FEMALE,true,UNDERAGE
+1476,Sofia Martinez,30,FEMALE,true,VALID
+1477,Ana Castro,64,FEMALE,true,VALID
+1478,Mateo Torres,57,MALE,true,VALID
+1479,Andres Martinez,21,MALE,true,VALID
+1480,Luis Rodriguez,6,MALE,true,UNDERAGE
+1481,Andres Castro,6,MALE,true,UNDERAGE
+1482,Mateo Gonzalez,27,UNIDENTIFIED,true,VALID
+1483,Ana Ramirez,45,FEMALE,true,VALID
+1484,Sofia Torres,37,UNIDENTIFIED,false,DEAD
+1485,Laura Rodriguez,75,UNIDENTIFIED,true,VALID
+1486,Mateo Castro,47,UNIDENTIFIED,true,VALID
+1487,Valentina Torres,53,FEMALE,true,VALID
+1488,Andres Castro,41,FEMALE,true,VALID
+1489,Luis Martinez,44,UNIDENTIFIED,true,VALID
+1490,Ana Rodriguez,35,FEMALE,false,DEAD
+1491,Laura Castro,58,UNIDENTIFIED,true,VALID
+1492,Laura Castro,40,MALE,false,DEAD
+1493,Camilo Martinez,34,UNIDENTIFIED,true,VALID
+1494,Laura Torres,51,UNIDENTIFIED,true,VALID
+1495,Laura Martinez,22,FEMALE,false,DEAD
+1496,Valentina Ramirez,59,UNIDENTIFIED,false,DEAD
+1497,Luis Castro,46,FEMALE,true,VALID
+1498,Mateo Castro,54,MALE,true,VALID
+1499,Andres Torres,71,FEMALE,true,VALID
+1500,Luis Torres,47,FEMALE,true,VALID

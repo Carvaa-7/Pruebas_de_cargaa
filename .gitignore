@@ -13,4 +13,11 @@ hs_err_pid*
 
 registraduria/target/
 
-*.ini
+*.ini.idea/
+.vscode/
+*.iml
+
+# Resultados de las corridas de k6: se conserva la carpeta, no su contenido.
+# El volcado de "-o json=" puede pesar cientos de MB por corrida.
+perf/results/*
+!perf/results/.gitkeep

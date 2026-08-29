@@ -151,9 +151,13 @@ export const options = buildOptions();
  */
 function buildUniqueId(baseId) {
   // Genera IDs únicos por iteración combinando base del CSV, VU e iteración
-  // Fórmula: baseId * 1_000_000 + __VU * 10_000 + __ITER
-  // Evita colisiones en BD cuando hay índices únicos por id.
-  return (baseId * 1000000) + (__VU * 10000) + __ITER;
+  // Formula: __VU * 1_000_000 + (__ITER % 1_000_000)
+  //
+  // NO se usa baseId como prefijo: al sumarle el bloque del VU los rangos de
+  // dos baseId distintos se solapan y vuelven a colisionar.
+  // Cota: con 600 VUs el maximo es 601_000_000, holgadamente dentro del int
+  // de Java (2_147_483_647) que espera PersonDTO.id.
+  return (__VU * 1000000) + (__ITER % 1000000);
 }
 
 function nextPayload() {

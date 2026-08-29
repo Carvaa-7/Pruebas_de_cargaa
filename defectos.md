@@ -1,4 +1,7 @@
-# Registro de Defectos -- Pruebas de Carga y Rendimiento
+# Registro de Defectos — EJEMPLO DEL PROFESOR
+
+
+> ℹ️ **Este archivo es un ejemplo**, no su entrega. Las cifras que aparecen abajo son ilustrativas: no provienen de una corrida real de este repositorio. Para su taller parta de [`defectos_template.md`](defectos_template.md) y documente los defectos con **sus propias mediciones**.
 
 Curso: Testing y Validación de Software\
 Proyecto: Pruebas de Carga y Rendimiento\
@@ -17,7 +20,7 @@ y propuesta de mejora.
 
 ------------------------------------------------------------------------
 
-# Formato 1: Lista detallada
+## Formato 1: Lista detallada
 
 ## Defecto PERF-01 --- Incumplimiento de SLO de latencia bajo Load
 
@@ -104,18 +107,13 @@ Media
 
 ------------------------------------------------------------------------
 
-# Formato 2: Tabla de seguimiento
+## Formato 2: Tabla de seguimiento
 
-  ----------------------------------------------------------------------------------
-  ID        Escenario   Resultado Esperado Resultado Obtenido Estado     Prioridad
-  --------- ----------- ------------------ ------------------ ---------- -----------
-  PERF-01   Load        p95 \< 300ms       612ms              Abierto    Alta
-
-  PERF-02   Stress      Error \< 1%        3.8%               En         Crítica
-                                                              progreso   
-
-  PERF-03   Soak        Latencia estable   Degradación        Abierto    Media
-  ----------------------------------------------------------------------------------
+| ID | Escenario | Resultado esperado | Resultado obtenido | Estado | Prioridad |
+|----|-----------|--------------------|--------------------|--------|-----------|
+| PERF-01 | Load | p95 < 300 ms | 612 ms | Abierto | Alta |
+| PERF-02 | Stress | Error < 1% | 3.8% | En progreso | Crítica |
+| PERF-03 | Soak | Latencia estable | Degradación progresiva | Abierto | Media |
 
 ------------------------------------------------------------------------
 

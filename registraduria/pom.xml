@@ -4,19 +4,16 @@
   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
 
-  <groupId>edu.unisabana.dyas</groupId>
-  <artifactId>clasesequivalencia</artifactId>
+  <groupId>edu.unisabana.tyvs</groupId>
+  <artifactId>registraduria</artifactId>
   <version>1.0-SNAPSHOT</version>
 
-  <name>clasesequivalencia</name>
-  <!-- FIXME change it to the project's website -->
-  <url>http://www.example.com</url>
+  <name>registraduria</name>
+  <description>Taller de Pruebas de Carga y Rendimiento - Testing y Validacion de Software</description>
 
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <maven.compiler.release>17</maven.compiler.release>
-    <maven.compiler.source>1.8</maven.compiler.source>
-    <maven.compiler.target>1.8</maven.compiler.target>
     <spring-boot.version>2.7.18</spring-boot.version>
     <jacoco.skip>true</jacoco.skip>
   </properties>
@@ -51,14 +48,19 @@
       <artifactId>spring-boot-starter-web</artifactId>
     </dependency>
 
-    <!-- Tests Spring + JUnit 4/5 (por defecto trae 5; puedes seguir usando 4 si prefieres) -->
+    <!-- Actuator + Micrometer: expone metricas del SERVIDOR (pool de hilos,
+         memoria, GC, latencia por endpoint). Sin esto la prueba de carga solo
+         ve el sintoma desde fuera; con esto se puede diagnosticar la causa. -->
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-actuator</artifactId>
+    </dependency>
+
+    <!-- Trae JUnit 5, AssertJ, Hamcrest, Mockito y el soporte de test de Spring -->
     <dependency>
       <groupId>org.springframework.boot</groupId>
       <artifactId>spring-boot-starter-test</artifactId>
       <scope>test</scope>
-      <exclusions>
-        <!-- si te quedas con JUnit 4, excluye vintage o ajusta según tu setup -->
-      </exclusions>
     </dependency>
 
     <!-- H2: base de datos en memoria para pruebas de integración -->
@@ -97,9 +99,20 @@
           </execution>
         </executions>
       </plugin>
+      <!-- Version explicita: este pom NO hereda de spring-boot-starter-parent.
+           Sin <version> Maven resolveria la ultima disponible (3.x, incompatible
+           con Boot 2.7). repackage produce el jar ejecutable. -->
       <plugin>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-maven-plugin</artifactId>
+        <version>${spring-boot.version}</version>
+        <executions>
+          <execution>
+            <goals>
+              <goal>repackage</goal>
+            </goals>
+          </execution>
+        </executions>
       </plugin>
       <!-- (Opcional pero recomendado) JaCoCo para cobertura -->
       <plugin>
