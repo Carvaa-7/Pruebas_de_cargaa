@@ -184,11 +184,21 @@ sudo apt install k6
 
 ## Escenarios de prueba
 
-- **Escenario A – Baseline**: 5 min warmup + 10 min a 50 VUs, medir p50/p95/p99 y error rate.
-- **Escenario B – Carga**: rampa 0→200 VUs en 10 min, sostener 20 min.
-- **Escenario C – Estrés**: rampa 200→600 VUs, detectar punto de quiebre.
-- **Escenario D – Spike**: saltos de 50→300 VUs por 1–2 min, recuperación a 50 VUs.
-- **Escenario E – Soak**: 2 horas a 120 VUs, revisar GC, memoria y *leaks*.
+Estos son los escenarios que **implementan los scripts**. Se activan con `--env SCENARIO=<nombre>`:
+
+| `SCENARIO` | Modelo de carga | Forma | Duración | Para qué |
+|---|---|---|---|---|
+| `baseline` | cerrado, VUs constantes | 20 VUs | 5 min | Referencia estable para comparar |
+| `load` | cerrado, rampa | 0→200 VUs (2 min), sostener 10 min, bajar 2 min | 14 min | Comportamiento en carga esperada |
+| `stress` | cerrado, rampa | 200→600 VUs (5 min), sostener 3 min | 10 min | Encontrar el punto de saturación |
+| `spike` | cerrado, rampa | 50→300 VUs (1 min), volver a 50 | 4 min | Recuperación tras un pico súbito |
+| `soak` | cerrado, VUs constantes | 100 VUs | 2 h | Fugas de memoria, degradación por GC |
+| `regression` | cerrado, VUs constantes | 20 VUs | 5 min | Comparar dos builds |
+| `arrival` * | **abierto**, tasa de llegada | 100 req/s | 5 min | SLO expresado en throughput |
+
+* Solo en `register_voter_k6.js`.
+
+> 📌 **Cerrado vs. abierto.** En el modelo *cerrado* usted fija cuántos usuarios simultáneos hay; el throughput resultante depende de lo rápido que responda el sistema — si se degrada, usted le envía **menos** carga, justo cuando debería enviarle más. En el modelo *abierto* usted fija las peticiones por segundo y la cola crece si el sistema no da abasto, que es como se comporta el tráfico real. Compare `baseline` con `arrival` y observe la diferencia.
 
 ---
 
@@ -480,7 +490,7 @@ Con 200 VUs eso significa cientos de conexiones creadas y destruidas por segundo
 - **Repositorio Git** con carpeta `perf/` y scripts (JMeter/k6/Gatling).
 - `README.md` con **SLA/SLO**, escenarios, cómo ejecutar y interpretar resultados.
 - **Datos de prueba** en `perf/data/` (sin información sensible).
-- **Resultados** (`perf/results/`) con reportes HTML/CSV de las corridas.
+- **Resultados** (`perf/results/`) con los `summary-*.json` de cada corrida.
 
 ### 2) Wiki (obligatoria)
 
@@ -509,7 +519,9 @@ Estructura mínima sugerida:
 
 ### 4) Reportes y cobertura de escenarios
 
-- Reporte **HTML** por escenario y artefactos `*.jtl`/`*.json`.
+- Un `summary-<escenario>.json` por cada escenario ejecutado (los genera `handleSummary`).
+
+> ⚠️ k6 **no genera reportes HTML** de forma nativa, y `.jtl` es un formato de JMeter. Si quiere un HTML, use `K6_WEB_DASHBOARD=true K6_WEB_DASHBOARD_EXPORT=perf/results/reporte.html k6 run ...`, pero para la entrega basta con el JSON del resumen.
 - Tabla de **comparación** vs baseline con % de mejora/degradación.
 
 ### 5) Matriz de pruebas de rendimiento
@@ -542,7 +554,7 @@ Estructura mínima sugerida:
 | **Estructura del repositorio** | `perf/` con scripts, datos, resultados y README claro. | Estructura impecable y reproducible. | Clara, pocos ajustes. | Parcialmente ordenada. | Desorden o ejecuciones fallan. | No entrega. |
 | **Plan de pruebas (SLA/SLO, modelos, escenarios)** | Definición y justificación. | Completo y alineado al negocio. | Completo con leves omisiones. | Parcial e impreciso. | Incompleto y confuso. | Ausente. |
 | **Scripts (parametrización, correlación, asserts)** | Calidad técnica. | Correctos, robustos y comentados. | Correctos con detalles menores. | Limitados o frágiles. | Errores o sin correlación. | No existen. |
-| **Ejecución y artefactos** | Reportes HTML/CSV y evidencias. | Artefactos limpios y comparables. | Artefactos adecuados. | Evidencia parcial. | Artefactos incompletos. | Sin evidencia. |
+| **Ejecución y artefactos** | Resúmenes JSON por escenario y evidencias. | Artefactos limpios y comparables. | Artefactos adecuados. | Evidencia parcial. | Artefactos incompletos. | Sin evidencia. |
 | **Análisis de resultados** | Diagnóstico y recomendaciones. | Análisis profundo y accionable. | Análisis correcto. | Superficial o sin datos. | Conclusiones erróneas. | No analiza. |
 | **CI/CD y gates** | Automatización y umbrales. | Pipeline con gates efectivos. | Pipeline básico. | Pipeline parcial. | Pipeline defectuoso. | Sin CI. |
 | **Matriz de rendimiento** | Tabla y trazabilidad. | Completa y consistente. | Adecuada con omisiones leves. | Incompleta. | Confusa. | Ausente. |
