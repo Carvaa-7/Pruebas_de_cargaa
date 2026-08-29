@@ -84,6 +84,15 @@
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-failsafe-plugin</artifactId>
         <version>3.2.5</version>
+        <configuration>
+          <!-- IMPRESCINDIBLE al usar spring-boot-maven-plugin:repackage.
+               Failsafe corre despues de package, y para entonces el jar de
+               target/ ya es un "fat jar" de Spring Boot con las clases bajo
+               BOOT-INF/classes/. Sin esta linea, el escaneo de componentes no
+               encuentra la clase @SpringBootApplication y RegistryControllerIT
+               falla con "Unable to find a @SpringBootConfiguration". -->
+          <classesDirectory>${project.build.outputDirectory}</classesDirectory>
+        </configuration>
         <executions>
           <execution>
             <goals>
