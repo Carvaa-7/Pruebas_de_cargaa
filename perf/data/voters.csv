@@ -499,3 +499,15 @@ id,name,age,gender,alive,expected
 1498,Mateo Castro,54,MALE,true,VALID
 1499,Andres Torres,71,FEMALE,true,VALID
 1500,Luis Torres,47,FEMALE,true,VALID
+1501,Sofia Ramirez,-1,FEMALE,true,INVALID_AGE
+1502,Diego Herrera,-5,MALE,true,INVALID_AGE
+1503,Valentina Rojas,-18,FEMALE,true,INVALID_AGE
+1504,Tomas Guzman,-99,MALE,true,INVALID_AGE
+1505,Camila Pineda,-2,FEMALE,true,INVALID_AGE
+1506,Julian Ospina,121,MALE,true,INVALID_AGE
+1507,Isabella Mejia,130,FEMALE,true,INVALID_AGE
+1508,Samuel Cardenas,150,MALE,true,INVALID_AGE
+1509,Mariana Duque,200,FEMALE,true,INVALID_AGE
+1510,Emilio Vargas,999,MALE,true,INVALID_AGE
+1511,Antonia Salazar,0,FEMALE,true,UNDERAGE
+1512,Nicolas Bermudez,120,MALE,true,VALID

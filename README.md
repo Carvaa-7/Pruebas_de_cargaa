@@ -312,6 +312,28 @@ k6 run --env BASE_URL=http://localhost:8080 --env SCENARIO=baseline \
 
 Fíjese en la métrica `register_failed`: mide el porcentaje de respuestas cuyo resultado de negocio **no** fue el esperado según el dataset.
 
+El CSV cubre las seis clases de equivalencia del dominio, incluidos los dos valores límite que separan a las dos que más se confunden:
+
+| `expected` | Filas | Qué representa |
+|---|---|---|
+| `VALID` | 333 | persona viva, mayor de edad, id nuevo |
+| `UNDERAGE` | 99 | edad de 0 a 17 — incluye la fila de **edad 0** |
+| `DEAD` | 70 | `alive=false` |
+| `INVALID_AGE` | 10 | edad negativa o mayor de 120 |
+
+La fila de **edad 120** espera `VALID` y la de **edad 121** espera `INVALID_AGE`: son el borde exacto, y bajo carga verifican que la regla no se degrada.
+
+> ⚠️ **Reinicie el servicio entre corridas.** Los ids que genera el script son únicos *dentro* de una ejecución, pero la base H2 vive mientras viva el proceso. Si repite la prueba sin reiniciar, los mismos ids ya están registrados y **todo lo que esperaba `VALID` devuelve `DUPLICATED`**: verá `register_failed` dispararse y el umbral cruzarse, sin que el servicio tenga nada malo.
+>
+> Si no quiere reiniciar, desplace el rango de ids:
+>
+> ```bash
+> k6 run --env BASE_URL=http://localhost:8080 --env SCENARIO=baseline \
+>        --env ID_BASE=700000000 perf/scripts/register_voter_k6.js
+> ```
+>
+> No se arregla metiendo la marca de tiempo en el id: el campo es un `int` de Java y con 600 VUs el escenario de estrés ya consume la tercera parte del rango. **La gestión del estado de prueba es parte del diseño de una prueba de carga**, no un detalle de implementación — y es de las primeras cosas que se rompen cuando estas pruebas se llevan a un entorno compartido.
+
 ### 5) Resultados
 
 Al finalizar, cada script imprime un resumen y escribe su detalle en `perf/results/`:
@@ -510,7 +532,7 @@ Estructura mínima sugerida:
 - ≥ **3 escenarios** (baseline, carga, estrés) implementados y versionados.
 
 - `perf/scripts/register_voter_k6.js`
-- `perf/data/voters.csv` (500 filas, con la columna `expected`)
+- `perf/data/voters.csv` (512 filas, con la columna `expected`, cubriendo las seis clases de equivalencia)
 - `perf/results/*` (`baseline.json`, `load.json`)
 - Breve análisis: p95/p99, error rate, hallazgos y próximas acciones.
 

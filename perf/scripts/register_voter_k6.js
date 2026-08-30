@@ -30,6 +30,9 @@ const DATA_FILE = __ENV.DATA_FILE || null;
 const SCENARIO = (__ENV.SCENARIO || 'baseline').toLowerCase();
 const TIMEOUT_MS = Number(__ENV.TIMEOUT_MS || 2000);
 const SLEEP_MS = Number(__ENV.SLEEP_MS || 100);
+// Desplazamiento del rango de ids, para repetir la prueba sin reiniciar el
+// servicio. Ver el comentario largo en la funcion principal.
+const ID_BASE = Number(__ENV.ID_BASE || 0);
 
 /* =========================
  * Métricas personalizadas
@@ -175,7 +178,17 @@ export default function () {
   // la medicion. El multiplicador de __ITER debe ser mayor que el numero de
   // iteraciones que un VU alcanza, o dos VUs colisionan entre si.
   // Cota: con 600 VUs el maximo es 601_000_000, dentro del int de Java (2.147e9).
-  const uniqueId = (__VU * 1000000) + (__ITER % 1000000);
+  //
+  // OJO: esto garantiza ids unicos DENTRO de una corrida, no ENTRE corridas.
+  // La base H2 vive mientras viva el proceso, asi que si repite la prueba sin
+  // reiniciar el servicio, los mismos ids ya estan registrados y todo lo que
+  // esperaba VALID devuelve DUPLICATED. Reinicie el servicio entre corridas o
+  // desplace el rango con ID_BASE.
+  //
+  // No se puede resolver metiendo la marca de tiempo en el id: el campo es un
+  // int de Java y con 600 VUs ya se consume la tercera parte del rango. El
+  // estado de prueba se gestiona reiniciando, no ensanchando el identificador.
+  const uniqueId = ID_BASE + (__VU * 1000000) + (__ITER % 1000000);
 
   const payload = JSON.stringify({
     name: v.name,
@@ -210,6 +223,16 @@ export default function () {
 
   if (!ok && (__ITER % 500 === 0)) {
     console.warn("Esperado=" + v.expected + " obtenido=" + outcome + " status=" + res.status);
+    // Este caso concreto casi nunca es un fallo del servicio: es estado que
+    // sobrevivio de una corrida anterior. Decirlo aqui ahorra media hora de
+    // buscar un cuello de botella que no existe.
+    if (v.expected === 'VALID' && outcome === 'DUPLICATED') {
+      console.warn(
+        "  ^ Los ids ya existian. La base H2 vive mientras viva el proceso, " +
+        "asi que una segunda corrida repite los mismos ids. Reinicie el " +
+        "servicio, o use --env ID_BASE=700000000 para desplazar el rango."
+      );
+    }
   }
 
   if (SLEEP_MS > 0) {
