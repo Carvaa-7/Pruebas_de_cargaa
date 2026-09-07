@@ -5,13 +5,13 @@ Este taller tiene como objetivo aprender a **diseñar, implementar y ejecutar pr
 
 ---
 
-## 🎯 Objetivo General
+## Objetivo General
 
 Comprender, diseñar e implementar **pruebas de rendimiento** (baseline, carga, stress, spike, soak) con herramientas como **JMeter / k6 / Gatling**, definiendo **SLA/SLO**, modelos de carga, datos de prueba, y generando **reportes reproducibles** para la toma de decisiones técnicas.
 
 ---
 
-## 📑 Índice
+## Índice
 
 - [Conceptos clave](#conceptos-clave)
 - [CONOCE EL TALLER](#conoce-el-taller)
@@ -69,7 +69,7 @@ Comprender, diseñar e implementar **pruebas de rendimiento** (baseline, carga, 
     └─ ci/                       # plantilla de GitHub Actions
 ```
 
-> 📍 Note que el sistema bajo prueba (`registraduria/`) y las pruebas (`perf/`) son hermanos. Los comandos de Maven se ejecutan **dentro de `registraduria/`**; los de k6, **desde la raíz**.
+> Note que el sistema bajo prueba (`registraduria/`) y las pruebas (`perf/`) son hermanos. Los comandos de Maven se ejecutan **dentro de `registraduria/`**; los de k6, **desde la raíz**.
 
 ### Herramientas y dependencias
 
@@ -198,7 +198,7 @@ Estos son los escenarios que **implementan los scripts**. Se activan con `--env 
 
 * Solo en `register_voter_k6.js`.
 
-> 📌 **Cerrado vs. abierto.** En el modelo *cerrado* usted fija cuántos usuarios simultáneos hay; el throughput resultante depende de lo rápido que responda el sistema — si se degrada, usted le envía **menos** carga, justo cuando debería enviarle más. En el modelo *abierto* usted fija las peticiones por segundo y la cola crece si el sistema no da abasto, que es como se comporta el tráfico real. Compare `baseline` con `arrival` y observe la diferencia.
+> **Cerrado vs. abierto.** En el modelo *cerrado* usted fija cuántos usuarios simultáneos hay; el throughput resultante depende de lo rápido que responda el sistema — si se degrada, usted le envía **menos** carga, justo cuando debería enviarle más. En el modelo *abierto* usted fija las peticiones por segundo y la cola crece si el sistema no da abasto, que es como se comporta el tráfico real. Compare `baseline` con `arrival` y observe la diferencia.
 
 ---
 
@@ -244,7 +244,7 @@ Variables de entorno soportadas:
 
 ## Paso a paso: **Ejecución básica**
 
-> 📍 **Desde dónde ejecutar cada comando.** Los comandos de Maven van dentro de `registraduria/` (ahí está el `pom.xml`); los de k6 van desde la **raíz del repositorio**, porque las rutas `perf/...` son relativas a ella. Es el error más común de este taller.
+> **Desde dónde ejecutar cada comando.** Los comandos de Maven van dentro de `registraduria/` (ahí está el `pom.xml`); los de k6 van desde la **raíz del repositorio**, porque las rutas `perf/...` son relativas a ella. Es el error más común de este taller.
 
 ### 1) Levanta el servicio
 
@@ -278,7 +278,7 @@ curl -X POST http://localhost:8080/register \
   -d "{\"name\":\"Ana\",\"id\":999001,\"age\":30,\"gender\":\"FEMALE\",\"alive\":true}"
 ```
 
-> ⚠️ Si repite ese `curl` con el **mismo id**, la segunda vez obtendrá `200 OK` con el cuerpo `DUPLICATED`, no `VALID`. La regla de unicidad es correcta; use otro id para volver a probar. Este detalle importa más de lo que parece: es la razón por la que los scripts generan ids únicos por VU e iteración.
+> Si repite ese `curl` con el **mismo id**, la segunda vez obtendrá `200 OK` con el cuerpo `DUPLICATED`, no `VALID`. La regla de unicidad es correcta; use otro id para volver a probar. Este detalle importa más de lo que parece: es la razón por la que los scripts generan ids únicos por VU e iteración.
 
 ### 2) Baseline (medición corta de referencia)
 
@@ -290,7 +290,7 @@ k6 run --env BASE_URL=http://localhost:8080 --env SCENARIO=baseline \
        perf/scripts/register_person_k6.js
 ```
 
-> ⚠️ **No use `set VAR=...` para pasar la configuración.** En `cmd` de Windows, `set BASE_URL="http://localhost:8080"` guarda **las comillas dentro del valor** y la URL resulta inválida; y un comando que empiece por `set` no ejecuta k6, solo define una variable. La forma portable —igual en Windows, macOS y Linux— es `--env`, como arriba.
+> **No use `set VAR=...` para pasar la configuración.** En `cmd` de Windows, `set BASE_URL="http://localhost:8080"` guarda **las comillas dentro del valor** y la URL resulta inválida; y un comando que empiece por `set` no ejecuta k6, solo define una variable. La forma portable —igual en Windows, macOS y Linux— es `--env`, como arriba.
 
 ### 3) Carga (rampa hasta 200 VUs)
 
@@ -323,7 +323,7 @@ El CSV cubre las seis clases de equivalencia del dominio, incluidos los dos valo
 
 La fila de **edad 120** espera `VALID` y la de **edad 121** espera `INVALID_AGE`: son el borde exacto, y bajo carga verifican que la regla no se degrada.
 
-> ⚠️ **Reinicie el servicio entre corridas.** Los ids que genera el script son únicos *dentro* de una ejecución, pero la base H2 vive mientras viva el proceso. Si repite la prueba sin reiniciar, los mismos ids ya están registrados y **todo lo que esperaba `VALID` devuelve `DUPLICATED`**: verá `register_failed` dispararse y el umbral cruzarse, sin que el servicio tenga nada malo.
+> **Reinicie el servicio entre corridas.** Los ids que genera el script son únicos *dentro* de una ejecución, pero la base H2 vive mientras viva el proceso. Si repite la prueba sin reiniciar, los mismos ids ya están registrados y **todo lo que esperaba `VALID` devuelve `DUPLICATED`**: verá `register_failed` dispararse y el umbral cruzarse, sin que el servicio tenga nada malo.
 >
 > Si no quiere reiniciar, desplace el rango de ids:
 >
@@ -349,7 +349,7 @@ Al finalizar, cada script imprime un resumen y escribe su detalle en `perf/resul
 
 Y el resumen completo queda en `perf/results/summary-<escenario>.json`.
 
-> ⚠️ **Cuidado con `-o json=`.** Esa opción vuelca **cada punto de dato individual**, no un resumen: una corrida de 10 segundos con 5 VUs genera un archivo de **más de 200 MB**. Úsela solo si va a post-procesar los datos, y **nunca** la versione. Para el análisis normal basta con el `summary-*.json` que genera `handleSummary`.
+> **Cuidado con `-o json=`.** Esa opción vuelca **cada punto de dato individual**, no un resumen: una corrida de 10 segundos con 5 VUs genera un archivo de **más de 200 MB**. Úsela solo si va a post-procesar los datos, y **nunca** la versione. Para el análisis normal basta con el `summary-*.json` que genera `handleSummary`.
 
 Documente un breve análisis con los números obtenidos.
 
@@ -380,7 +380,7 @@ Documente un breve análisis con los números obtenidos.
 
 El repositorio trae el flujo listo en [`perf/ci/github-actions.yml`](perf/ci/github-actions.yml).
 
-> ⚠️ **GitHub Actions solo lee los workflows de `.github/workflows/`.** El archivo está en `perf/ci/` para que quede versionado junto al resto del material de rendimiento, pero **no se ejecuta desde ahí**. Cópielo:
+> **GitHub Actions solo lee los workflows de `.github/workflows/`.** El archivo está en `perf/ci/` para que quede versionado junto al resto del material de rendimiento, pero **no se ejecuta desde ahí**. Cópielo:
 >
 > ```bash
 > mkdir -p .github/workflows
@@ -475,7 +475,7 @@ Con 200 VUs eso significa cientos de conexiones creadas y destruidas por segundo
 3. Agregue un pool de conexiones (HikariCP viene con Spring Boot) y repita la medición. Documente en el Wiki el antes y el después.
 4. Explique por qué este defecto no aparece en ninguno de los otros tres talleres.
 
-> 🎯 **La conclusión que buscamos**: una prueba de carga sin observabilidad le dice que algo va mal; con observabilidad le dice **qué** arreglar. La primera genera reuniones; la segunda, cambios de código.
+> **La conclusión que buscamos**: una prueba de carga sin observabilidad le dice que algo va mal; con observabilidad le dice **qué** arreglar. La primera genera reuniones; la segunda, cambios de código.
 
 ---
 
@@ -543,7 +543,7 @@ Estructura mínima sugerida:
 
 - Un `summary-<escenario>.json` por cada escenario ejecutado (los genera `handleSummary`).
 
-> ⚠️ k6 **no genera reportes HTML** de forma nativa, y `.jtl` es un formato de JMeter. Si quiere un HTML, use `K6_WEB_DASHBOARD=true K6_WEB_DASHBOARD_EXPORT=perf/results/reporte.html k6 run ...`, pero para la entrega basta con el JSON del resumen.
+> k6 **no genera reportes HTML** de forma nativa, y `.jtl` es un formato de JMeter. Si quiere un HTML, use `K6_WEB_DASHBOARD=true K6_WEB_DASHBOARD_EXPORT=perf/results/reporte.html k6 run ...`, pero para la entrega basta con el JSON del resumen.
 - Tabla de **comparación** vs baseline con % de mejora/degradación.
 
 ### 5) Matriz de pruebas de rendimiento

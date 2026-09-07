@@ -1,7 +1,7 @@
 # Registro de Defectos — EJEMPLO DEL PROFESOR
 
 
-> ℹ️ **Este archivo es un ejemplo**, no su entrega. Las cifras que aparecen abajo son ilustrativas: no provienen de una corrida real de este repositorio. Para su taller parta de [`defectos_template.md`](defectos_template.md) y documente los defectos con **sus propias mediciones**.
+> **Este archivo es un ejemplo**, no su entrega. Las cifras que aparecen abajo son ilustrativas: no provienen de una corrida real de este repositorio. Para su taller parta de [`defectos_template.md`](defectos_template.md) y documente los defectos con **sus propias mediciones**.
 
 Curso: Testing y Validación de Software\
 Proyecto: Pruebas de Carga y Rendimiento\
