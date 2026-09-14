@@ -1,6 +1,6 @@
 # Flujo de Integración Continua para las pruebas de carga.
 #
-# ⚠️ ESTE ARCHIVO NO SE EJECUTA DESDE perf/ci/.
+# ESTE ARCHIVO NO SE EJECUTA DESDE perf/ci/.
 # GitHub Actions solo lee los workflows de .github/workflows/. Cópielo así:
 #
 #     mkdir -p .github/workflows
