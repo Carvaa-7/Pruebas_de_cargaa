@@ -197,7 +197,10 @@ export default function () {
 
   const ok = check(res, {
     'status 200': (r) => r.status === 200,
-    'body VALID': (_) => bodyText.includes('VALID'), // tolerante a variaciones
+    // Igualdad exacta, no includes(): 'INVALID_AGE'.includes('VALID') es true,
+    // asi que includes() dejaria pasar un rechazo como si fuera un registro.
+    // trim() y toUpperCase() ya toleran espacios y mayusculas.
+    'body VALID': (_) => bodyText === 'VALID',
   });
 
   registerFailed.add(!ok);

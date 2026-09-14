@@ -55,6 +55,14 @@
       <artifactId>spring-boot-starter-actuator</artifactId>
     </dependency>
 
+    <!-- Registro de Prometheus: sin esta dependencia /actuator/prometheus
+         devuelve 404 aunque application.properties lo exponga. Version
+         gestionada por spring-boot-dependencies. -->
+    <dependency>
+      <groupId>io.micrometer</groupId>
+      <artifactId>micrometer-registry-prometheus</artifactId>
+    </dependency>
+
     <!-- Trae JUnit 5, AssertJ, Hamcrest, Mockito y el soporte de test de Spring -->
     <dependency>
       <groupId>org.springframework.boot</groupId>

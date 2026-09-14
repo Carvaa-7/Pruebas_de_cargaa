@@ -66,7 +66,8 @@ Comprender, diseñar e implementar **pruebas de rendimiento** (baseline, carga, 
     ├─ scripts/                  # register_person_k6.js, register_voter_k6.js
     ├─ data/                     # persons.csv, voters.csv
     ├─ results/                  # resúmenes de cada corrida (no se versionan)
-    └─ ci/                       # plantilla de GitHub Actions
+    ├─ ci/                       # plantilla de GitHub Actions
+    └─ lab/                      # mediciones de la presentación (material del profesor)
 ```
 
 > Note que el sistema bajo prueba (`registraduria/`) y las pruebas (`perf/`) son hermanos. Los comandos de Maven se ejecutan **dentro de `registraduria/`**; los de k6, **desde la raíz**.
@@ -230,7 +231,7 @@ id,name,age,gender,alive
 
 ## Script de prueba `perf/scripts/register_person_k6.js`
 
-El script envía solicitudes `POST /register` con datos del CSV, valida **status 200** y que el cuerpo contenga `VALID`.  
+El script envía solicitudes `POST /register` con datos del CSV, valida **status 200** y que el cuerpo sea exactamente `VALID` (no que lo *contenga*: `INVALID_AGE` también contiene la palabra `VALID`).  
 Variables de entorno soportadas:
 
 - `BASE_URL` (por defecto `http://localhost:8080`)
