@@ -15,6 +15,7 @@ presentación. Los estudiantes no necesitan esta carpeta para hacer el taller.
 | `export_data.py` | Resume `results/` (crudo, no versionado) en `data/` (versionado). |
 | `data/` | Las mediciones resumidas que usa el generador. |
 | `deck/` | Generador de la presentación con python-pptx (`build.py`) y render a PNG con PowerPoint (`render.ps1`). |
+| `guia/` | Generador de `guia-visual-pruebas-de-carga.html` (raíz del repo): `construir.js` y `plantilla.html`. También calibra el modelo del simulador de ejecución. |
 
 ## Regenerar solo la presentación
 
@@ -30,6 +31,22 @@ Para revisar el resultado como imágenes (solo en Windows, con PowerPoint instal
 ```powershell
 powershell -File perf/lab/deck/render.ps1 -Pptx "<ruta absoluta>.pptx" -OutDir "<carpeta>"
 ```
+
+## Regenerar la guía visual
+
+La guía lleva las mediciones incrustadas: **si se repiten las mediciones, hay que regenerarla**, o seguirá mostrando los números viejos.
+
+```bash
+node perf/lab/guia/construir.js
+```
+
+Además de resumir `data/`, el script calibra el modelo del simulador de ejecución y lo imprime en la consola:
+
+- **Throughput:** ajuste de la ley de escalabilidad universal (USL) a las medias por escalón. Las medias son ruidosas y no se pueden interpolar sin que una rampa suba y baje de golpe.
+- **p95 y fallos:** interpolación en escala logarítmica de VUs, forzada a no decrecer.
+- **Variación por segundo:** tomada de la línea de tiempo real del pico.
+
+La página publica el error del ajuste junto a la variación entre corridas idénticas, para que el simulador no pase por medición. Si al regenerar el error del ajuste crece mucho más que esa variación, revise el modelo antes de usar la guía en clase.
 
 ## Repetir las mediciones
 

@@ -1,0 +1,1614 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>La Registraduría bajo carga</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=IBM+Plex+Mono:wght@400;500;600&display=swap">
+<style>
+  :root {
+    --ground: #F2F4F6;
+    --surface: #FFFFFF;
+    --sunken: #E8ECF0;
+    --ink: #111A22;
+    --ink-2: #44515E;
+    --muted: #5C6875;
+    --line: #DCE2E8;
+    --line-strong: #C3CCD5;
+    --accent: #5B3FD9;
+    --accent-ink: #4A2FC4;
+    --accent-wash: #ECE8FD;
+    --s1: #2a78d6;
+    --s2: #eb6834;
+    --s3: #1baf7a;
+    --crit: #A8231C;
+    --crit-wash: #FBEAE8;
+    --term-bg: #0E151C;
+    --term-ink: #D6DEE6;
+    --term-dim: #7B8895;
+    --term-hi: #F4C95D;
+    --term-bad: #FF8C7A;
+
+    --f-display: "Archivo", "Arial Narrow", system-ui, sans-serif;
+    --f-body: "Archivo", system-ui, -apple-system, "Segoe UI", sans-serif;
+    --f-mono: "IBM Plex Mono", ui-monospace, "Cascadia Mono", Consolas, monospace;
+    color-scheme: light;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --ground: #0D1318;
+      --surface: #141C23;
+      --sunken: #1A242D;
+      --ink: #E6ECF1;
+      --ink-2: #AFBBC6;
+      --muted: #8E9BA7;
+      --line: #25303A;
+      --line-strong: #34414D;
+      --accent: #A897FF;
+      --accent-ink: #C2B7FF;
+      --accent-wash: #211C3B;
+      --s1: #3987e5;
+      --s2: #d95926;
+      --s3: #199e70;
+      --crit: #FF9C8F;
+      --crit-wash: #3A1E1B;
+      --term-bg: #080C10;
+      color-scheme: dark;
+    }
+  }
+  :root[data-theme="dark"] {
+    --ground: #0D1318;
+    --surface: #141C23;
+    --sunken: #1A242D;
+    --ink: #E6ECF1;
+    --ink-2: #AFBBC6;
+    --muted: #8E9BA7;
+    --line: #25303A;
+    --line-strong: #34414D;
+    --accent: #A897FF;
+    --accent-ink: #C2B7FF;
+    --accent-wash: #211C3B;
+    --s1: #3987e5;
+    --s2: #d95926;
+    --s3: #199e70;
+    --crit: #FF9C8F;
+    --crit-wash: #3A1E1B;
+    --term-bg: #080C10;
+    color-scheme: dark;
+  }
+
+  * { box-sizing: border-box; }
+  /* Sin esto, una regla como .opcion { display: flex } anula el atributo hidden. */
+  [hidden] { display: none !important; }
+  html { scroll-behavior: smooth; }
+  @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+  body {
+    margin: 0;
+    background: var(--ground);
+    color: var(--ink);
+    font-family: var(--f-body);
+    font-size: 1.0625rem;
+    line-height: 1.62;
+    padding-inline: 20px;
+    -webkit-font-smoothing: antialiased;
+  }
+  a { color: var(--accent-ink); text-underline-offset: 0.2em; }
+  :focus-visible { outline: 3px solid var(--accent); outline-offset: 2px; border-radius: 2px; }
+
+  .envoltura { max-width: 70rem; margin-inline: auto; }
+  .texto { max-width: 66ch; }
+  p { margin: 0 0 1rem; }
+
+  code, .mono { font-family: var(--f-mono); font-size: 0.88em; }
+  :not(pre) > code { background: var(--sunken); padding: 0.08em 0.35em; border-radius: 3px; }
+
+  h1, h2, h3 { font-family: var(--f-display); text-wrap: balance; margin: 0; }
+  h1 { font-size: clamp(2.5rem, 6.2vw, 4.6rem); font-stretch: 122%; font-weight: 800; line-height: 0.98; letter-spacing: -0.02em; }
+  h2 { font-size: clamp(1.65rem, 3.4vw, 2.35rem); font-stretch: 114%; font-weight: 760; line-height: 1.08; letter-spacing: -0.012em; margin-bottom: 0.9rem; }
+  h3 { font-size: 1.12rem; font-stretch: 104%; font-weight: 680; line-height: 1.25; }
+
+  .antetitulo {
+    font-family: var(--f-mono); font-size: 0.76rem; font-weight: 500;
+    letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); margin: 0 0 0.9rem;
+  }
+
+  /* ---------- Portada ---------- */
+  .portada { padding-block: clamp(2.5rem, 7vw, 4.5rem) clamp(2rem, 5vw, 3rem); }
+  .entrada { font-size: clamp(1.12rem, 2vw, 1.3rem); color: var(--ink-2); max-width: 58ch; margin-top: 1.2rem; }
+  .tesis {
+    display: grid; grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+    gap: clamp(1.5rem, 4vw, 3rem); align-items: center; margin-top: clamp(2rem, 5vw, 3rem);
+  }
+  .tesis-frase { font-family: var(--f-display); font-stretch: 108%; font-weight: 650; font-size: clamp(1.35rem, 2.6vw, 1.85rem); line-height: 1.2; margin: 0; text-wrap: balance; }
+  .tesis-frase em { font-style: normal; color: var(--accent-ink); }
+  .tesis-nota { color: var(--ink-2); margin-top: 1rem; font-size: 0.98rem; }
+
+  .terminal {
+    background: var(--term-bg); color: var(--term-ink); border-radius: 8px;
+    font-family: var(--f-mono); font-size: 0.8rem; line-height: 1.7; overflow: hidden;
+    border: 1px solid #1F2A34;
+  }
+  .terminal-barra { display: flex; justify-content: space-between; gap: 1rem; padding: 0.55rem 0.95rem; border-bottom: 1px solid #1F2A34; color: var(--term-dim); font-size: 0.72rem; }
+  .terminal pre { margin: 0; padding: 0.9rem 0.95rem 1rem; overflow-x: auto; white-space: pre; }
+  .t-dim { color: var(--term-dim); }
+  .t-hi { color: var(--term-hi); font-weight: 600; }
+  .t-bad { color: var(--term-bad); font-weight: 600; }
+  .terminal-pie { margin: 0; padding: 0.6rem 0.95rem 0.8rem; border-top: 1px solid #1F2A34; color: var(--term-dim); font-family: var(--f-body); font-size: 0.8rem; line-height: 1.45; }
+
+  .indice { margin-top: clamp(2rem, 5vw, 3rem); border-top: 1px solid var(--line); padding-top: 1rem; }
+  .indice ol { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 0.45rem 0.5rem; }
+  .indice a {
+    display: inline-block; text-decoration: none; color: var(--ink-2); font-size: 0.9rem;
+    border: 1px solid var(--line-strong); border-radius: 999px; padding: 0.22rem 0.75rem; background: var(--surface);
+  }
+  .indice a:hover { color: var(--accent-ink); border-color: var(--accent); }
+
+  /* ---------- Bloques ---------- */
+  .bloque { padding-block: clamp(2.5rem, 6vw, 4rem); border-top: 1px solid var(--line); scroll-margin-top: 1rem; }
+  .bloque > .texto > p:last-child { margin-bottom: 0; }
+
+  .figura { margin: 1.8rem 0 0; background: var(--surface); border: 1px solid var(--line); border-radius: 8px; padding: clamp(1rem, 2.5vw, 1.5rem); }
+  .fig-cabeza { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: flex-end; gap: 0.5rem 1.5rem; margin-bottom: 0.6rem; }
+  .fig-titulo { font-weight: 650; margin: 0; }
+  .fig-sub { color: var(--muted); font-size: 0.88rem; margin: 0.1rem 0 0; }
+  .leyenda { display: flex; flex-wrap: wrap; gap: 0.35rem 1rem; margin: 0; padding: 0; list-style: none; font-size: 0.86rem; color: var(--ink-2); }
+  .leyenda li { display: inline-flex; align-items: center; gap: 0.45rem; }
+  .clave { display: inline-block; width: 18px; height: 3px; border-radius: 2px; }
+  .clave.s1 { background: var(--s1); } .clave.s2 { background: var(--s2); } .clave.s3 { background: var(--s3); }
+  .clave.punto { width: 8px; height: 8px; border-radius: 50%; opacity: 0.4; }
+  .clave.punto.s1c { background: var(--s1); } .clave.punto.s2c { background: var(--s2); }
+
+  .grafica { width: 100%; min-height: 120px; }
+  .grafica svg { display: block; overflow: visible; }
+  .dos-graficas { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1.5rem; }
+  .figcaption, figcaption { color: var(--ink-2); font-size: 0.92rem; margin-top: 0.8rem; max-width: 72ch; }
+
+  /* Marcas de las gráficas */
+  svg text { font-family: var(--f-body); }
+  .grid { stroke: var(--line); stroke-width: 1; }
+  .eje { stroke: var(--line-strong); stroke-width: 1; }
+  .tick { fill: var(--muted); font-size: 11.5px; font-variant-numeric: tabular-nums; }
+  .eje-titulo { fill: var(--muted); font-size: 11.5px; }
+  .ref { stroke: var(--ink-2); stroke-width: 1; opacity: 0.55; }
+  .ref-texto { fill: var(--ink-2); font-size: 11.5px; paint-order: stroke; stroke: var(--surface); stroke-width: 4px; stroke-linejoin: round; }
+  .cruz { stroke: var(--ink-2); stroke-width: 1; opacity: 0.5; pointer-events: none; }
+  .golpe { fill: transparent; cursor: crosshair; }
+  .golpe:focus-visible { outline: none; fill: var(--accent); fill-opacity: 0.06; }
+  .serie .linea { fill: none; stroke-width: 2; stroke-linejoin: round; stroke-linecap: round; }
+  .serie .punto { stroke: var(--surface); stroke-width: 2; }
+  .serie .corrida { fill-opacity: 0.32; }
+  .s1 .linea { stroke: var(--s1); } .s1 .punto, .s1 .corrida { fill: var(--s1); }
+  .s2 .linea { stroke: var(--s2); } .s2 .punto, .s2 .corrida { fill: var(--s2); }
+  .s3 .linea { stroke: var(--s3); } .s3 .punto, .s3 .corrida { fill: var(--s3); }
+  .etiqueta-final { fill: var(--ink); font-size: 12.5px; font-weight: 600; }
+  .barra { fill: var(--s2); }
+  .barra-golpe { fill: transparent; cursor: default; }
+  .barra-golpe:focus-visible { outline: none; fill: var(--accent); fill-opacity: 0.06; }
+  .barra.activa { fill-opacity: 0.75; }
+  .marcador { stroke: var(--ink-2); stroke-width: 1; }
+  .marcador-texto { fill: var(--ink); font-size: 12px; }
+  .marcador-texto.fuerte { font-weight: 700; }
+  .area-vus { fill: var(--ink-2); fill-opacity: 0.12; }
+  .linea-vus { fill: none; stroke: var(--ink-2); stroke-width: 2; }
+  .forma-area { fill: var(--accent); fill-opacity: 0.12; }
+  .forma-linea { fill: none; stroke: var(--accent); stroke-width: 2; stroke-linejoin: round; }
+  .forma-tick { fill: var(--muted); font-size: 10.5px; font-variant-numeric: tabular-nums; }
+
+  .tip {
+    position: fixed; z-index: 20; pointer-events: none; min-width: 11rem; max-width: 18rem;
+    background: var(--surface); color: var(--ink); border: 1px solid var(--line-strong); border-radius: 6px;
+    padding: 0.55rem 0.7rem; box-shadow: 0 6px 22px rgba(10, 20, 30, 0.14); font-size: 0.84rem;
+  }
+  .tip-titulo { margin: 0 0 0.3rem; color: var(--muted); font-size: 0.78rem; }
+  .tip-fila { margin: 0.1rem 0; display: flex; align-items: center; gap: 0.45rem; }
+  .tip-fila strong { font-variant-numeric: tabular-nums; font-weight: 650; }
+  .tip-nombre { color: var(--ink-2); }
+  .tip-clave { display: inline-block; width: 12px; height: 2px; border-radius: 1px; flex: none; }
+  .tip-clave.s1 { background: var(--s1); } .tip-clave.s2 { background: var(--s2); } .tip-clave.s3 { background: var(--s3); } .tip-clave.neutra { background: var(--ink-2); }
+
+  details.datos { margin-top: 0.9rem; border-top: 1px solid var(--line); padding-top: 0.6rem; }
+  details.datos summary { cursor: pointer; color: var(--ink-2); font-size: 0.88rem; width: fit-content; }
+  .tabla-env { overflow-x: auto; margin-top: 0.6rem; }
+  table { border-collapse: collapse; width: 100%; font-size: 0.86rem; }
+  th, td { text-align: right; padding: 0.35rem 0.6rem; border-bottom: 1px solid var(--line); font-variant-numeric: tabular-nums; white-space: nowrap; }
+  th:first-child, td:first-child { text-align: left; }
+  thead th { color: var(--muted); font-weight: 600; }
+
+  /* ---------- Formas de carga ---------- */
+  .formas { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1rem; margin-top: 1.8rem; }
+  .forma { background: var(--surface); border: 1px solid var(--line); border-radius: 8px; padding: 1rem 1.05rem 1.05rem; display: grid; grid-template-rows: auto auto 1fr; gap: 0.5rem; }
+  .forma-cabeza { display: flex; justify-content: space-between; align-items: baseline; gap: 0.5rem; }
+  .forma-nombre { font-family: var(--f-mono); font-size: 0.92rem; font-weight: 600; margin: 0; }
+  .ficha { font-size: 0.72rem; font-weight: 600; letter-spacing: 0.04em; text-transform: uppercase; padding: 0.1rem 0.5rem; border-radius: 999px; border: 1px solid var(--line-strong); color: var(--ink-2); white-space: nowrap; }
+  .ficha.abierto { border-color: var(--accent); color: var(--accent-ink); background: var(--accent-wash); }
+  .forma-dibujo { height: 76px; }
+  .forma-dato { font-family: var(--f-mono); font-size: 0.8rem; color: var(--ink-2); margin: 0; }
+  .forma-para { font-size: 0.92rem; color: var(--ink-2); margin: 0; }
+  .nota-lateral { margin-top: 1.2rem; font-size: 0.92rem; color: var(--muted); }
+
+  .aparte { border-left: 3px solid var(--accent); padding: 0.2rem 0 0.2rem 1rem; margin: 1.4rem 0 0; max-width: 66ch; }
+  .aparte p { margin: 0; }
+  .aparte strong { color: var(--ink); }
+
+  .codigo { background: var(--term-bg); color: var(--term-ink); border-radius: 6px; padding: 0.85rem 1rem; font-family: var(--f-mono); font-size: 0.82rem; line-height: 1.6; overflow-x: auto; margin: 1.2rem 0 0; max-width: 66ch; }
+  .codigo .t-dim { color: var(--term-dim); }
+
+  .cifra-linea { display: flex; flex-wrap: wrap; gap: 0.4rem 2rem; margin: 1.2rem 0 0; padding: 0; list-style: none; }
+  .cifra-linea li { display: grid; }
+  .cifra-linea b { font-family: var(--f-display); font-stretch: 112%; font-size: 1.7rem; font-weight: 750; line-height: 1.1; }
+  .cifra-linea span { color: var(--muted); font-size: 0.86rem; }
+
+  /* ---------- Lecciones ---------- */
+  .lecciones { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1rem; margin-top: 1.8rem; }
+  .leccion { background: var(--surface); border: 1px solid var(--line); border-radius: 8px; padding: 1.1rem 1.2rem; display: grid; gap: 0.55rem; align-content: start; }
+  .leccion dl { margin: 0; display: grid; grid-template-columns: auto 1fr; gap: 0.25rem 0.75rem; font-size: 0.92rem; }
+  .leccion dt { color: var(--muted); }
+  .leccion dd { margin: 0; }
+  .leccion .porque { margin: 0; color: var(--ink-2); font-size: 0.92rem; border-top: 1px solid var(--line); padding-top: 0.55rem; }
+
+  /* ---------- Pasos ---------- */
+  .pasos { list-style: none; counter-reset: paso; margin: 1.8rem 0 0; padding: 0; display: grid; gap: 1.4rem; max-width: 52rem; }
+  .pasos > li { counter-increment: paso; display: grid; grid-template-columns: 2.6rem minmax(0, 1fr); gap: 0 1rem; }
+  .pasos > li::before {
+    content: counter(paso); font-family: var(--f-display); font-stretch: 120%; font-weight: 800; font-size: 1.5rem;
+    color: var(--accent-ink); line-height: 1.2; text-align: right;
+  }
+  .pasos h3 { margin-bottom: 0.3rem; }
+  .pasos p { margin: 0 0 0.4rem; color: var(--ink-2); }
+  .pasos .codigo { margin-top: 0.5rem; }
+  .aviso { background: var(--crit-wash); border-radius: 6px; padding: 0.8rem 1rem; margin-top: 1.6rem; max-width: 52rem; }
+  .aviso p { margin: 0; }
+  .aviso strong { color: var(--crit); }
+
+  /* ---------- Entrega ---------- */
+  .entrega { display: grid; grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr); gap: clamp(1.5rem, 4vw, 3rem); margin-top: 1.8rem; align-items: start; }
+  .slo { width: 100%; }
+  .slo td:last-child { font-weight: 650; }
+  .rubrica { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0 1.5rem; }
+  .rubrica li { display: flex; justify-content: space-between; gap: 1rem; padding: 0.45rem 0; border-bottom: 1px solid var(--line); font-size: 0.93rem; }
+  .rubrica li span:last-child { color: var(--muted); font-variant-numeric: tabular-nums; white-space: nowrap; }
+  .rubrica li.destacado span:first-child { font-weight: 650; }
+  .bandas { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-top: 1rem; padding: 0; list-style: none; font-size: 0.86rem; }
+  .bandas li { border: 1px solid var(--line-strong); border-radius: 4px; padding: 0.2rem 0.55rem; color: var(--ink-2); }
+  .subtitulo-bloque { font-size: 0.8rem; font-family: var(--f-mono); letter-spacing: 0.06em; text-transform: uppercase; color: var(--muted); margin: 0 0 0.6rem; }
+
+  footer { padding-block: 2.5rem 3rem; border-top: 1px solid var(--line); color: var(--muted); font-size: 0.9rem; }
+  footer .texto p { margin-bottom: 0.6rem; }
+
+  /* ---------- Simulador ---------- */
+  .visualmente-oculto { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+  .sello { display: inline-block; margin: 1.2rem 0 0; padding: 0.45rem 0.8rem; border-radius: 6px; background: var(--accent-wash); color: var(--ink); font-size: 0.92rem; max-width: 72ch; }
+  .simulador { margin-top: 1.4rem; background: var(--surface); border: 1px solid var(--line); border-radius: 8px; padding: clamp(1rem, 2.5vw, 1.5rem); display: grid; gap: 0.9rem; }
+  .simulador > * { min-width: 0; }
+  .sim-escenarios { display: flex; flex-wrap: wrap; gap: 0.4rem; }
+  .chip {
+    font: 500 0.9rem/1 var(--f-mono); color: var(--ink-2); background: var(--surface);
+    border: 1px solid var(--line-strong); border-radius: 999px; padding: 0.5rem 0.85rem; cursor: pointer;
+  }
+  .chip:hover { border-color: var(--accent); color: var(--accent-ink); }
+  .chip[aria-pressed="true"] { background: var(--accent); border-color: var(--accent); color: var(--surface); }
+  .sim-que { margin: 0; color: var(--ink-2); max-width: 72ch; }
+  .sim-opciones:empty { display: none; }
+  .opcion { display: flex; flex-wrap: wrap; align-items: center; gap: 0.4rem 0.9rem; font-size: 0.92rem; color: var(--ink); border: 0; padding: 0; margin: 0; }
+  .opcion label { display: inline-flex; align-items: center; gap: 0.4rem; }
+  .ilustrativo { font-size: 0.72rem; font-weight: 600; letter-spacing: 0.04em; text-transform: uppercase; color: var(--crit); background: var(--crit-wash); padding: 0.1rem 0.45rem; border-radius: 4px; }
+  select, input[type="checkbox"], input[type="radio"] { accent-color: var(--accent); }
+  select { font: inherit; font-size: 0.9rem; color: var(--ink); background: var(--surface); border: 1px solid var(--line-strong); border-radius: 5px; padding: 0.25rem 0.4rem; }
+  .sim-controles { display: flex; flex-wrap: wrap; align-items: center; gap: 0.6rem 1rem; }
+  .boton { font: 600 0.92rem/1 var(--f-body); color: var(--surface); background: var(--accent); border: 0; border-radius: 6px; padding: 0.6rem 1.05rem; cursor: pointer; min-width: 7.5rem; }
+  .boton:hover { background: var(--accent-ink); }
+  #sim-tiempo { flex: 1 1 14rem; min-width: 0; accent-color: var(--accent); }
+  .sim-reloj { font-family: var(--f-mono); font-size: 0.86rem; color: var(--ink-2); font-variant-numeric: tabular-nums; white-space: nowrap; }
+  .sim-velocidad { display: inline-flex; align-items: center; gap: 0.4rem; font-size: 0.88rem; color: var(--ink-2); }
+  .sim-leyenda { margin-top: 0.2rem; }
+  .sim-terminal { margin: 0; }
+  .sim-terminal pre { min-height: 9.5rem; }
+  .t-ok { color: #7FD7A2; font-weight: 600; }
+  .sim-lectura { margin: 0; max-width: 72ch; }
+  .sim-metodo .texto p { font-size: 0.94rem; color: var(--ink-2); }
+  .sim-metodo .texto p:first-child { margin-top: 0.8rem; }
+  .sim-formula { font-family: var(--f-mono); font-size: 0.86rem; background: var(--sunken); padding: 0.5rem 0.75rem; border-radius: 5px; display: block; overflow-x: auto; margin: 0 0 1rem; color: var(--ink); }
+  .panel-titulo { fill: var(--ink-2); font-size: 11.5px; font-weight: 600; }
+  .llegan { fill: none; stroke: var(--ink-2); stroke-width: 2; opacity: 0.7; }
+  .cursor-sim { stroke: var(--accent); stroke-width: 1.5; }
+
+  @media (max-width: 900px) {
+    .tesis, .entrega { grid-template-columns: minmax(0, 1fr); }
+    .formas { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  }
+  @media (max-width: 680px) {
+    .dos-graficas, .lecciones, .rubrica { grid-template-columns: minmax(0, 1fr); }
+  }
+  @media (max-width: 520px) {
+    body { padding-inline: 16px; }
+    .formas { grid-template-columns: minmax(0, 1fr); }
+    .pasos > li { grid-template-columns: 1.8rem minmax(0, 1fr); gap: 0 0.7rem; }
+  }
+</style>
+
+</head>
+<body>
+<div class="envoltura">
+
+  <header class="portada">
+    <p class="antetitulo">Taller de Pruebas de Carga y Rendimiento · Testing y Validación de Software</p>
+    <h1>La Registraduría bajo carga</h1>
+    <p class="entrada">Qué mide una prueba de carga, cómo se ejecuta en este taller y qué pasó cuando se le puso carga de verdad al mismo servicio que usted va a probar. Las gráficas salen de mediciones reales; el simulador de ejecución, de un modelo calibrado con ellas.</p>
+
+    <div class="tesis">
+      <div>
+        <p class="tesis-frase">El promedio dijo <em>78 ms</em>. Una de cada cien personas esperó <em>más de un segundo</em>.</p>
+        <p class="tesis-nota">Las dos cifras son de la misma corrida. Por eso este taller no aprueba ni reprueba con promedios: los objetivos se escriben en <strong>p95</strong> y <strong>p99</strong>, el tiempo que no supera el 95 % y el 99 % de las peticiones.</p>
+      </div>
+      <figure class="terminal" style="margin:0">
+        <div class="terminal-barra"><span>k6 run · step.js</span><span>100 VUs · 30 s</span></div>
+<pre tabindex="0"><span class="t-dim">  scenarios: 1 scenario, 100 max VUs, 30s max duration</span>
+
+  http_reqs......................: 34776   1157.6/s
+  http_req_failed................: 0.00%   0 out of 34776
+  http_req_duration..............: avg=<span class="t-hi">78.35ms</span> med=25.57ms
+                                   p(90)=128.5ms  <span class="t-bad">p(95)=377.12ms</span>
+                                   <span class="t-bad">p(99)=1.05s</span>    max=3.9s
+
+<span class="t-dim">  actuator http.server.requests   p(95)≈33.9ms</span></pre>
+        <figcaption class="terminal-pie">Salida real, resumida. Portátil con el servicio fijado a un núcleo, código sin pool de conexiones.</figcaption>
+      </figure>
+    </div>
+
+    <nav class="indice" aria-label="En esta página">
+      <ol>
+        <li><a href="#formas">Las formas de la carga</a></li>
+        <li><a href="#ejecucion">Así se ve una ejecución</a></li>
+        <li><a href="#percentiles">El promedio miente</a></li>
+        <li><a href="#saturacion">Más usuarios, más espera</a></li>
+        <li><a href="#observabilidad">Cliente contra servidor</a></li>
+        <li><a href="#abierto">Cerrado frente a abierto</a></li>
+        <li><a href="#pool">El defecto que solo sale con carga</a></li>
+        <li><a href="#pico">Un pico súbito</a></li>
+        <li><a href="#lecciones">Lo que salió mal al medir</a></li>
+        <li><a href="#pasos">Paso a paso</a></li>
+        <li><a href="#entrega">Qué se entrega</a></li>
+      </ol>
+    </nav>
+  </header>
+
+  <main id="contenido">
+
+  <!-- ============================================================ -->
+  <section class="bloque" id="formas">
+    <p class="antetitulo">Los escenarios del script</p>
+    <h2>Una prueba de carga es, ante todo, una forma</h2>
+    <div class="texto">
+      <p>Antes de hablar de milisegundos hay que decidir <strong>cuánta carga, durante cuánto tiempo y con qué curva</strong>. Esa forma es la pregunta que se le hace al sistema. Estos son los escenarios que ya trae <code>perf/scripts/register_person_k6.js</code>; se eligen con <code>--env SCENARIO=&lt;nombre&gt;</code>.</p>
+    </div>
+
+    <div class="formas" id="formas-rejilla"></div>
+    <p class="nota-lateral">Cada figura tiene su propia escala: están dibujadas para comparar formas, no tamaños. Los usuarios virtuales (VUs) van en el eje vertical y el tiempo en el horizontal.</p>
+
+    <div class="aparte">
+      <p><strong>Cerrado o abierto.</strong> En el modelo cerrado usted fija cuántos usuarios hay; si el sistema se pone lento, esos usuarios envían <em>menos</em> peticiones, justo cuando habría que enviarle más. En el abierto fija cuántas peticiones llegan por segundo, lleguen o no a atenderse, que es como se comporta el tráfico real. Más abajo se ve la diferencia con datos.</p>
+    </div>
+  </section>
+
+  <!-- ============================================================ -->
+  <section class="bloque" id="ejecucion">
+    <p class="antetitulo">Simulador de ejecución</p>
+    <h2>Así se ve una ejecución, segundo a segundo</h2>
+    <div class="texto">
+      <p>Elija un escenario y reprodúzcalo. Verá lo que vería en k6 durante la corrida: cuántos usuarios hay, cuántas peticiones se atienden, cuánto tardan y cuántas fallan. Las dos líneas son el mismo servicio <strong>con y sin pool de conexiones</strong>. El código del taller, tal como está, es el sin pool.</p>
+    </div>
+    <p class="sello"><strong>Simulación calibrada, no una corrida.</strong> Las curvas salen de las mediciones reales de esta página, aplicadas a la forma de cada escenario. <a href="#sim-metodo">Cómo se calcula y cuánto se equivoca</a>.</p>
+
+    <div class="simulador">
+      <div class="sim-escenarios" role="group" aria-label="Escenario">
+        <button type="button" class="chip" id="sim-esc-baseline" data-esc="baseline" aria-pressed="false">baseline</button>
+        <button type="button" class="chip" id="sim-esc-load" data-esc="load" aria-pressed="true">load</button>
+        <button type="button" class="chip" id="sim-esc-stress" data-esc="stress" aria-pressed="false">stress</button>
+        <button type="button" class="chip" id="sim-esc-spike" data-esc="spike" aria-pressed="false">spike</button>
+        <button type="button" class="chip" id="sim-esc-soak" data-esc="soak" aria-pressed="false">soak</button>
+        <button type="button" class="chip" id="sim-esc-arrival" data-esc="arrival" aria-pressed="false">arrival</button>
+      </div>
+      <p class="sim-que" id="sim-que"></p>
+
+      <div class="sim-opciones">
+        <label class="opcion" id="sim-op-fuga" hidden><input type="checkbox" id="sim-fuga"> Mostrar cómo se vería una fuga de memoria <span class="ilustrativo">ejemplo ilustrativo, no medido</span></label>
+        <fieldset class="opcion" id="sim-op-pico" hidden>
+          <legend class="visualmente-oculto">Origen de los datos del pico</legend>
+          <label><input type="radio" name="sim-pico" id="sim-pico-sim" value="sim" checked> Forma del script (simulada)</label>
+          <label><input type="radio" name="sim-pico" id="sim-pico-real" value="real"> Medición real del laboratorio: 20 → 400 VUs, solo sin pool</label>
+        </fieldset>
+        <label class="opcion" id="sim-op-tasa" hidden>Peticiones que llegan
+          <select id="sim-tasa">
+            <option value="100">100 req/s · la del script (estimada)</option>
+            <option value="2000">2.000 req/s · medida</option>
+            <option value="8000">8.000 req/s · medida</option>
+            <option value="10000">10.000 req/s · medida</option>
+          </select>
+        </label>
+      </div>
+
+      <div class="sim-controles">
+        <button type="button" class="boton" id="sim-reproducir">Reproducir</button>
+        <label for="sim-tiempo" class="visualmente-oculto">Momento de la corrida</label>
+        <input type="range" id="sim-tiempo" min="0" max="840" step="1" value="840">
+        <span class="sim-reloj" id="sim-reloj">14:00 / 14:00</span>
+        <label class="sim-velocidad" for="sim-velocidad">Reproducir en
+          <select id="sim-velocidad">
+            <option value="10">10 s</option>
+            <option value="25" selected>25 s</option>
+            <option value="60">60 s</option>
+          </select>
+        </label>
+      </div>
+
+      <ul class="leyenda sim-leyenda">
+        <li id="sim-ley-vus"><span class="clave" style="background:var(--ink-2)"></span><span id="sim-ley-vus-texto">Usuarios virtuales</span></li>
+        <li><span class="clave s2"></span>Sin pool (el código del taller)</li>
+        <li id="sim-ley-pool"><span class="clave s1"></span>Con pool</li>
+      </ul>
+      <div class="grafica" id="g-sim"></div>
+
+      <figure class="terminal sim-terminal">
+        <div class="terminal-barra"><span id="sim-titulo-consola">k6 run · load</span><span>simulación</span></div>
+        <pre tabindex="0" id="sim-consola" aria-live="off"></pre>
+      </figure>
+      <p class="sim-lectura" id="sim-lectura"></p>
+    </div>
+
+    <details class="datos sim-metodo" id="sim-metodo">
+      <summary>Cómo se calcula y cuánto se equivoca</summary>
+      <div class="texto" id="sim-metodo-texto"></div>
+    </details>
+  </section>
+
+  <!-- ============================================================ -->
+  <section class="bloque" id="percentiles">
+    <p class="antetitulo">Leer el resultado</p>
+    <h2>El promedio miente, la cola no</h2>
+    <div class="texto">
+      <p>Las 34.776 peticiones de la corrida de la portada, agrupadas por cuánto tardaron. La mayoría se atendió en 16 a 64 ms. Pero a la derecha hay una cola larga, y ahí están las personas con peor suerte: el promedio la esconde y el p95 y el p99 la muestran.</p>
+    </div>
+
+    <figure class="figura" aria-labelledby="t-hist">
+      <div class="fig-cabeza">
+        <div>
+          <p class="fig-titulo" id="t-hist">Tiempo de respuesta de 34.776 peticiones</p>
+          <p class="fig-sub">100 VUs durante 30 s, sin pool. Cada intervalo dura el doble que el anterior.</p>
+        </div>
+      </div>
+      <div class="grafica" id="g-hist"></div>
+      <figcaption>El <strong>6,3 %</strong> de las peticiones tardó más de 256 ms y el <strong>1 %</strong> pasó del segundo. Con el SLO del taller (p95 ≤ 300 ms) esta corrida <strong>no aprueba</strong>, aunque su promedio luzca excelente.</figcaption>
+      <details class="datos"><summary>Ver los datos</summary><div class="tabla-env" id="d-hist" tabindex="0" role="region" aria-label="Tabla: tiempo de respuesta por intervalo"></div></details>
+    </figure>
+  </section>
+
+  <!-- ============================================================ -->
+  <section class="bloque" id="saturacion">
+    <p class="antetitulo">Modelo cerrado · con pool de conexiones</p>
+    <h2>Más usuarios no es más rendimiento: es más espera</h2>
+    <div class="texto">
+      <p>Se subió la carga por escalones, de 1 a 800 usuarios virtuales, con dos corridas por escalón. A partir de 10 VUs el throughput deja de crecer y oscila entre 5.100 y 9.400 peticiones por segundo. Lo que sí sigue creciendo es el tiempo: el p95 pasa de 1,6 ms a 202 ms.</p>
+      <p>No es casualidad, es la <strong>ley de Little</strong>: usuarios en el sistema = throughput × tiempo por iteración. Con 800 VUs, 7.042 req/s × 0,106 s ≈ 746. Si el throughput no puede crecer, lo único que puede crecer es el tiempo.</p>
+    </div>
+
+    <figure class="figura" aria-labelledby="t-sat">
+      <div class="fig-cabeza">
+        <div>
+          <p class="fig-titulo" id="t-sat">Throughput y p95 por número de usuarios virtuales</p>
+          <p class="fig-sub">Eje horizontal en escala logarítmica. Línea: promedio de las dos corridas; puntos claros: cada corrida.</p>
+        </div>
+      </div>
+      <div class="dos-graficas">
+        <div><p class="fig-sub" style="margin:0 0 0.3rem">Peticiones atendidas por segundo</p><div class="grafica" id="g-sat-rps"></div></div>
+        <div><p class="fig-sub" style="margin:0 0 0.3rem">p95 del tiempo de respuesta</p><div class="grafica" id="g-sat-p95"></div></div>
+      </div>
+      <figcaption>La capacidad se agota muy pronto: un solo núcleo para el servicio. Desde ahí, cada usuario adicional solo alarga la cola.</figcaption>
+      <details class="datos"><summary>Ver los datos</summary><div class="tabla-env" id="d-sat" tabindex="0" role="region" aria-label="Tabla: throughput y p95 por VUs"></div></details>
+    </figure>
+  </section>
+
+  <!-- ============================================================ -->
+  <section class="bloque" id="observabilidad">
+    <p class="antetitulo">Observabilidad</p>
+    <h2>El servidor dice 0,1 ms. El usuario espera 200.</h2>
+    <div class="texto">
+      <p>Mismo experimento que el anterior. k6 mide desde afuera, desde que envía la petición hasta que recibe la respuesta. Actuator mide desde adentro, con <code>http.server.requests</code>, y empieza a contar cuando un hilo por fin toma la petición.</p>
+      <p>Los dos tienen razón. La diferencia es el tiempo que la petición pasó en la red, en el propio cliente y sobre todo <strong>esperando en la cola</strong> un hilo libre. Si el servidor responde en décimas de milisegundo y el usuario espera cientos, optimizar el código de negocio no sirve: el problema es capacidad.</p>
+    </div>
+
+    <figure class="figura" aria-labelledby="t-obs">
+      <div class="fig-cabeza">
+        <div>
+          <p class="fig-titulo" id="t-obs">p95 medido por el cliente y por el servidor</p>
+          <p class="fig-sub">Los dos ejes en escala logarítmica.</p>
+        </div>
+        <ul class="leyenda">
+          <li><span class="clave s1"></span>Cliente (k6)</li>
+          <li><span class="clave s3"></span>Servidor (Actuator)</li>
+        </ul>
+      </div>
+      <div class="grafica" id="g-obs"></div>
+      <figcaption>El p95 del servidor se queda entre 0,1 y 0,23 ms en todos los escalones. Con 800 VUs el cliente mide más de mil veces eso. Correlacionar ambas cifras es uno de los criterios de la rúbrica.</figcaption>
+      <details class="datos"><summary>Ver los datos</summary><div class="tabla-env" id="d-obs" tabindex="0" role="region" aria-label="Tabla: p95 de cliente y servidor"></div></details>
+    </figure>
+  </section>
+
+  <!-- ============================================================ -->
+  <section class="bloque" id="abierto">
+    <p class="antetitulo">Modelo abierto</p>
+    <h2>El tráfico real no espera a que el servidor termine</h2>
+    <div class="texto">
+      <p>Ahora se fija cuántas peticiones <strong>llegan</strong> por segundo, y se mide cuántas se atienden. Mientras las dos cifras coinciden, el servicio da abasto; cuando se separan, sobra trabajo, y k6 lo reporta como <code>dropped_iterations</code>: iteraciones que no pudo ni empezar.</p>
+    </div>
+
+    <figure class="figura" aria-labelledby="t-abi">
+      <div class="fig-cabeza">
+        <div>
+          <p class="fig-titulo" id="t-abi">Peticiones atendidas frente a peticiones que llegan</p>
+          <p class="fig-sub">La línea gris marca el ideal: atender todo lo que llega.</p>
+        </div>
+        <ul class="leyenda">
+          <li><span class="clave s1"></span>Con pool de conexiones</li>
+          <li><span class="clave s2"></span>Sin pool</li>
+        </ul>
+      </div>
+      <div class="grafica" id="g-abi"></div>
+      <figcaption>Con pool, el servicio sigue a la línea hasta 10.000 req/s; con 12.000 atiende 8.712 y deja de empezar unas 63.000 iteraciones. Sin pool se rinde con 2.000: atiende 831 por segundo y el 12,6 % de las peticiones falla.</figcaption>
+      <details class="datos"><summary>Ver los datos</summary><div class="tabla-env" id="d-abi" tabindex="0" role="region" aria-label="Tabla: modelo abierto"></div></details>
+    </figure>
+  </section>
+
+  <!-- ============================================================ -->
+  <section class="bloque" id="pool">
+    <p class="antetitulo">Un cuello de botella real, en este repositorio</p>
+    <h2>Un defecto que solo aparece con carga</h2>
+    <div class="texto">
+      <p><code>RegistryRepository</code> abre una conexión nueva en cada operación, y <code>registerVoter</code> hace dos por petición. Con un usuario funciona perfecto: ninguna prueba unitaria ni de integración lo va a detectar.</p>
+    </div>
+<pre tabindex="0" class="codigo"><span class="t-dim">// registraduria/.../RegistryRepository.java</span>
+private Connection getConnection() throws SQLException {
+    return DriverManager.getConnection(jdbcUrl, username, password);
+}</pre>
+
+    <figure class="figura" aria-labelledby="t-pool">
+      <div class="fig-cabeza">
+        <div>
+          <p class="fig-titulo" id="t-pool">p95 con y sin pool de conexiones</p>
+          <p class="fig-sub">Modelo cerrado, mismo código salvo el pool. Los dos ejes en escala logarítmica.</p>
+        </div>
+        <ul class="leyenda">
+          <li><span class="clave s1"></span>Con pool</li>
+          <li><span class="clave s2"></span>Sin pool</li>
+          <li><span class="clave punto s1c"></span><span class="clave punto s2c" style="margin-left:-0.3rem"></span>Cada corrida</li>
+        </ul>
+      </div>
+      <div class="grafica" id="g-pool"></div>
+      <figcaption>Hasta 25 VUs no hay diferencia clara. Desde 50, sin pool atiende entre el 31 % y el 53 % de lo que atiende con pool. Con 800 VUs, sin pool falla el 14,4 % de las peticiones; con pool, el 0,26 %. Fíjese en la dispersión con 400 VUs sin pool: una corrida dio 2,6 s y la otra 224 ms.</figcaption>
+      <details class="datos"><summary>Ver los datos</summary><div class="tabla-env" id="d-pool" tabindex="0" role="region" aria-label="Tabla: con y sin pool"></div></details>
+    </figure>
+
+    <div class="aparte">
+      <p><strong>La conclusión que se busca:</strong> una prueba de carga sin observabilidad dice que algo va mal; con observabilidad dice qué arreglar. HikariCP ya viene con Spring Boot: agregarlo, repetir la medición y documentar el antes y el después es una de las actividades del taller.</p>
+    </div>
+  </section>
+
+  <!-- ============================================================ -->
+  <section class="bloque" id="pico">
+    <p class="antetitulo">Resiliencia</p>
+    <h2>Un pico súbito, y la recuperación</h2>
+    <div class="texto">
+      <p>Una prueba de pico no pregunta cuánto aguanta el sistema, sino qué pasa cuando la carga cambia de golpe y si vuelve a la normalidad. En esta medición del laboratorio los usuarios subieron de 20 a 400 y volvieron a bajar en dos minutos.</p>
+    </div>
+
+    <figure class="figura" aria-labelledby="t-pico">
+      <div class="fig-cabeza">
+        <div>
+          <p class="fig-titulo" id="t-pico">Usuarios virtuales y p95, segundo a segundo</p>
+          <p class="fig-sub">Sin pool. Se omiten los primeros 10 s, con k6 todavía abriendo conexiones.</p>
+        </div>
+        <ul class="leyenda">
+          <li><span class="clave" style="background:var(--ink-2)"></span>Usuarios virtuales</li>
+          <li><span class="clave s2"></span>p95 (sin pool)</li>
+        </ul>
+      </div>
+      <div class="grafica" id="g-pico"></div>
+      <figcaption>700.888 peticiones y ninguna falla. Con 20 VUs antes del pico, el p95 rondaba los 6 ms; en la meseta de 400, unos 110 ms; al volver a 20, unos 4 ms. El servicio se recupera. Si el p95 hubiera seguido alto después de que la carga bajó, el sistema no se habría recuperado, y eso es justo lo que busca esta prueba.</figcaption>
+      <details class="datos"><summary>Ver los datos</summary><div class="tabla-env" id="d-pico" tabindex="0" role="region" aria-label="Tabla: pico segundo a segundo"></div></details>
+    </figure>
+  </section>
+
+  <!-- ============================================================ -->
+  <section class="bloque" id="lecciones">
+    <p class="antetitulo">Corridas de calibración del profesor</p>
+    <h2>Lo que salió mal al medir para esta clase</h2>
+    <div class="texto">
+      <p>Estas cifras no están en las gráficas de arriba: son de las corridas previas, las que salieron mal. Son los mismos errores que se pueden cometer en el taller, y ninguno se ve en un reporte que "sale verde".</p>
+    </div>
+    <div class="lecciones">
+      <article class="leccion">
+        <h3>El inyector compitiendo con el servicio</h3>
+        <dl><dt>Síntoma</dt><dd>k6 y el servicio en los mismos 16 hilos: CPU al 99 %.</dd><dt>Arreglo</dt><dd>Servicio en 1 núcleo, k6 en otros 14 hilos.</dd></dl>
+        <p class="porque">Sin separarlos, parte del tiempo que reporta k6 es k6 esperando CPU.</p>
+      </article>
+      <article class="leccion">
+        <h3>La JVM no sabía cuántos núcleos tenía</h3>
+        <dl><dt>Síntoma</dt><dd>p99 del servidor de hasta 476 ms con 100 VUs.</dd><dt>Arreglo</dt><dd>Menos de 1 ms con <code>-XX:ActiveProcessorCount</code>.</dd></dl>
+        <p class="porque">Una JVM que cree tener 16 CPUs pero corre en 2 dimensiona mal sus hilos de recolección de basura.</p>
+      </article>
+      <article class="leccion">
+        <h3>Medir sin calentar</h3>
+        <dl><dt>Síntoma</dt><dd>3.370 req/s en la primera corrida tras arrancar.</dd><dt>Después</dt><dd>6.420 req/s en la siguiente, idéntica.</dd></dl>
+        <p class="porque">El compilador JIT todavía estaba trabajando. Siempre hay un calentamiento que no se mide.</p>
+      </article>
+      <article class="leccion">
+        <h3>Buscar el error solo en el log</h3>
+        <dl><dt>Síntoma</dt><dd>10 % de peticiones fallidas con 400 VUs.</dd><dt>En el log</dt><dd>Ni una sola excepción.</dd></dl>
+        <p class="porque">Bajo saturación, muchos fallos ocurren antes de llegar a la aplicación: conexiones y tiempos de espera. Hay que leer los errores en k6.</p>
+      </article>
+    </div>
+  </section>
+
+  <!-- ============================================================ -->
+  <section class="bloque" id="pasos">
+    <p class="antetitulo">En su máquina</p>
+    <h2>Paso a paso</h2>
+    <div class="texto">
+      <p>Los comandos de Maven se ejecutan dentro de <code>registraduria/</code>; los de k6, desde la raíz del repositorio.</p>
+    </div>
+    <ol class="pasos">
+      <li>
+        <div>
+          <h3>Compile y levante el servicio</h3>
+<pre tabindex="0" class="codigo">cd registraduria
+mvn -DskipTests clean package
+java -jar target/registraduria-1.0-SNAPSHOT.jar</pre>
+        </div>
+      </li>
+      <li>
+        <div>
+          <h3>Compruebe que responde</h3>
+          <p>Antes de medir nada: si el servicio no está arriba, k6 reporta errores que no son del sistema.</p>
+<pre tabindex="0" class="codigo">curl http://localhost:8080/actuator/health
+<span class="t-dim"># {"status":"UP", ...}</span></pre>
+        </div>
+      </li>
+      <li>
+        <div>
+          <h3>Mida la línea base</h3>
+          <p>Vuelva a la raíz. La línea base es la referencia contra la que se compara todo lo demás.</p>
+<pre tabindex="0" class="codigo">cd ..
+k6 run --env BASE_URL=http://localhost:8080 --env SCENARIO=baseline \
+       perf/scripts/register_person_k6.js</pre>
+        </div>
+      </li>
+      <li>
+        <div>
+          <h3>Suba a carga esperada</h3>
+          <p>Rampa hasta 200 VUs, diez minutos sostenidos.</p>
+<pre tabindex="0" class="codigo">k6 run --env BASE_URL=http://localhost:8080 --env SCENARIO=load \
+       perf/scripts/register_person_k6.js</pre>
+        </div>
+      </li>
+      <li>
+        <div>
+          <h3>Verifique el resultado de negocio, no solo el 200</h3>
+          <p>El segundo script comprueba que bajo carga el servicio siga respondiendo lo <em>correcto</em>. Fíjese en la métrica <code>register_failed</code>.</p>
+<pre tabindex="0" class="codigo">k6 run --env BASE_URL=http://localhost:8080 --env SCENARIO=baseline \
+       perf/scripts/register_voter_k6.js</pre>
+        </div>
+      </li>
+      <li>
+        <div>
+          <h3>Pregúntele al servidor</h3>
+          <p>Durante una corrida, compare el p95 de k6 con el que mide el propio servicio.</p>
+<pre tabindex="0" class="codigo">curl -s "http://localhost:8080/actuator/metrics/http.server.requests" | jq
+curl -s "http://localhost:8080/actuator/metrics/jvm.threads.live" | jq</pre>
+        </div>
+      </li>
+    </ol>
+
+    <div class="aviso">
+      <p><strong>Reinicie el servicio entre corridas.</strong> La base de datos H2 vive mientras vive el proceso: si repite una prueba sin reiniciar, los ids ya existen y todo lo que esperaba <code>VALID</code> devuelve <code>DUPLICATED</code>. El umbral se cruza sin que el servicio tenga nada malo. Si no quiere reiniciar, desplace el rango con <code>--env ID_BASE=700000000</code>. Y en Windows, no pase la configuración con <code>set</code>: use <code>--env</code>.</p>
+    </div>
+  </section>
+
+  <!-- ============================================================ -->
+  <section class="bloque" id="entrega">
+    <p class="antetitulo">Para entregar</p>
+    <h2>Qué se entrega y cómo se califica</h2>
+    <div class="entrega">
+      <div>
+        <p class="subtitulo-bloque">Los umbrales del script</p>
+        <div class="tabla-env" tabindex="0" role="region" aria-label="Tabla: objetivos de nivel de servicio">
+          <table class="slo">
+            <thead><tr><th>Métrica</th><th>Objetivo</th></tr></thead>
+            <tbody>
+              <tr><td>p95 del tiempo de respuesta</td><td>≤ 300 ms</td></tr>
+              <tr><td>p99 del tiempo de respuesta</td><td>≤ 800 ms</td></tr>
+              <tr><td>Peticiones fallidas</td><td>&lt; 1 %</td></tr>
+              <tr><td>Resultado de negocio incorrecto</td><td>&lt; 1 %</td></tr>
+              <tr><td>Throughput de referencia</td><td>≥ 100 req/s</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="nota-lateral">Si un umbral se cruza, k6 termina con código de salida distinto de cero: así se convierte en una compuerta de integración continua.</p>
+      </div>
+      <div>
+        <p class="subtitulo-bloque">Rúbrica · 10 criterios × 5 puntos = 50</p>
+        <ul class="rubrica">
+          <li><span>Estructura del repositorio</span><span>5 pts</span></li>
+          <li><span>Plan de pruebas (SLO, modelos, escenarios)</span><span>5 pts</span></li>
+          <li><span>Scripts (parametrización, correlación, aserciones)</span><span>5 pts</span></li>
+          <li><span>Ejecución y artefactos</span><span>5 pts</span></li>
+          <li><span>Análisis de resultados</span><span>5 pts</span></li>
+          <li><span>CI/CD y compuertas</span><span>5 pts</span></li>
+          <li><span>Matriz de rendimiento</span><span>5 pts</span></li>
+          <li><span>Gestión de defectos</span><span>5 pts</span></li>
+          <li><span>Reflexión técnica</span><span>5 pts</span></li>
+          <li class="destacado"><span>Observabilidad del servidor</span><span>5 pts</span></li>
+        </ul>
+        <ul class="bandas" aria-label="Bandas de desempeño">
+          <li>45–50 · Excelente</li>
+          <li>35–44 · Bueno</li>
+          <li>30–34 · Básico</li>
+          <li>&lt; 30 · No cumple</li>
+        </ul>
+        <p class="nota-lateral">Para el nivel excelente en observabilidad no basta con recoger métricas del servidor: hay que comparar el p95 de k6 con el de <code>http.server.requests</code> y llegar a la causa de la degradación, como en las gráficas de esta página.</p>
+      </div>
+    </div>
+  </section>
+
+  </main>
+
+  <footer>
+    <div class="texto">
+      <p><strong>Límites de estos datos.</strong> Se midió en un portátil, con el servicio fijado a un núcleo, 20 s de calentamiento y dos repeticiones por escalón. Los números sirven para ver la forma de las curvas, no como referencia de capacidad. H2 en memoria abre conexiones mucho más baratas que una base de datos real por red, así que contra PostgreSQL o MySQL la diferencia del pool sería mayor. El p95 del servidor se estima a partir de los intervalos del histograma de Actuator.</p>
+      <p>Fuente: <code>perf/lab/data/</code> del repositorio del taller. Universidad de La Sabana · Maestría en Ingeniería de Software.</p>
+    </div>
+  </footer>
+</div>
+
+<div class="tip" id="tip" hidden></div>
+
+<script>
+(function () {
+  document.documentElement.lang = 'es';
+  const D = {"closedPool":[{"x":1,"rps":2024,"p95":1,"srv":0.225,"fail":0,"drop":0,"vusMax":1,"runs":[{"rps":1992,"p95":1,"srv":0.228,"fail":0},{"rps":2055,"p95":1,"srv":0.223,"fail":0}]},{"x":10,"rps":9442,"p95":1.6,"srv":0.11,"fail":0,"drop":0,"vusMax":10,"runs":[{"rps":10800,"p95":1.5,"srv":0.089,"fail":0},{"rps":8085,"p95":1.7,"srv":0.132,"fail":0}]},{"x":25,"rps":5124,"p95":11.7,"srv":0.173,"fail":0,"drop":0,"vusMax":25,"runs":[{"rps":6332,"p95":7.6,"srv":0.142,"fail":0},{"rps":3916,"p95":15.8,"srv":0.204,"fail":0}]},{"x":50,"rps":5442,"p95":21.2,"srv":0.145,"fail":0,"drop":0,"vusMax":50,"runs":[{"rps":6309,"p95":16.7,"srv":0.12,"fail":0},{"rps":4576,"p95":25.8,"srv":0.17,"fail":0}]},{"x":100,"rps":8435,"p95":24.9,"srv":0.105,"fail":0,"drop":0,"vusMax":100,"runs":[{"rps":7845,"p95":27.1,"srv":0.108,"fail":0},{"rps":9026,"p95":22.8,"srv":0.101,"fail":0}]},{"x":200,"rps":8017,"p95":49.6,"srv":0.109,"fail":0.22,"drop":0,"vusMax":200,"runs":[{"rps":7863,"p95":51.2,"srv":0.111,"fail":0.41},{"rps":8171,"p95":48,"srv":0.107,"fail":0.02}]},{"x":400,"rps":5846,"p95":143.1,"srv":0.177,"fail":0.37,"drop":0,"vusMax":400,"runs":[{"rps":6179,"p95":134.5,"srv":0.162,"fail":0.18},{"rps":5514,"p95":151.8,"srv":0.192,"fail":0.56}]},{"x":800,"rps":7042,"p95":202.2,"srv":0.117,"fail":0.26,"drop":0,"vusMax":800,"runs":[{"rps":5926,"p95":288.6,"srv":0.124,"fail":0.47},{"rps":8157,"p95":115.7,"srv":0.109,"fail":0.06}]}],"closedNoPool":[{"x":1,"rps":3489,"p95":0.6,"srv":0.182,"fail":0,"drop":0,"vusMax":1,"runs":[{"rps":3214,"p95":0.6,"srv":0.199,"fail":0},{"rps":3763,"p95":0.6,"srv":0.165,"fail":0}]},{"x":10,"rps":6928,"p95":1.8,"srv":0.156,"fail":0,"drop":0,"vusMax":10,"runs":[{"rps":7497,"p95":1.6,"srv":0.124,"fail":0},{"rps":6359,"p95":2.1,"srv":0.187,"fail":0}]},{"x":25,"rps":7446,"p95":4.2,"srv":0.127,"fail":0,"drop":0,"vusMax":25,"runs":[{"rps":7248,"p95":4.5,"srv":0.125,"fail":0},{"rps":7644,"p95":3.9,"srv":0.129,"fail":0}]},{"x":50,"rps":2876,"p95":35.6,"srv":0.413,"fail":0,"drop":0,"vusMax":50,"runs":[{"rps":2560,"p95":46.1,"srv":0.415,"fail":0},{"rps":3192,"p95":25.1,"srv":0.412,"fail":0}]},{"x":100,"rps":3960,"p95":63.4,"srv":0.324,"fail":0,"drop":0,"vusMax":100,"runs":[{"rps":3197,"p95":90.7,"srv":0.353,"fail":0},{"rps":4723,"p95":36.1,"srv":0.296,"fail":0}]},{"x":200,"rps":3143,"p95":158.9,"srv":4.404,"fail":0.05,"drop":0,"vusMax":200,"runs":[{"rps":3489,"p95":140.5,"srv":0.379,"fail":0.11},{"rps":2797,"p95":177.3,"srv":8.429,"fail":0}]},{"x":400,"rps":1826,"p95":1420.4,"srv":178.874,"fail":1.98,"drop":0,"vusMax":400,"runs":[{"rps":428,"p95":2616.7,"srv":306.791,"fail":3.41},{"rps":3224,"p95":224.2,"srv":50.956,"fail":0.55}]},{"x":800,"rps":2437,"p95":1086.1,"srv":128.17,"fail":14.4,"drop":0,"vusMax":800,"runs":[{"rps":1024,"p95":1858,"srv":255.929,"fail":27.99},{"rps":3850,"p95":314.3,"srv":0.411,"fail":0.81}]}],"openPool":[{"x":2000,"rps":1996,"p95":30.3,"srv":0.384,"fail":0.66,"drop":66,"vusMax":326,"runs":[{"rps":1993,"p95":43.4,"srv":0.341,"fail":0},{"rps":2000,"p95":17.2,"srv":0.427,"fail":1.33}]},{"x":4000,"rps":3972,"p95":29.5,"srv":0.206,"fail":0.26,"drop":552,"vusMax":506,"runs":[{"rps":3963,"p95":39.8,"srv":0.181,"fail":0},{"rps":3981,"p95":19.2,"srv":0.23,"fail":0.52}]},{"x":6000,"rps":5918,"p95":40.4,"srv":0.143,"fail":0.43,"drop":1643,"vusMax":706,"runs":[{"rps":5884,"p95":55.5,"srv":0.144,"fail":0.19},{"rps":5952,"p95":25.4,"srv":0.143,"fail":0.67}]},{"x":8000,"rps":7689,"p95":109.9,"srv":0.116,"fail":0.67,"drop":5674,"vusMax":1120,"runs":[{"rps":7671,"p95":134.3,"srv":0.119,"fail":0.71},{"rps":7706,"p95":85.4,"srv":0.113,"fail":0.64}]},{"x":10000,"rps":9733,"p95":65.9,"srv":0.091,"fail":0.7,"drop":5308,"vusMax":1039,"runs":[{"rps":9745,"p95":83.2,"srv":0.091,"fail":0.22},{"rps":9722,"p95":48.6,"srv":0.091,"fail":1.18}]},{"x":12000,"rps":8712,"p95":428,"srv":0.113,"fail":1.77,"drop":63363,"vusMax":2745,"runs":[{"rps":9544,"p95":438.9,"srv":0.116,"fail":1.87},{"rps":7880,"p95":417.1,"srv":0.109,"fail":1.67}]}],"openNoPool":[{"x":1000,"rps":999,"p95":50.4,"srv":0.991,"fail":0.94,"drop":14,"vusMax":311,"runs":[{"rps":999,"p95":73.5,"srv":1,"fail":1.47},{"rps":1000,"p95":27.3,"srv":0.981,"fail":0.41}]},{"x":2000,"rps":831,"p95":1082.4,"srv":54.767,"fail":12.59,"drop":21061,"vusMax":613,"runs":[{"rps":491,"p95":1555.7,"srv":66.391,"fail":20.48},{"rps":1171,"p95":609.1,"srv":43.144,"fail":4.69}]},{"x":3000,"rps":806,"p95":1697.9,"srv":316.319,"fail":19.19,"drop":39708,"vusMax":781,"runs":[{"rps":313,"p95":2388,"srv":604.725,"fail":38.38},{"rps":1299,"p95":1007.8,"srv":27.912,"fail":0}]},{"x":4000,"rps":888,"p95":2020.8,"srv":444.746,"fail":19.99,"drop":58879,"vusMax":1054,"runs":[{"rps":379,"p95":3043.5,"srv":871.39,"fail":39.75},{"rps":1397,"p95":998.1,"srv":18.102,"fail":0.22}]},{"x":5000,"rps":1145,"p95":2971.2,"srv":64.811,"fail":21.4,"drop":75110,"vusMax":3000,"runs":[{"rps":449,"p95":3965.6,"srv":128.905,"fail":38.07},{"rps":1842,"p95":1976.8,"srv":0.716,"fail":4.72}]},{"x":6000,"rps":1488,"p95":3551,"srv":282.295,"fail":31.93,"drop":86247,"vusMax":3000,"runs":[{"rps":623,"p95":5965.7,"srv":564.059,"fail":52.54},{"rps":2352,"p95":1136.2,"srv":0.531,"fail":11.31}]},{"x":7000,"rps":1374,"p95":2292.3,"srv":267.466,"fail":24.88,"drop":108337,"vusMax":3000,"runs":[{"rps":589,"p95":3330.6,"srv":534.385,"fail":43.72},{"rps":2159,"p95":1254,"srv":0.547,"fail":6.03}]},{"x":8000,"rps":2080,"p95":2917.5,"srv":0.763,"fail":24.06,"drop":115298,"vusMax":3000,"runs":[{"rps":1123,"p95":4592.2,"srv":1.092,"fail":35.8},{"rps":3038,"p95":1242.9,"srv":0.435,"fail":12.33}]},{"x":10000,"rps":996,"p95":1289.7,"srv":712.83,"fail":24.7,"drop":161477,"vusMax":1969,"runs":[{"rps":339,"p95":1264.6,"srv":1382.248,"fail":46.06},{"rps":1654,"p95":1314.8,"srv":43.412,"fail":3.34}]}],"hist":{"bins":[{"a":0,"b":0.5,"n":32,"pct":0.09},{"a":0.5,"b":1,"n":144,"pct":0.41},{"a":1,"b":2,"n":423,"pct":1.22},{"a":2,"b":4,"n":1019,"pct":2.93},{"a":4,"b":8,"n":2118,"pct":6.09},{"a":8,"b":16,"n":5571,"pct":16.02},{"a":16,"b":32,"n":11994,"pct":34.49},{"a":32,"b":64,"n":7487,"pct":21.53},{"a":64,"b":128,"n":2498,"pct":7.18},{"a":128,"b":256,"n":1298,"pct":3.73},{"a":256,"b":512,"n":927,"pct":2.67},{"a":512,"b":1024,"n":903,"pct":2.6},{"a":1024,"b":2048,"n":298,"pct":0.86},{"a":2048,"b":4096,"n":64,"pct":0.18}],"n":34776,"avg":78.35,"p50":25.57,"p90":128.61,"p95":377.21,"p99":1045.7,"max":3901.4,"vus":100,"dur":"30s","reqs":34776,"rps":1157.6,"srvP95":33.9,"k6":{"avg":78.34554707844569,"p50":25.5716,"p90":128.49824999999998,"p95":377.12125,"p99":1045.64345,"max":3901.3725,"fail":0}},"spike":{"low":20,"high":400,"reqs":700888,"p95":81.2,"fail":0,"points":[{"t":10,"rps":3096,"p95":9,"vus":20},{"t":11,"rps":3555,"p95":8.2,"vus":20},{"t":12,"rps":3380,"p95":8.8,"vus":20},{"t":13,"rps":4267,"p95":6.1,"vus":20},{"t":14,"rps":4355,"p95":5.6,"vus":20},{"t":15,"rps":6610,"p95":3.9,"vus":20},{"t":16,"rps":5045,"p95":5.5,"vus":20},{"t":17,"rps":5178,"p95":5.1,"vus":20},{"t":18,"rps":5703,"p95":4.8,"vus":20},{"t":19,"rps":5859,"p95":4.5,"vus":20},{"t":20,"rps":5449,"p95":4.9,"vus":20},{"t":21,"rps":6050,"p95":4.5,"vus":20},{"t":22,"rps":5670,"p95":4.9,"vus":20},{"t":23,"rps":5932,"p95":4.8,"vus":20},{"t":24,"rps":6406,"p95":4.3,"vus":20},{"t":25,"rps":6529,"p95":4.5,"vus":20},{"t":26,"rps":4772,"p95":5.4,"vus":20},{"t":27,"rps":5406,"p95":5,"vus":20},{"t":28,"rps":6464,"p95":4.2,"vus":20},{"t":29,"rps":5627,"p95":5.2,"vus":20},{"t":30,"rps":5127,"p95":18.6,"vus":20},{"t":31,"rps":5761,"p95":32.8,"vus":90},{"t":32,"rps":3910,"p95":80.4,"vus":166},{"t":33,"rps":6408,"p95":60.8,"vus":242},{"t":34,"rps":5438,"p95":95.3,"vus":318},{"t":35,"rps":6003,"p95":95.9,"vus":394},{"t":36,"rps":5485,"p95":115.7,"vus":400},{"t":37,"rps":5401,"p95":126.5,"vus":400},{"t":38,"rps":4734,"p95":196.8,"vus":400},{"t":39,"rps":6077,"p95":95.4,"vus":400},{"t":40,"rps":6749,"p95":82.4,"vus":400},{"t":41,"rps":4195,"p95":188,"vus":400},{"t":42,"rps":6618,"p95":88.9,"vus":400},{"t":43,"rps":6522,"p95":78,"vus":400},{"t":44,"rps":5674,"p95":144.1,"vus":400},{"t":45,"rps":5982,"p95":152.5,"vus":400},{"t":46,"rps":4182,"p95":226.8,"vus":400},{"t":47,"rps":4385,"p95":223.6,"vus":400},{"t":48,"rps":5652,"p95":137.3,"vus":400},{"t":49,"rps":7091,"p95":73.3,"vus":400},{"t":50,"rps":5473,"p95":131,"vus":400},{"t":51,"rps":5892,"p95":124.8,"vus":400},{"t":52,"rps":5672,"p95":103.3,"vus":400},{"t":53,"rps":4328,"p95":151.1,"vus":400},{"t":54,"rps":6035,"p95":87.2,"vus":400},{"t":55,"rps":6639,"p95":85.5,"vus":400},{"t":56,"rps":7011,"p95":105.8,"vus":400},{"t":57,"rps":7283,"p95":81.7,"vus":400},{"t":58,"rps":6567,"p95":91.4,"vus":400},{"t":59,"rps":6675,"p95":88.9,"vus":400},{"t":60,"rps":7282,"p95":75.5,"vus":400},{"t":61,"rps":6403,"p95":112,"vus":400},{"t":62,"rps":7412,"p95":72.1,"vus":400},{"t":63,"rps":7136,"p95":79.2,"vus":400},{"t":64,"rps":7450,"p95":85.3,"vus":400},{"t":65,"rps":7459,"p95":77.4,"vus":400},{"t":66,"rps":7670,"p95":100.5,"vus":400},{"t":67,"rps":6705,"p95":91.9,"vus":400},{"t":68,"rps":7357,"p95":77.2,"vus":400},{"t":69,"rps":7492,"p95":72.8,"vus":400},{"t":70,"rps":6827,"p95":91.8,"vus":400},{"t":71,"rps":8183,"p95":63.8,"vus":400},{"t":72,"rps":6683,"p95":95.6,"vus":400},{"t":73,"rps":7969,"p95":69.1,"vus":400},{"t":74,"rps":7891,"p95":73.5,"vus":400},{"t":75,"rps":7003,"p95":84,"vus":400},{"t":76,"rps":7384,"p95":57.8,"vus":334},{"t":77,"rps":6898,"p95":60.1,"vus":256},{"t":78,"rps":6550,"p95":45.9,"vus":179},{"t":79,"rps":6691,"p95":20.1,"vus":103},{"t":80,"rps":6472,"p95":4.6,"vus":26},{"t":81,"rps":6832,"p95":4.2,"vus":20},{"t":82,"rps":6853,"p95":3.8,"vus":20},{"t":83,"rps":6289,"p95":3.9,"vus":20},{"t":84,"rps":7250,"p95":3.5,"vus":20},{"t":85,"rps":6153,"p95":4.4,"vus":20},{"t":86,"rps":6999,"p95":3.7,"vus":20},{"t":87,"rps":6870,"p95":3.9,"vus":20},{"t":88,"rps":6495,"p95":3.7,"vus":20},{"t":89,"rps":5913,"p95":4,"vus":20},{"t":90,"rps":6072,"p95":4.3,"vus":20},{"t":91,"rps":6931,"p95":3.6,"vus":20},{"t":92,"rps":6390,"p95":4.5,"vus":20},{"t":93,"rps":6137,"p95":4.4,"vus":20},{"t":94,"rps":5764,"p95":4.8,"vus":20},{"t":95,"rps":6075,"p95":4.5,"vus":20},{"t":96,"rps":5936,"p95":4.5,"vus":20},{"t":97,"rps":6130,"p95":4.7,"vus":20},{"t":98,"rps":6363,"p95":3.8,"vus":20},{"t":99,"rps":6637,"p95":4,"vus":20},{"t":100,"rps":6666,"p95":4.2,"vus":20},{"t":101,"rps":6067,"p95":4.7,"vus":20},{"t":102,"rps":6789,"p95":4,"vus":20},{"t":103,"rps":5971,"p95":4.3,"vus":20},{"t":104,"rps":6590,"p95":4.2,"vus":20},{"t":105,"rps":6151,"p95":4.4,"vus":20},{"t":106,"rps":6551,"p95":4,"vus":20},{"t":107,"rps":6816,"p95":3.8,"vus":20},{"t":108,"rps":6255,"p95":4,"vus":20},{"t":109,"rps":7066,"p95":3.7,"vus":20},{"t":110,"rps":5969,"p95":4.6,"vus":20},{"t":111,"rps":7158,"p95":3.8,"vus":20},{"t":112,"rps":7468,"p95":3.4,"vus":20},{"t":113,"rps":8073,"p95":3.5,"vus":20},{"t":114,"rps":8079,"p95":3.1,"vus":20},{"t":115,"rps":7896,"p95":3.2,"vus":20},{"t":116,"rps":7835,"p95":3.6,"vus":20},{"t":117,"rps":7359,"p95":3.7,"vus":20},{"t":118,"rps":5485,"p95":3.4,"vus":20},{"t":119,"rps":7850,"p95":3.1,"vus":20}]},"iter":{"nopool":{"1":0.2844455493802378,"10":1.447837895706439,"25":3.3533922733772084,"50":17.57320832847157,"100":26.20274855204859,"200":64.17052254141333,"400":524.5818062515687,"800":479.21468480315434},"pool":{"1":0.4869640920063276,"10":1.0753662633588066,"25":5.079741262598921,"50":9.27602983012986,"100":11.753988202854158,"200":24.374933413131885,"400":66.9156056494166,"800":106.39192036662155}},"modelo":{"pool":{"usl":{"lambda":2211.4,"sigma":0.2985382618917957,"kappa":0.00004168693834703355,"errorMedio":20,"errorMax":37},"p95":[[1,1],[10,1.6],[25,11.7],[50,21.2],[100,24.9],[200,49.6],[400,143.1],[800,202.2]],"fail":[[1,0],[10,0],[25,0],[50,0],[100,0],[200,0.22],[400,0.37],[800,0.37]],"corridas":{"media":11,"max":24}},"nopool":{"usl":{"lambda":3708.3,"sigma":0.6683439175686149,"kappa":0.001995262314968879,"errorMedio":28,"errorMax":67},"p95":[[1,0.6],[10,1.8],[25,4.2],[50,35.6],[100,63.4],[200,158.9],[400,1420.4],[800,1420.4]],"fail":[[1,0],[10,0],[25,0],[50,0],[100,0],[200,0.05],[400,1.98],[800,14.4]],"corridas":{"media":24,"max":77}},"ruido":{"rps":0.142,"p95":0.226}}};
+  const NS = 'http://www.w3.org/2000/svg';
+
+  const num = (v, d = 0) => new Intl.NumberFormat('es-CO', { maximumFractionDigits: d, minimumFractionDigits: 0 }).format(v);
+  const ms = (v) => {
+    if (v >= 1000) return num(v / 1000, v >= 10000 ? 1 : 2) + String.fromCharCode(160) + 's';
+    if (v >= 10) return num(v, 0) + String.fromCharCode(160) + 'ms';
+    if (v >= 1) return num(v, 1) + String.fromCharCode(160) + 'ms';
+    return num(v, 2) + String.fromCharCode(160) + 'ms';
+  };
+  const NB = String.fromCharCode(160);
+  const pct = (v) => num(v, v < 1 ? 2 : 1) + NB + '%';
+
+  function el(tag, attrs, parent) {
+    const e = document.createElementNS(NS, tag);
+    for (const k in attrs) e.setAttribute(k, attrs[k]);
+    if (parent) parent.appendChild(e);
+    return e;
+  }
+  function texto(parent, x, y, contenido, clase, ancla, base) {
+    const e = el('text', { x, y, class: clase, 'text-anchor': ancla || 'start' }, parent);
+    if (base) e.setAttribute('dominant-baseline', base);
+    e.textContent = contenido;
+    return e;
+  }
+  function escala(tipo, dom, rango) {
+    if (tipo === 'log') {
+      const a = Math.log10(dom[0]), b = Math.log10(dom[1]);
+      return (v) => rango[0] + (Math.log10(v) - a) / (b - a) * (rango[1] - rango[0]);
+    }
+    return (v) => rango[0] + (v - dom[0]) / (dom[1] - dom[0]) * (rango[1] - rango[0]);
+  }
+
+  /* ---------- Tooltip ---------- */
+  const tip = document.getElementById('tip');
+  function mostrarTip(ev, titulo, filas, ancla) {
+    tip.replaceChildren();
+    const h = document.createElement('p');
+    h.className = 'tip-titulo';
+    h.textContent = titulo;
+    tip.appendChild(h);
+    for (const f of filas) {
+      const fila = document.createElement('p');
+      fila.className = 'tip-fila';
+      const k = document.createElement('span');
+      k.className = 'tip-clave ' + (f.clase || 'neutra');
+      fila.appendChild(k);
+      const v = document.createElement('strong');
+      v.textContent = f.valor;
+      fila.appendChild(v);
+      const n = document.createElement('span');
+      n.className = 'tip-nombre';
+      n.textContent = f.nombre;
+      fila.appendChild(n);
+      tip.appendChild(fila);
+    }
+    tip.hidden = false;
+    let x, y;
+    if (ev && ev.type === 'pointermove') { x = ev.clientX; y = ev.clientY; }
+    else { const r = ancla.getBoundingClientRect(); x = r.left + r.width / 2; y = r.top + 20; }
+    const w = tip.offsetWidth, hh = tip.offsetHeight;
+    let left = x + 14, top = y - hh - 12;
+    if (left + w > window.innerWidth - 8) left = x - w - 14;
+    if (left < 8) left = 8;
+    if (top < 8) top = y + 18;
+    tip.style.left = left + 'px';
+    tip.style.top = top + 'px';
+  }
+  function ocultarTip() { tip.hidden = true; }
+
+  /* ---------- Tabla de datos ---------- */
+  function tabla(id, cabeza, filas) {
+    const cont = document.getElementById(id);
+    const t = document.createElement('table');
+    const thead = t.createTHead().insertRow();
+    for (const c of cabeza) { const th = document.createElement('th'); th.scope = 'col'; th.textContent = c; thead.appendChild(th); }
+    const tb = t.createTBody();
+    for (const f of filas) { const tr = tb.insertRow(); for (const c of f) tr.insertCell().textContent = c; }
+    cont.replaceChildren(t);
+  }
+
+  /* ---------- Gráfica de líneas ---------- */
+  function lineas(host, cfg) {
+    const W = host.clientWidth;
+    if (!W) return;
+    const H = cfg.alto || 300;
+    const estrecho = W < 520;
+    const m = { t: 26, r: (cfg.etiquetas && !estrecho) ? 132 : 18, b: 46, l: cfg.izq || 58 };
+    host.replaceChildren();
+    const svg = el('svg', { width: W, height: H, viewBox: `0 0 ${W} ${H}`, role: 'group', 'aria-label': cfg.aria }, host);
+    const X = escala(cfg.x.tipo, cfg.x.dom, [m.l, W - m.r]);
+    const Y = escala(cfg.y.tipo, cfg.y.dom, [H - m.b, m.t]);
+
+    const g = el('g', {}, svg);
+    for (const v of cfg.y.ticks) {
+      const y = Y(v);
+      el('line', { x1: m.l, x2: W - m.r, y1: y, y2: y, class: 'grid' }, g);
+      texto(g, m.l - 8, y, cfg.y.fmt(v), 'tick', 'end', 'middle');
+    }
+    const xticks = estrecho && cfg.x.ticksEstrecho ? cfg.x.ticksEstrecho : cfg.x.ticks;
+    for (const v of xticks) {
+      const x = X(v);
+      el('line', { x1: x, x2: x, y1: H - m.b, y2: H - m.b + 4, class: 'eje' }, g);
+      texto(g, x, H - m.b + 18, cfg.x.fmt(v), 'tick', 'middle');
+    }
+    el('line', { x1: m.l, x2: W - m.r, y1: H - m.b, y2: H - m.b, class: 'eje' }, g);
+    texto(g, (m.l + W - m.r) / 2, H - 6, cfg.x.titulo, 'eje-titulo', 'middle');
+    texto(g, m.l - 8, 12, cfg.y.titulo, 'eje-titulo', 'start');
+
+    for (const r of cfg.refs || []) {
+      const y = Y(r.valor);
+      el('line', { x1: m.l, x2: W - m.r, y1: y, y2: y, class: 'ref' }, svg);
+      texto(svg, W - m.r - 4, y - 6, r.texto, 'ref-texto', 'end');
+    }
+    if (cfg.diagonal) {
+      const lo = Math.max(cfg.x.dom[0], cfg.y.dom[0]), hi = Math.min(cfg.x.dom[1], cfg.y.dom[1]);
+      el('line', { x1: X(lo), y1: Y(lo), x2: X(hi), y2: Y(hi), class: 'ref' }, svg);
+      texto(svg, X(hi * 0.62), Y(hi * 0.62) - 10, cfg.diagonal, 'ref-texto', 'end');
+    }
+
+    for (const se of cfg.series) {
+      const gs = el('g', { class: 'serie ' + se.clase }, svg);
+      for (const p of se.puntos) for (const c of (p.corridas || [])) el('circle', { cx: X(p.x), cy: Y(c), r: 3.5, class: 'corrida' }, gs);
+      const d = se.puntos.map((p, i) => (i ? 'L' : 'M') + X(p.x).toFixed(1) + ' ' + Y(p.y).toFixed(1)).join(' ');
+      el('path', { d, class: 'linea' }, gs);
+      for (const p of se.puntos) el('circle', { cx: X(p.x), cy: Y(p.y), r: 4.5, class: 'punto' }, gs);
+      if (cfg.etiquetas && !estrecho) {
+        const u = se.puntos[se.puntos.length - 1];
+        texto(svg, X(u.x) + 12, Y(u.y) + (se.desplazar || 0), se.nombre, 'etiqueta-final', 'start', 'middle');
+      }
+    }
+
+    const xs = [...new Set(cfg.series.flatMap((se) => se.puntos.map((p) => p.x)))].sort((a, b) => a - b);
+    const cruz = el('line', { y1: m.t, y2: H - m.b, class: 'cruz', visibility: 'hidden' }, svg);
+    xs.forEach((xv, i) => {
+      const x0 = i ? (X(xs[i - 1]) + X(xv)) / 2 : m.l;
+      const x1 = i < xs.length - 1 ? (X(xv) + X(xs[i + 1])) / 2 : W - m.r;
+      const filas = cfg.tip(xv);
+      const titulo = cfg.tipTitulo(xv);
+      const r = el('rect', { x: x0, y: m.t, width: Math.max(1, x1 - x0), height: H - m.b - m.t, class: 'golpe', tabindex: 0, role: 'img' }, svg);
+      r.setAttribute('aria-label', titulo + '. ' + filas.map((f) => f.nombre + ': ' + f.valor).join('. '));
+      const on = (ev) => { cruz.setAttribute('x1', X(xv)); cruz.setAttribute('x2', X(xv)); cruz.setAttribute('visibility', 'visible'); mostrarTip(ev, titulo, filas, r); };
+      const off = () => { cruz.setAttribute('visibility', 'hidden'); ocultarTip(); };
+      r.addEventListener('pointermove', on);
+      r.addEventListener('focus', on);
+      r.addEventListener('pointerleave', off);
+      r.addEventListener('blur', off);
+    });
+  }
+
+  /* ---------- Histograma ---------- */
+  function histograma(host) {
+    const W = host.clientWidth;
+    if (!W) return;
+    const H = 320;
+    const estrecho = W < 560;
+    const m = { t: 70, r: 14, b: 50, l: 44 };
+    host.replaceChildren();
+    const svg = el('svg', { width: W, height: H, viewBox: `0 0 ${W} ${H}`, role: 'group', 'aria-label': 'Histograma de tiempos de respuesta' }, host);
+    const bins = D.hist.bins;
+    const n = bins.length;
+    const X = (i) => m.l + i / n * (W - m.l - m.r);
+    const Y = escala('lin', [0, 40], [H - m.b, m.t]);
+
+    for (const v of [0, 10, 20, 30, 40]) {
+      el('line', { x1: m.l, x2: W - m.r, y1: Y(v), y2: Y(v), class: 'grid' }, svg);
+      texto(svg, m.l - 8, Y(v), v + ' %', 'tick', 'end', 'middle');
+    }
+    texto(svg, m.l - 8, m.t - 54, '% de peticiones', 'eje-titulo', 'start');
+
+    const bordes = [0, ...bins.map((b) => b.b)];
+    bordes.forEach((b, i) => {
+      if (estrecho && i % 2 === 1) return;
+      texto(svg, X(i), H - m.b + 18, b === 0.5 ? '0,5' : num(b), 'tick', 'middle');
+    });
+    el('line', { x1: m.l, x2: W - m.r, y1: H - m.b, y2: H - m.b, class: 'eje' }, svg);
+    texto(svg, (m.l + W - m.r) / 2, H - 6, 'tiempo de respuesta (ms)', 'eje-titulo', 'middle');
+
+    const posicion = (v) => (v < 0.5 ? v / 0.5 : 1 + Math.log2(v / 0.5));
+    bins.forEach((b, i) => {
+      const x = X(i) + 1, w = Math.max(1, X(i + 1) - X(i) - 2);
+      const y = Y(b.pct), h = Y(0) - y;
+      const rad = Math.min(4, w / 2, h);
+      const barra = el('path', {
+        d: `M${x},${Y(0)} V${y + rad} Q${x},${y} ${x + rad},${y} H${x + w - rad} Q${x + w},${y} ${x + w},${y + rad} V${Y(0)} Z`,
+        class: 'barra',
+      }, svg);
+      if (h < 0.5) barra.setAttribute('d', `M${x},${Y(0) - 1} h${w} v1 h-${w} Z`);
+      const etiqueta = `${b.a === 0.5 ? '0,5' : num(b.a)} a ${b.b === 0.5 ? '0,5' : num(b.b)} ms`;
+      const golpe = el('rect', { x: X(i), y: m.t, width: X(i + 1) - X(i), height: Y(0) - m.t, class: 'barra-golpe', tabindex: 0, role: 'img' }, svg);
+      const filas = [{ valor: pct(b.pct), nombre: 'de las peticiones', clase: 's2' }, { valor: num(b.n), nombre: 'peticiones' }];
+      golpe.setAttribute('aria-label', `${etiqueta}: ${pct(b.pct)} de las peticiones, ${num(b.n)} peticiones`);
+      const on = (ev) => { barra.classList.add('activa'); mostrarTip(ev, etiqueta, filas, golpe); };
+      const off = () => { barra.classList.remove('activa'); ocultarTip(); };
+      golpe.addEventListener('pointermove', on);
+      golpe.addEventListener('focus', on);
+      golpe.addEventListener('pointerleave', off);
+      golpe.addEventListener('blur', off);
+    });
+
+    const marcas = [
+      { v: D.hist.p50, texto: 'mediana ' + ms(D.hist.p50), fila: 0 },
+      { v: D.hist.avg, texto: 'promedio ' + ms(D.hist.avg), fila: 1 },
+      { v: D.hist.p95, texto: 'p95 ' + ms(D.hist.p95), fila: 0, fuerte: true },
+      { v: D.hist.p99, texto: 'p99 ' + ms(D.hist.p99), fila: 1, fuerte: true },
+    ];
+    for (const mk of marcas) {
+      const x = X(posicion(mk.v));
+      const yTexto = m.t - 40 + mk.fila * 20;
+      el('line', { x1: x, x2: x, y1: yTexto + 6, y2: Y(0), class: 'marcador' }, svg);
+      const t = texto(svg, x, yTexto, mk.texto, 'marcador-texto' + (mk.fuerte ? ' fuerte' : ''), 'middle');
+      const caja = t.getBBox();
+      if (caja.x < 0) t.setAttribute('x', x - caja.x + 2);
+      if (caja.x + caja.width > W) t.setAttribute('x', x - (caja.x + caja.width - W) - 2);
+    }
+  }
+
+  /* ---------- Pico ---------- */
+  function pico(host) {
+    const W = host.clientWidth;
+    if (!W) return;
+    const pts = D.spike.points;
+    const altoVus = 120, altoP95 = 170, sep = 30;
+    const m = { t: 22, r: 18, b: 44, l: 58 };
+    const H = m.t + altoVus + sep + altoP95 + m.b;
+    host.replaceChildren();
+    const svg = el('svg', { width: W, height: H, viewBox: `0 0 ${W} ${H}`, role: 'group', 'aria-label': 'Usuarios virtuales y p95 durante el pico' }, host);
+    const t0 = pts[0].t, t1 = pts[pts.length - 1].t;
+    const X = escala('lin', [t0, t1], [m.l, W - m.r]);
+    const yV0 = m.t + altoVus, yP0 = m.t + altoVus + sep + altoP95;
+    const YV = escala('lin', [0, 400], [yV0, m.t]);
+    const YP = escala('lin', [0, 250], [yP0, m.t + altoVus + sep]);
+
+    for (const v of [0, 200, 400]) { el('line', { x1: m.l, x2: W - m.r, y1: YV(v), y2: YV(v), class: 'grid' }, svg); texto(svg, m.l - 8, YV(v), num(v), 'tick', 'end', 'middle'); }
+    texto(svg, m.l - 8, 10, 'usuarios virtuales', 'eje-titulo', 'start');
+    for (const v of [0, 100, 200]) { el('line', { x1: m.l, x2: W - m.r, y1: YP(v), y2: YP(v), class: 'grid' }, svg); texto(svg, m.l - 8, YP(v), num(v) + ' ms', 'tick', 'end', 'middle'); }
+    texto(svg, m.l - 8, m.t + altoVus + sep - 10, 'p95 por segundo', 'eje-titulo', 'start');
+
+    const area = 'M' + X(t0) + ' ' + YV(0) + pts.map((p) => ' L' + X(p.t).toFixed(1) + ' ' + YV(p.vus).toFixed(1)).join('') + ' L' + X(t1) + ' ' + YV(0) + ' Z';
+    el('path', { d: area, class: 'area-vus' }, svg);
+    el('path', { d: pts.map((p, i) => (i ? 'L' : 'M') + X(p.t).toFixed(1) + ' ' + YV(p.vus).toFixed(1)).join(' '), class: 'linea-vus' }, svg);
+    const gs = el('g', { class: 'serie s2' }, svg);
+    el('path', { d: pts.map((p, i) => (i ? 'L' : 'M') + X(p.t).toFixed(1) + ' ' + YP(p.p95).toFixed(1)).join(' '), class: 'linea' }, gs);
+
+    for (const v of [20, 40, 60, 80, 100]) {
+      if (v < t0 || v > t1) continue;
+      el('line', { x1: X(v), x2: X(v), y1: yP0, y2: yP0 + 4, class: 'eje' }, svg);
+      texto(svg, X(v), yP0 + 18, v + ' s', 'tick', 'middle');
+    }
+    el('line', { x1: m.l, x2: W - m.r, y1: yP0, y2: yP0, class: 'eje' }, svg);
+    el('line', { x1: m.l, x2: W - m.r, y1: yV0, y2: yV0, class: 'eje' }, svg);
+    texto(svg, (m.l + W - m.r) / 2, H - 6, 'segundos desde el inicio', 'eje-titulo', 'middle');
+
+    const cruz = el('line', { y1: m.t, y2: yP0, class: 'cruz', visibility: 'hidden' }, svg);
+    const capa = el('rect', { x: m.l, y: m.t, width: W - m.l - m.r, height: yP0 - m.t, class: 'golpe' }, svg);
+    const buscar = (clientX) => {
+      const r = svg.getBoundingClientRect();
+      const tx = t0 + (clientX - r.left - m.l) / (W - m.l - m.r) * (t1 - t0);
+      let mejor = pts[0];
+      for (const p of pts) if (Math.abs(p.t - tx) < Math.abs(mejor.t - tx)) mejor = p;
+      return mejor;
+    };
+    capa.addEventListener('pointermove', (ev) => {
+      const p = buscar(ev.clientX);
+      cruz.setAttribute('x1', X(p.t)); cruz.setAttribute('x2', X(p.t)); cruz.setAttribute('visibility', 'visible');
+      mostrarTip(ev, 'Segundo ' + p.t, [
+        { valor: num(p.vus), nombre: 'usuarios virtuales' },
+        { valor: ms(p.p95), nombre: 'p95', clase: 's2' },
+        { valor: num(p.rps) + ' req/s', nombre: 'atendidas' },
+      ], capa);
+    });
+    capa.addEventListener('pointerleave', () => { cruz.setAttribute('visibility', 'hidden'); ocultarTip(); });
+  }
+
+  /* ---------- Formas de carga ---------- */
+  const ESCENARIOS = [
+    { nombre: 'baseline · regression', modelo: 'cerrado', dato: '20 VUs constantes · 5 min', para: 'La referencia estable contra la que se compara todo; regression repite la misma forma para comparar dos versiones.', inicio: 20, etapas: [[5, 20]], unidad: 'VUs' },
+    { nombre: 'load', modelo: 'cerrado', dato: '0 → 200 VUs · 14 min', para: 'El comportamiento con la carga esperada: rampa de 2 min, 10 min sostenidos y bajada.', inicio: 0, etapas: [[2, 200], [10, 200], [2, 0]], unidad: 'VUs' },
+    { nombre: 'stress', modelo: 'cerrado', dato: '200 → 600 VUs · 10 min', para: 'Encontrar el punto de saturación: dónde deja de crecer el throughput.', inicio: 200, etapas: [[5, 600], [3, 600], [2, 0]], unidad: 'VUs' },
+    { nombre: 'spike', modelo: 'cerrado', dato: '50 → 300 → 50 VUs · 4 min', para: 'Un salto súbito en un minuto, y si el sistema se recupera cuando pasa.', inicio: 50, etapas: [[1, 300], [2, 50], [1, 0]], unidad: 'VUs' },
+    { nombre: 'soak', modelo: 'cerrado', dato: '100 VUs constantes · 2 h', para: 'Lo que solo aparece con el tiempo: fugas de memoria y degradación por recolección de basura.', inicio: 100, etapas: [[120, 100]], unidad: 'VUs' },
+    { nombre: 'arrival', modelo: 'abierto', dato: '100 req/s constantes · 5 min', para: 'Fija el tráfico que llega, no los usuarios. Solo en register_voter_k6.js.', inicio: 100, etapas: [[5, 100]], unidad: 'req/s' },
+  ];
+  function dibujarFormas() {
+    const rejilla = document.getElementById('formas-rejilla');
+    rejilla.replaceChildren();
+    for (const e of ESCENARIOS) {
+      const art = document.createElement('article');
+      art.className = 'forma';
+      const cab = document.createElement('div');
+      cab.className = 'forma-cabeza';
+      const h = document.createElement('h3');
+      h.className = 'forma-nombre';
+      h.textContent = e.nombre;
+      const ficha = document.createElement('span');
+      ficha.className = 'ficha' + (e.modelo === 'abierto' ? ' abierto' : '');
+      ficha.textContent = e.modelo;
+      cab.append(h, ficha);
+      const dib = document.createElement('div');
+      dib.className = 'forma-dibujo';
+      const cuerpo = document.createElement('div');
+      const dato = document.createElement('p');
+      dato.className = 'forma-dato';
+      dato.textContent = e.dato;
+      const para = document.createElement('p');
+      para.className = 'forma-para';
+      para.textContent = e.para;
+      cuerpo.append(dato, para);
+      cuerpo.style.display = 'grid';
+      cuerpo.style.gap = '0.35rem';
+      art.append(cab, dib, cuerpo);
+      rejilla.appendChild(art);
+
+      const W = dib.clientWidth || 260, H = 76;
+      const m = { t: 8, r: 4, b: 4, l: 34 };
+      const svg = el('svg', { width: W, height: H, viewBox: `0 0 ${W} ${H}`, 'aria-hidden': 'true' }, dib);
+      const total = e.etapas.reduce((s, x) => s + x[0], 0);
+      const maximo = Math.max(e.inicio, ...e.etapas.map((x) => x[1]));
+      const X = escala('lin', [0, total], [m.l, W - m.r]);
+      const Y = escala('lin', [0, maximo], [H - m.b, m.t]);
+      const puntos = [[0, e.inicio]];
+      let t = 0;
+      for (const [dur, obj] of e.etapas) { t += dur; puntos.push([t, obj]); }
+      el('line', { x1: m.l, x2: W - m.r, y1: Y(0), y2: Y(0), class: 'eje' }, svg);
+      el('line', { x1: m.l, x2: W - m.r, y1: Y(maximo), y2: Y(maximo), class: 'grid' }, svg);
+      texto(svg, m.l - 6, Y(maximo), num(maximo), 'forma-tick', 'end', 'middle');
+      texto(svg, m.l - 6, Y(0), '0', 'forma-tick', 'end', 'middle');
+      const d = puntos.map((p, i) => (i ? 'L' : 'M') + X(p[0]).toFixed(1) + ' ' + Y(p[1]).toFixed(1)).join(' ');
+      el('path', { d: d + ` L${X(total)} ${Y(0)} L${X(0)} ${Y(0)} Z`, class: 'forma-area' }, svg);
+      el('path', { d, class: 'forma-linea' }, svg);
+    }
+  }
+
+  /* ---------- Datos y configuración ---------- */
+  const porX = (lista) => Object.fromEntries(lista.map((p) => [p.x, p]));
+  const cp = porX(D.closedPool), cn = porX(D.closedNoPool), op = porX(D.openPool), on = porX(D.openNoPool);
+  const VUS = D.closedPool.map((p) => p.x);
+
+  const graficas = {
+    'g-hist': histograma,
+    'g-sat-rps': (host) => lineas(host, {
+      alto: 260, aria: 'Throughput por usuarios virtuales, con pool',
+      x: { tipo: 'log', dom: [0.8, 1000], ticks: VUS, ticksEstrecho: [1, 10, 100, 800], fmt: num, titulo: 'usuarios virtuales' },
+      y: { tipo: 'lin', dom: [0, 12000], ticks: [0, 4000, 8000, 12000], fmt: (v) => num(v), titulo: 'req/s' },
+      series: [{ nombre: 'Con pool', clase: 's1', puntos: D.closedPool.map((p) => ({ x: p.x, y: p.rps, corridas: p.runs.map((r) => r.rps) })) }],
+      tipTitulo: (x) => num(x) + (x === 1 ? ' usuario virtual' : ' usuarios virtuales'),
+      tip: (x) => [{ valor: num(cp[x].rps) + ' req/s', nombre: 'promedio', clase: 's1' }, { valor: cp[x].runs.map((r) => num(r.rps)).join(' y '), nombre: 'corridas' }],
+    }),
+    'g-sat-p95': (host) => lineas(host, {
+      alto: 260, aria: 'p95 por usuarios virtuales, con pool',
+      x: { tipo: 'log', dom: [0.8, 1000], ticks: VUS, ticksEstrecho: [1, 10, 100, 800], fmt: num, titulo: 'usuarios virtuales' },
+      y: { tipo: 'lin', dom: [0, 300], ticks: [0, 100, 200, 300], fmt: (v) => num(v) + ' ms', titulo: 'p95' },
+      series: [{ nombre: 'Con pool', clase: 's1', puntos: D.closedPool.map((p) => ({ x: p.x, y: p.p95, corridas: p.runs.map((r) => r.p95) })) }],
+      tipTitulo: (x) => num(x) + (x === 1 ? ' usuario virtual' : ' usuarios virtuales'),
+      tip: (x) => [{ valor: ms(cp[x].p95), nombre: 'p95 promedio', clase: 's1' }, { valor: cp[x].runs.map((r) => ms(r.p95)).join(' y '), nombre: 'corridas' }],
+    }),
+    'g-obs': (host) => lineas(host, {
+      alto: 320, aria: 'p95 de cliente y servidor por usuarios virtuales', etiquetas: true,
+      x: { tipo: 'log', dom: [0.8, 1000], ticks: VUS, ticksEstrecho: [1, 10, 100, 800], fmt: num, titulo: 'usuarios virtuales' },
+      y: { tipo: 'log', dom: [0.05, 1000], ticks: [0.1, 1, 10, 100, 1000], fmt: (v) => ms(v), titulo: 'p95' },
+      series: [
+        { nombre: 'Cliente (k6)', clase: 's1', puntos: D.closedPool.map((p) => ({ x: p.x, y: p.p95 })) },
+        { nombre: 'Servidor (Actuator)', clase: 's3', puntos: D.closedPool.map((p) => ({ x: p.x, y: p.srv })) },
+      ],
+      tipTitulo: (x) => num(x) + (x === 1 ? ' usuario virtual' : ' usuarios virtuales'),
+      tip: (x) => [{ valor: ms(cp[x].p95), nombre: 'cliente (k6)', clase: 's1' }, { valor: ms(cp[x].srv), nombre: 'servidor (Actuator)', clase: 's3' }],
+    }),
+    'g-abi': (host) => lineas(host, {
+      alto: 340, aria: 'Peticiones atendidas frente a peticiones que llegan', etiquetas: true, izq: 62,
+      x: { tipo: 'lin', dom: [0, 12500], ticks: [0, 2000, 4000, 6000, 8000, 10000, 12000], ticksEstrecho: [0, 4000, 8000, 12000], fmt: (v) => num(v), titulo: 'peticiones que llegan por segundo' },
+      y: { tipo: 'lin', dom: [0, 12500], ticks: [0, 4000, 8000, 12000], fmt: (v) => num(v), titulo: 'atendidas por segundo' },
+      diagonal: 'atiende todo lo que llega',
+      series: [
+        { nombre: 'Con pool', clase: 's1', puntos: D.openPool.map((p) => ({ x: p.x, y: p.rps, corridas: p.runs.map((r) => r.rps) })) },
+        { nombre: 'Sin pool', clase: 's2', puntos: D.openNoPool.map((p) => ({ x: p.x, y: p.rps, corridas: p.runs.map((r) => r.rps) })) },
+      ],
+      tipTitulo: (x) => 'Llegan ' + num(x) + ' req/s',
+      tip: (x) => {
+        const f = [];
+        if (op[x]) f.push({ valor: num(op[x].rps) + ' req/s', nombre: 'con pool · fallos ' + pct(op[x].fail), clase: 's1' });
+        if (on[x]) f.push({ valor: num(on[x].rps) + ' req/s', nombre: 'sin pool · fallos ' + pct(on[x].fail), clase: 's2' });
+        return f;
+      },
+    }),
+    'g-pool': (host) => lineas(host, {
+      alto: 330, aria: 'p95 con y sin pool por usuarios virtuales', etiquetas: true,
+      x: { tipo: 'log', dom: [0.8, 1000], ticks: VUS, ticksEstrecho: [1, 10, 100, 800], fmt: num, titulo: 'usuarios virtuales' },
+      y: { tipo: 'log', dom: [0.4, 4000], ticks: [1, 10, 100, 1000], fmt: (v) => ms(v), titulo: 'p95' },
+      series: [
+        { nombre: 'Con pool', clase: 's1', puntos: D.closedPool.map((p) => ({ x: p.x, y: p.p95, corridas: p.runs.map((r) => r.p95) })) },
+        { nombre: 'Sin pool', clase: 's2', puntos: D.closedNoPool.map((p) => ({ x: p.x, y: p.p95, corridas: p.runs.map((r) => r.p95) })) },
+      ],
+      tipTitulo: (x) => num(x) + (x === 1 ? ' usuario virtual' : ' usuarios virtuales'),
+      tip: (x) => [
+        { valor: ms(cp[x].p95), nombre: 'con pool · ' + num(cp[x].rps) + ' req/s · fallos ' + pct(cp[x].fail), clase: 's1' },
+        { valor: ms(cn[x].p95), nombre: 'sin pool · ' + num(cn[x].rps) + ' req/s · fallos ' + pct(cn[x].fail), clase: 's2' },
+      ],
+    }),
+    'g-pico': pico,
+  };
+
+  /* =====================================================================
+   * Simulador de ejecución
+   *
+   * No reproduce corridas: aplica a la forma de cada escenario lo medido en
+   * régimen estable (ver perf/lab/guia/construir.js, que calibra el modelo, y
+   * la sección "Cómo se calcula" de la página, que publica su error).
+   * ===================================================================== */
+  const MOD = D.modelo;
+  const $ = (id) => document.getElementById(id);
+  const ESC = {
+    baseline: { inicio: 20, etapas: [[300, 20]], que: 'Carga baja y constante. Es la referencia: todo lo que se mida después se compara contra esta línea. Si ya aquí el p95 es alto, no tiene sentido seguir subiendo.' },
+    load: { inicio: 0, etapas: [[120, 200], [600, 200], [120, 0]], que: 'Rampa hasta 200 VUs, diez minutos de meseta y bajada. Observe si durante la meseta el p95 se estabiliza o sigue subiendo: lo segundo delata una cola que no se vacía.' },
+    stress: { inicio: 200, etapas: [[300, 600], [180, 600], [120, 0]], que: 'Empieza en 200 VUs y sube hasta 600. Busque dónde deja de crecer el throughput: ese es el límite. Lo que pasa después con el p95 y los fallos es cómo se degrada el sistema.' },
+    spike: { inicio: 50, etapas: [[60, 300], [120, 50], [60, 0]], que: 'De 50 a 300 VUs en un minuto. Lo importante no es el pico en sí, sino si el p95 vuelve a su nivel cuando la carga baja.' },
+    soak: { inicio: 100, etapas: [[7200, 100]], que: 'Dos horas a carga constante. Con un servicio sano las líneas son planas. No hay mediciones de degradación, así que la simulación mantiene lo medido con 100 VUs; active el ejemplo de fuga para ver la forma que delata un problema que solo aparece con el tiempo.' },
+    arrival: { abierto: true, duracion: 300, que: 'Modelo abierto: se fija cuántas peticiones llegan por segundo, no cuántos usuarios hay. Si el servicio no da abasto, la distancia entre la línea gris y la de color es trabajo que se pierde.' },
+  };
+  const duracionDe = (e) => (e.abierto ? e.duracion : e.etapas.reduce((s, x) => s + x[0], 0));
+  function vusEn(e, t) {
+    let t0 = 0, v0 = e.inicio;
+    for (const [dur, obj] of e.etapas) {
+      if (t <= t0 + dur) return v0 + (obj - v0) * (t - t0) / dur;
+      t0 += dur;
+      v0 = obj;
+    }
+    return v0;
+  }
+  function aleatorio(semilla) {
+    let a = semilla >>> 0;
+    return () => {
+      a = (a + 0x6D2B79F5) | 0;
+      let t = Math.imul(a ^ (a >>> 15), 1 | a);
+      t = (t + Math.imul(t ^ (t >>> 7), 61 | t)) ^ t;
+      return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
+    };
+  }
+  function normal(rnd) {
+    return () => { let u = 0, v = 0; while (!u) u = rnd(); while (!v) v = rnd(); return Math.sqrt(-2 * Math.log(u)) * Math.cos(2 * Math.PI * v); };
+  }
+  const semillaDe = (s) => [...s].reduce((h, c) => Math.imul(h ^ c.charCodeAt(0), 16777619) >>> 0, 2166136261);
+  const usl = (u, n) => (n <= 0 ? 0 : u.lambda * n / (1 + u.sigma * (n - 1) + u.kappa * n * (n - 1)));
+  function interpolar(tabla, n, logY) {
+    if (n <= tabla[0][0]) return tabla[0][1];
+    const ult = tabla[tabla.length - 1];
+    if (n >= ult[0]) return ult[1];
+    for (let i = 1; i < tabla.length; i++) {
+      const [x0, y0] = tabla[i - 1], [x1, y1] = tabla[i];
+      if (n <= x1) {
+        const f = (Math.log(n) - Math.log(x0)) / (Math.log(x1) - Math.log(x0));
+        return logY && y0 > 0 && y1 > 0 ? Math.exp(Math.log(y0) + f * (Math.log(y1) - Math.log(y0))) : y0 + f * (y1 - y0);
+      }
+    }
+    return ult[1];
+  }
+
+  function simular(clave, variante, op) {
+    const e = ESC[clave];
+    const m = MOD[variante];
+    // La semilla solo incluye las opciones que afectan a ESTE escenario. Si
+    // incluyera, por ejemplo, la tasa de arrival, stress daria numeros distintos
+    // segun lo que se hubiera tocado antes, y la simulacion no se repetiria igual.
+    const relevante = clave === 'soak' ? (op.fuga ? 'f' : '') : clave === 'arrival' ? String(op.tasa) : '';
+    const z = normal(aleatorio(semillaDe(clave + variante + relevante)));
+    if (clave === 'spike' && op.picoReal) {
+      if (variante === 'pool') return null;
+      return D.spike.points.map((p) => ({ t: p.t, vus: p.vus, rps: p.rps, p95: p.p95, fail: 0 }));
+    }
+    const pts = [];
+    if (e.abierto) {
+      const lista = variante === 'pool' ? D.openPool : D.openNoPool;
+      const med = lista.find((x) => x.x === op.tasa);
+      const base = op.tasa === 100
+        ? { rps: 100, p95: m.p95[0][1], fail: 0, vusMax: null, estimado: true }
+        : med ? { rps: med.rps, p95: med.p95, fail: med.fail, vusMax: med.vusMax } : null;
+      if (!base) return null;
+      for (let t = 0; t <= e.duracion; t++) {
+        const rps = t === 0 ? 0 : Math.min(op.tasa, base.rps * Math.exp(MOD.ruido.rps * z()));
+        pts.push({ t, llegan: op.tasa, rps, p95: base.p95 * Math.exp(MOD.ruido.p95 * z()), fail: base.fail });
+      }
+      pts.base = base;
+      return pts;
+    }
+    const dur = duracionDe(e);
+    const paso = dur > 1800 ? 10 : 1;
+    for (let t = 0; t <= dur; t += paso) {
+      const vus = Math.round(vusEn(e, t));
+      if (!vus) { pts.push({ t, vus: 0, rps: 0, p95: null, fail: 0 }); continue; }
+      let rps = usl(m.usl, vus) * Math.exp(MOD.ruido.rps * z());
+      let p95 = interpolar(m.p95, vus, true) * Math.exp(MOD.ruido.p95 * z());
+      let fail = interpolar(m.fail, vus, false);
+      if (clave === 'soak' && op.fuga) {
+        // EJEMPLO ILUSTRATIVO: la degradación no se midió. Solo muestra la forma.
+        const f = t / dur;
+        p95 *= 1 + 7 * f * f;
+        rps *= 1 - 0.45 * f * f;
+        if (t > 0 && t % 900 < 30) p95 *= 1 + 4 * f;
+        fail += f > 0.7 ? (f - 0.7) * 14 : 0;
+      }
+      pts.push({ t, vus, rps, p95, fail });
+    }
+    return pts;
+  }
+
+  function resumenHasta(pts, hasta) {
+    if (!pts) return null;
+    const paso = pts.length > 1 ? pts[1].t - pts[0].t : 1;
+    const v = pts.filter((p) => p.t <= hasta && p.rps > 0 && p.p95 != null);
+    if (!v.length) return null;
+    const peso = v.reduce((s, p) => s + p.rps, 0);
+    const orden = [...v].sort((a, b) => a.p95 - b.p95);
+    let acum = 0, p95 = orden[orden.length - 1].p95;
+    for (const p of orden) { acum += p.rps; if (acum >= 0.95 * peso) { p95 = p.p95; break; } }
+    return {
+      p95,
+      fail: v.reduce((s, p) => s + p.fail * p.rps, 0) / peso,
+      // Sostenido: la mediana de los ultimos ~10 s supera el umbral. Un solo
+      // segundo con ruido no es que el sistema haya cruzado el SLO.
+      cruce: (() => {
+        const ventana = Math.max(1, Math.round(10 / paso));
+        for (let i = ventana - 1; i < v.length; i++) {
+          const tramo = v.slice(i - ventana + 1, i + 1).map((p) => p.p95).sort((a, b) => a - b);
+          if (tramo[Math.floor(tramo.length / 2)] > 300) return v[i];
+        }
+        return null;
+      })(),
+      iter: pts.filter((p) => p.t <= hasta).reduce((s, p) => s + p.rps * paso, 0),
+    };
+  }
+  const cercano = (pts, t) => pts.reduce((a, p) => (Math.abs(p.t - t) < Math.abs(a.t - t) ? p : a), pts[0]);
+
+  const sim = { esc: 'load', op: { fuga: false, picoReal: false, tasa: 100 }, t: 0, t0: 0, dur: 0, datos: {}, anim: null, refs: null };
+
+  const reloj = (s) => {
+    s = Math.round(s);
+    const h = Math.floor(s / 3600), mm = Math.floor((s % 3600) / 60), ss = s % 60;
+    const dd = (n) => String(n).padStart(2, '0');
+    return h ? `${h}:${dd(mm)}:${dd(ss)}` : `${dd(mm)}:${dd(ss)}`;
+  };
+  const k6t = (s) => {
+    const h = Math.floor(s / 3600), mm = Math.floor((s % 3600) / 60), ss = (s % 60).toFixed(1).padStart(4, '0');
+    return (h ? h + 'h' : '') + String(mm).padStart(2, '0') + 'm' + ss + 's';
+  };
+
+  function prepararSim() {
+    const e = ESC[sim.esc];
+    sim.datos = { nopool: simular(sim.esc, 'nopool', sim.op), pool: simular(sim.esc, 'pool', sim.op) };
+    const pts = sim.datos.nopool;
+    sim.t0 = pts[0].t;
+    sim.dur = pts[pts.length - 1].t;
+    sim.t = sim.dur;
+    const rango = $('sim-tiempo');
+    rango.min = String(sim.t0);
+    rango.max = String(sim.dur);
+    rango.step = String(pts.length > 1 ? pts[1].t - pts[0].t : 1);
+    rango.value = String(sim.dur);
+    $('sim-que').textContent = e.que;
+    $('sim-op-fuga').hidden = sim.esc !== 'soak';
+    $('sim-op-pico').hidden = sim.esc !== 'spike';
+    $('sim-op-tasa').hidden = sim.esc !== 'arrival';
+    $('sim-ley-pool').hidden = !sim.datos.pool;
+    $('sim-ley-vus-texto').textContent = e.abierto ? 'Peticiones que llegan' : 'Usuarios virtuales';
+    $('sim-titulo-consola').textContent = 'k6 run · ' + sim.esc + (sim.esc === 'spike' && sim.op.picoReal ? ' · medición real' : '');
+    for (const b of document.querySelectorAll('.sim-escenarios .chip')) b.setAttribute('aria-pressed', String(b.dataset.esc === sim.esc));
+  }
+
+  function dibujarSim() {
+    const host = $('g-sim');
+    const W = host.clientWidth;
+    if (!W || !sim.datos.nopool) return;
+    const e = ESC[sim.esc];
+    const abierto = !!e.abierto;
+    const series = [
+      { clave: 'nopool', clase: 's2', pts: sim.datos.nopool },
+      { clave: 'pool', clase: 's1', pts: sim.datos.pool },
+    ].filter((s) => s.pts);
+    const todos = series.flatMap((s) => s.pts);
+    const redondear = (v) => { if (v <= 0) return 1; const pot = 10 ** Math.floor(Math.log10(v)); for (const k of [1, 1.2, 1.5, 2, 2.5, 3, 4, 5, 6, 8, 10]) if (k * pot >= v) return k * pot; return 10 * pot; };
+
+    const paneles = [];
+    if (!abierto) {
+      const top = redondear(Math.max(...todos.map((p) => p.vus)) * 1.05);
+      paneles.push({ id: 'vus', titulo: 'usuarios virtuales', alto: 72, tipo: 'lin', dom: [0, top], ticks: [0, top / 2, top], fmt: (v) => num(v) });
+    }
+    const topR = redondear(Math.max(...todos.map((p) => Math.max(p.rps, p.llegan || 0))) * 1.08);
+    paneles.push({ id: 'rps', titulo: abierto ? 'peticiones por segundo: llegan (gris) y atendidas' : 'peticiones atendidas por segundo', alto: abierto ? 130 : 104, tipo: 'lin', dom: [0, topR], ticks: [0, topR / 2, topR], fmt: (v) => num(v) });
+    const maxP = Math.max(...todos.filter((p) => p.p95 != null).map((p) => p.p95));
+    const topP = Math.max(1000, 10 ** Math.ceil(Math.log10(maxP * 1.3)));
+    const ticksP = [];
+    for (let v = 1; v <= topP; v *= 10) ticksP.push(v);
+    paneles.push({ id: 'p95', titulo: 'p95 del tiempo de respuesta (escala logarítmica)', alto: 130, tipo: 'log', dom: [0.3, topP], ticks: ticksP, fmt: ms, umbral: 300, umbralTexto: 'SLO p95 ≤ 300' + NB + 'ms' });
+    const topF = Math.max(2, redondear(Math.max(...todos.map((p) => p.fail)) * 1.2));
+    paneles.push({ id: 'fail', titulo: 'peticiones fallidas', alto: 72, tipo: 'lin', dom: [0, topF], ticks: [0, topF / 2, topF], fmt: (v) => num(v, 1) + NB + '%', umbral: 1, umbralTexto: 'umbral 1' + NB + '%' });
+
+    const m = { l: 62, r: 16, t: 4, b: 34 };
+    const tituloAlto = 20, sep = 14;
+    let y = m.t;
+    for (const p of paneles) {
+      p.yTitulo = y + 12;
+      p.top = y + tituloAlto;
+      p.bottom = p.top + p.alto;
+      p.Y = escala(p.tipo, p.dom, [p.bottom, p.top]);
+      y = p.bottom + sep;
+    }
+    const H = paneles[paneles.length - 1].bottom + m.b;
+    host.replaceChildren();
+    const svg = el('svg', { width: W, height: H, viewBox: `0 0 ${W} ${H}`, role: 'group', 'aria-label': 'Simulación del escenario ' + sim.esc }, host);
+    const X = escala('lin', [sim.t0, sim.dur], [m.l, W - m.r]);
+    const defs = el('defs', {}, svg);
+    const clip = el('clipPath', { id: 'sim-recorte' }, defs);
+    const clipRect = el('rect', { x: m.l - 2, y: 0, width: 0, height: H }, clip);
+
+    for (const p of paneles) {
+      texto(svg, m.l, p.yTitulo, p.titulo, 'panel-titulo', 'start');
+      for (const v of p.ticks) {
+        el('line', { x1: m.l, x2: W - m.r, y1: p.Y(v), y2: p.Y(v), class: 'grid' }, svg);
+        texto(svg, m.l - 8, p.Y(v), p.fmt(v), 'tick', 'end', 'middle');
+      }
+      el('line', { x1: m.l, x2: W - m.r, y1: p.bottom, y2: p.bottom, class: 'eje' }, svg);
+      if (p.umbral != null && p.umbral <= p.dom[1]) {
+        el('line', { x1: m.l, x2: W - m.r, y1: p.Y(p.umbral), y2: p.Y(p.umbral), class: 'ref' }, svg);
+        texto(svg, W - m.r - 4, p.Y(p.umbral) - 5, p.umbralTexto, 'ref-texto', 'end');
+      }
+      const g = el('g', { 'clip-path': 'url(#sim-recorte)' }, svg);
+      const camino = (pts, campo, Y) => {
+        let d = '', abierto2 = false;
+        for (const q of pts) {
+          const v = q[campo];
+          if (v == null || (p.tipo === 'log' && v <= 0)) { abierto2 = false; continue; }
+          const yy = Y(Math.max(p.dom[0], Math.min(p.dom[1], v)));
+          d += (abierto2 ? 'L' : 'M') + X(q.t).toFixed(1) + ' ' + yy.toFixed(1);
+          abierto2 = true;
+        }
+        return d;
+      };
+      if (p.id === 'vus') {
+        const pts = sim.datos.nopool;
+        const linea = camino(pts, 'vus', p.Y);
+        el('path', { d: linea + ` L${X(pts[pts.length - 1].t)} ${p.bottom} L${X(pts[0].t)} ${p.bottom} Z`, class: 'area-vus' }, g);
+        el('path', { d: linea, class: 'linea-vus' }, g);
+        continue;
+      }
+      if (p.id === 'rps' && abierto) el('path', { d: camino(sim.datos.nopool, 'llegan', p.Y), class: 'llegan' }, g);
+      for (const s of series) {
+        const gs = el('g', { class: 'serie ' + s.clase }, g);
+        el('path', { d: camino(s.pts, p.id, p.Y), class: 'linea' }, gs);
+      }
+    }
+
+    const ultimo = paneles[paneles.length - 1];
+    const tramo = sim.dur - sim.t0;
+    const pasos = [10, 30, 60, 120, 300, 600, 900, 1800, 3600];
+    const pasoX = pasos.find((s) => tramo / s <= (W < 520 ? 4 : 8)) || 3600;
+    for (let v = sim.t0; v <= sim.dur; v += pasoX) {
+      el('line', { x1: X(v), x2: X(v), y1: ultimo.bottom, y2: ultimo.bottom + 4, class: 'eje' }, svg);
+      texto(svg, X(v), ultimo.bottom + 18, reloj(v - sim.t0), 'tick', 'middle');
+    }
+    texto(svg, (m.l + W - m.r) / 2, H - 4, 'tiempo de la corrida', 'eje-titulo', 'middle');
+
+    const cursor = el('line', { x1: 0, x2: 0, y1: paneles[0].top, y2: ultimo.bottom, class: 'cursor-sim' }, svg);
+    const capa = el('rect', { x: m.l, y: paneles[0].top, width: W - m.l - m.r, height: ultimo.bottom - paneles[0].top, class: 'golpe' }, svg);
+    capa.addEventListener('pointermove', (ev) => {
+      const r = svg.getBoundingClientRect();
+      const t = Math.min(sim.t, sim.t0 + (ev.clientX - r.left - m.l) / (W - m.l - m.r) * tramo);
+      const q = cercano(sim.datos.nopool, t);
+      const filas = [];
+      if (abierto) filas.push({ valor: num(q.llegan) + ' req/s', nombre: 'llegan' });
+      else filas.push({ valor: num(q.vus), nombre: 'usuarios virtuales' });
+      for (const s of series) {
+        const w = cercano(s.pts, q.t);
+        const nombre = s.clave === 'pool' ? 'con pool' : 'sin pool';
+        filas.push({ valor: num(w.rps) + ' req/s', nombre: nombre + ' · p95 ' + (w.p95 == null ? '—' : ms(w.p95)) + ' · fallos ' + pct(w.fail), clase: s.clase });
+      }
+      mostrarTip(ev, 'En ' + reloj(q.t - sim.t0), filas, capa);
+    });
+    capa.addEventListener('pointerleave', ocultarTip);
+
+    sim.refs = { X, clipRect, cursor, m };
+    actualizarSim();
+  }
+
+  function escribirConsola() {
+    const pre = $('sim-consola');
+    pre.replaceChildren();
+    const linea = (...partes) => {
+      for (const [txt, cls] of partes) { const s = document.createElement('span'); if (cls) s.className = cls; s.textContent = txt; pre.appendChild(s); }
+      pre.appendChild(document.createTextNode('\n'));
+    };
+    const e = ESC[sim.esc];
+    const avance = sim.dur > sim.t0 ? (sim.t - sim.t0) / (sim.dur - sim.t0) : 1;
+    const lleno = Math.round(avance * 30);
+    const barra = '[' + '='.repeat(Math.max(0, lleno - 1)) + (lleno ? (lleno >= 30 ? '=' : '>') : '') + '-'.repeat(30 - lleno) + ']';
+    const series = [['sin pool', sim.datos.nopool], ['con pool', sim.datos.pool]].filter((s) => s[1]);
+    const rs = series.map(([n, pts]) => [n, pts, resumenHasta(pts, sim.t), cercano(pts, sim.t)]);
+    const t = sim.t - sim.t0;
+    const col = (s, w) => String(s).padStart(w);
+    if (!e.abierto) {
+      const q = cercano(sim.datos.nopool, sim.t);
+      const maxV = Math.max(...sim.datos.nopool.map((p) => p.vus));
+      linea([`running (${k6t(t)}), ${String(q.vus).padStart(3, '0')}/${maxV} VUs, ${Math.round(rs[0][2] ? rs[0][2].iter : 0)} complete and 0 interrupted iterations`, 't-dim']);
+      linea([`${sim.esc.padEnd(8)}${barra} ${String(q.vus).padStart(3, '0')}/${maxV} VUs  ${k6t(t)}/${k6t(sim.dur - sim.t0)}`, '']);
+      linea(['', '']);
+      linea([`${''.padEnd(10)}${col('VUs', 5)}${col('req/s', 9)}${col('p95', 10)}${col('fallos', 9)}${col('iteraciones', 13)}`, 't-dim']);
+      for (const [n, , res, w] of rs) {
+        linea([`${n.padEnd(10)}${col(num(w.vus), 5)}${col(num(w.rps), 9)}${col(w.p95 == null ? '—' : ms(w.p95), 10)}${col(pct(w.fail), 9)}${col(num(res ? res.iter : 0), 13)}`, '']);
+      }
+    } else {
+      const base0 = sim.datos.nopool.base;
+      linea([`running (${k6t(t)}), ${num(sim.op.tasa)} iterations/s, ${Math.round(rs[0][2] ? rs[0][2].iter : 0)} complete iterations`, 't-dim']);
+      linea([`${sim.esc.padEnd(8)}${barra} ${k6t(t)}/${k6t(sim.dur)}  ${sim.op.tasa} iters/s`, '']);
+      linea(['', '']);
+      linea([`${''.padEnd(10)}${col('llegan', 8)}${col('atendidas', 11)}${col('p95', 10)}${col('fallos', 9)}${col('VUs máx.', 10)}`, 't-dim']);
+      for (const [n, pts, , w] of rs) {
+        linea([`${n.padEnd(10)}${col(num(sim.op.tasa), 8)}${col(num(w.rps), 11)}${col(ms(w.p95), 10)}${col(pct(w.fail), 9)}${col(pts.base.vusMax == null ? '—' : num(pts.base.vusMax), 10)}`, '']);
+      }
+      if (base0 && base0.estimado) linea(['a 100 req/s no hay medición: valores estimados con lo medido con 1 VU', 't-dim']);
+    }
+    if (sim.t >= sim.dur) {
+      linea(['', '']);
+      for (const [n, , res] of rs) {
+        if (!res) continue;
+        const okP = res.p95 < 300, okF = res.fail < 1;
+        linea([n.padEnd(10), ''], [okP ? '✓' : '✗', okP ? 't-ok' : 't-bad'], [` http_req_duration p(95)<300   p95 aprox. ${ms(res.p95)}`, '']);
+        linea([''.padEnd(10), ''], [okF ? '✓' : '✗', okF ? 't-ok' : 't-bad'], [` http_req_failed   rate<0.01   ${pct(res.fail)}`, '']);
+      }
+    }
+  }
+
+  function escribirLectura() {
+    const e = ESC[sim.esc];
+    const partes = [];
+    const fin = sim.t >= sim.dur;
+    if (sim.esc === 'spike' && sim.op.picoReal) partes.push('Datos reales del laboratorio, con una forma distinta a la del script: de 20 a 400 VUs y de vuelta.');
+    if (sim.esc === 'soak' && sim.op.fuga) partes.push('La fuga es un ejemplo ilustrativo: su forma es la típica, sus números no se midieron.');
+    for (const [nombre, pts] of [['Sin pool', sim.datos.nopool], ['Con pool', sim.datos.pool]]) {
+      if (!pts) continue;
+      const res = resumenHasta(pts, sim.t);
+      if (!res) continue;
+      const cruce = res.cruce
+        ? `el p95 se mantiene por encima de 300${NB}ms desde ${reloj(res.cruce.t - sim.t0)}` + (e.abierto ? '' : `, con ${num(res.cruce.vus)} VUs`)
+        : `el p95 no se mantiene por encima de 300${NB}ms`;
+      partes.push(`${nombre}, ${cruce}; fallos acumulados, ${pct(res.fail)}.`);
+    }
+    $('sim-lectura').textContent = (fin ? 'Al terminar: ' : 'Hasta este momento: ') + partes.join(' ');
+  }
+
+  function actualizarSim() {
+    if (!sim.refs) return;
+    const { X, clipRect, cursor, m } = sim.refs;
+    const x = X(sim.t);
+    clipRect.setAttribute('width', Math.max(0, x - m.l + 3));
+    cursor.setAttribute('x1', x);
+    cursor.setAttribute('x2', x);
+    cursor.setAttribute('visibility', sim.t >= sim.dur ? 'hidden' : 'visible');
+    $('sim-tiempo').value = String(sim.t);
+    $('sim-reloj').textContent = `${reloj(sim.t - sim.t0)} / ${reloj(sim.dur - sim.t0)}`;
+    escribirConsola();
+    escribirLectura();
+  }
+
+  function detener() {
+    if (sim.anim) cancelAnimationFrame(sim.anim);
+    sim.anim = null;
+    $('sim-reproducir').textContent = 'Reproducir';
+  }
+  function reproducir() {
+    if (sim.anim) { detener(); return; }
+    if (sim.t >= sim.dur) sim.t = sim.t0;
+    const total = Number($('sim-velocidad').value) * 1000;
+    const inicioReal = performance.now(), inicioSim = sim.t;
+    $('sim-reproducir').textContent = 'Pausar';
+    const cuadro = (ahora) => {
+      sim.t = Math.min(sim.dur, inicioSim + ((ahora - inicioReal) / total) * (sim.dur - sim.t0));
+      actualizarSim();
+      if (sim.t < sim.dur) sim.anim = requestAnimationFrame(cuadro);
+      else detener();
+    };
+    sim.anim = requestAnimationFrame(cuadro);
+  }
+
+  function escribirMetodo() {
+    const c = $('sim-metodo-texto');
+    c.replaceChildren();
+    const P = (txt) => { const p = document.createElement('p'); p.textContent = txt; c.appendChild(p); };
+    const f6 = (v) => new Intl.NumberFormat('es-CO', { maximumSignificantDigits: 2 }).format(v);
+    const pool = MOD.pool, nopool = MOD.nopool;
+    P(`Throughput. Las medias medidas por escalón son ruidosas: dos corridas idénticas difieren en promedio un ${pool.corridas.media}${NB}% con pool y un ${nopool.corridas.media}${NB}% sin pool, y hasta un ${Math.max(pool.corridas.max, nopool.corridas.max)}${NB}% en el peor escalón. Interpolarlas haría que una rampa subiera y bajara de golpe, y eso se leería como comportamiento. Por eso se ajusta la ley de escalabilidad universal (USL), la que se usa en planificación de capacidad:`);
+    const fo = document.createElement('code');
+    fo.className = 'sim-formula';
+    fo.textContent = 'X(N) = λ·N / (1 + σ·(N − 1) + κ·N·(N − 1))';
+    c.appendChild(fo);
+    P(`σ es la contención, trabajo que no se reparte entre usuarios; κ es la coherencia, coordinación que crece con el cuadrado de N y hace caer el throughput. Con pool: λ = ${num(pool.usl.lambda)}, σ = ${f6(pool.usl.sigma)}, κ = ${f6(pool.usl.kappa)}. Sin pool: λ = ${num(nopool.usl.lambda)}, σ = ${f6(nopool.usl.sigma)}, κ = ${f6(nopool.usl.kappa)}. El κ sin pool es unas ${num(nopool.usl.kappa / pool.usl.kappa)} veces el de con pool: ese término es el que convierte la meseta en una caída, y es la huella matemática de abrir una conexión por petición.`);
+    P(`El ajuste reproduce la forma, no cada punto: se desvía de lo medido un ${pool.usl.errorMedio}${NB}% en promedio con pool (máximo ${pool.usl.errorMax}${NB}%) y un ${nopool.usl.errorMedio}${NB}% sin pool (máximo ${nopool.usl.errorMax}${NB}%). Es del mismo orden que la diferencia entre dos corridas idénticas.`);
+    P('p95 y fallos. Se interpolan entre los escalones medidos, en escala logarítmica de usuarios, sin dejar que bajen cuando sube la carga: los descensos medidos son ruido de dos corridas. Por la misma razón, diferencias de fallos por debajo del 1 % entre las dos variantes no significan nada: con 200 VUs se midió más fallo con pool que sin pool, y es ruido.');
+    P(`Variación segundo a segundo. Una simulación lisa engañaría, porque las corridas reales oscilan. La amplitud se toma de la línea de tiempo real del pico: desviación del logaritmo de ${num(MOD.ruido.rps, 2)} en req/s y ${num(MOD.ruido.p95, 2)} en p95.`);
+    P('Qué no reproduce. El calentamiento de la JVM; cómo se llena y se vacía la cola cuando la carga cambia de golpe; y cualquier degradación con el tiempo: el soak mantiene lo medido con 100 VUs y la fuga es un ejemplo inventado para mostrar la forma. En arrival, los 100 req/s del script no se midieron y se estiman con lo medido con 1 VU.');
+    P('Para números de verdad, use las gráficas de las secciones siguientes, que son mediciones, o ejecute los escenarios con k6 en su máquina.');
+  }
+
+  document.querySelectorAll('.sim-escenarios .chip').forEach((b) => b.addEventListener('click', () => { detener(); sim.esc = b.dataset.esc; prepararSim(); dibujarSim(); }));
+  $('sim-fuga').addEventListener('change', (ev) => { detener(); sim.op.fuga = ev.target.checked; prepararSim(); dibujarSim(); });
+  document.querySelectorAll('input[name="sim-pico"]').forEach((r) => r.addEventListener('change', () => { detener(); sim.op.picoReal = $('sim-pico-real').checked; prepararSim(); dibujarSim(); }));
+  $('sim-tasa').addEventListener('change', (ev) => { detener(); sim.op.tasa = Number(ev.target.value); prepararSim(); dibujarSim(); });
+  $('sim-tiempo').addEventListener('input', (ev) => { detener(); sim.t = Number(ev.target.value); actualizarSim(); });
+  $('sim-reproducir').addEventListener('click', reproducir);
+  prepararSim();
+  escribirMetodo();
+
+  function dibujarTodo() {
+    for (const id in graficas) {
+      const host = document.getElementById(id);
+      if (host) graficas[id](host);
+    }
+    dibujarFormas();
+    dibujarSim();
+  }
+
+  /* ---------- Tablas ---------- */
+  tabla('d-hist', ['Intervalo', 'Peticiones', '% del total'], D.hist.bins.map((b) => [`${b.a === 0.5 ? '0,5' : num(b.a)} a ${b.b === 0.5 ? '0,5' : num(b.b)} ms`, num(b.n), pct(b.pct)]));
+  tabla('d-sat', ['VUs', 'req/s', 'p95', 'Corridas (req/s)', 'Corridas (p95)'], D.closedPool.map((p) => [num(p.x), num(p.rps), ms(p.p95), p.runs.map((r) => num(r.rps)).join(' / '), p.runs.map((r) => ms(r.p95)).join(' / ')]));
+  tabla('d-obs', ['VUs', 'p95 cliente (k6)', 'p95 servidor (Actuator)'], D.closedPool.map((p) => [num(p.x), ms(p.p95), ms(p.srv)]));
+  tabla('d-abi', ['Llegan (req/s)', 'Con pool: atendidas', 'Con pool: fallos', 'Sin pool: atendidas', 'Sin pool: fallos'],
+    [...new Set([...D.openPool, ...D.openNoPool].map((p) => p.x))].sort((a, b) => a - b).map((x) => [num(x), op[x] ? num(op[x].rps) : '—', op[x] ? pct(op[x].fail) : '—', on[x] ? num(on[x].rps) : '—', on[x] ? pct(on[x].fail) : '—']));
+  tabla('d-pool', ['VUs', 'Con pool: p95', 'Con pool: req/s', 'Con pool: fallos', 'Sin pool: p95', 'Sin pool: req/s', 'Sin pool: fallos'],
+    VUS.map((x) => [num(x), ms(cp[x].p95), num(cp[x].rps), pct(cp[x].fail), ms(cn[x].p95), num(cn[x].rps), pct(cn[x].fail)]));
+  tabla('d-pico', ['Segundo', 'VUs', 'p95', 'req/s'], D.spike.points.map((p) => [String(p.t), num(p.vus), ms(p.p95), num(p.rps)]));
+
+  dibujarTodo();
+  let espera;
+  const ro = new ResizeObserver(() => { clearTimeout(espera); espera = setTimeout(dibujarTodo, 120); });
+  ro.observe(document.querySelector('.envoltura'));
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(dibujarTodo);
+})();
+</script>
+
+</body>
+</html>

@@ -9,6 +9,8 @@ Este taller tiene como objetivo aprender a **diseñar, implementar y ejecutar pr
 
 Comprender, diseñar e implementar **pruebas de rendimiento** (baseline, carga, stress, spike, soak) con herramientas como **JMeter / k6 / Gatling**, definiendo **SLA/SLO**, modelos de carga, datos de prueba, y generando **reportes reproducibles** para la toma de decisiones técnicas.
 
+> **Guía visual.** Abra [`guia-visual-pruebas-de-carga.html`](guia-visual-pruebas-de-carga.html) en el navegador (descárguela y ábrala con doble clic: GitHub la muestra como código, no como página). Tiene los escenarios del taller dibujados, un simulador que reproduce cada uno segundo a segundo con y sin pool de conexiones, y las mediciones reales del servicio: percentiles, saturación, cliente frente a servidor y el defecto del pool.
+
 ---
 
 ## Índice
@@ -57,6 +59,7 @@ Comprender, diseñar e implementar **pruebas de rendimiento** (baseline, carga, 
 ```text
 .
 ├─ README.md                     # este documento
+├─ guia-visual-pruebas-de-carga.html  # guía visual: mediciones reales y simulador de ejecución
 ├─ defectos.md                   # ejemplo del profesor
 ├─ defectos_template.md          # plantilla para su entrega
 ├─ registraduria/                # SISTEMA BAJO PRUEBA (Spring Boot)
