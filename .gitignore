@@ -21,6 +21,8 @@ registraduria/target/
 # El volcado de "-o json=" puede pesar cientos de MB por corrida.
 perf/results/*
 !perf/results/.gitkeep
+# Los resúmenes de handleSummary sí se versionan (son pequeños, ~50 KB)
+!perf/results/summary-*.json
 
 # Laboratorio de mediciones (perf/lab): se versionan scripts y data/, no lo crudo.
 perf/lab/results/
