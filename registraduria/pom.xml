@@ -78,6 +78,15 @@
       <!-- ¡OJO! quita <scope>test</scope> si quieres usar H2 al arrancar la app -->
     </dependency>
 
+    <!-- HikariCP: pool de conexiones. Resuelve el defecto de crear una conexión
+         JDBC nueva por cada operación, que bajo carga genera cientos de
+         conexiones por segundo y dispara la latencia p95. -->
+    <dependency>
+      <groupId>com.zaxxer</groupId>
+      <artifactId>HikariCP</artifactId>
+      <version>4.0.3</version>
+    </dependency>
+
     <dependency>
       <groupId>org.projectlombok</groupId>
       <artifactId>lombok</artifactId>

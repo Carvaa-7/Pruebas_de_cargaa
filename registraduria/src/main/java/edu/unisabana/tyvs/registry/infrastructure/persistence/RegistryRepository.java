@@ -1,26 +1,52 @@
 package edu.unisabana.tyvs.registry.infrastructure.persistence;
 
 import edu.unisabana.tyvs.registry.application.port.out.RegistryRepositoryPort;
+import javax.sql.DataSource;
 import java.sql.*;
 import java.util.Optional;
 
 public class RegistryRepository implements RegistryRepositoryPort {
-    private final String jdbcUrl;
-    private final String username;
-    private final String password;
+    private final DataSource dataSource;
 
+    /**
+     * Constructor principal: recibe un DataSource (puede ser HikariCP en prod
+     * o un DataSource simple en pruebas unitarias/integración).
+     */
+    public RegistryRepository(DataSource dataSource) {
+        this.dataSource = dataSource;
+    }
+
+    /**
+     * Constructor de compatibilidad para pruebas existentes que pasan una URL.
+     * Crea un DataSource mínimo sin pool — solo para tests con H2 en memoria.
+     */
     public RegistryRepository(String jdbcUrl) {
         this(jdbcUrl, "", "");
     }
 
     public RegistryRepository(String jdbcUrl, String username, String password) {
-        this.jdbcUrl = jdbcUrl;
-        this.username = username;
-        this.password = password;
+        // DataSource mínimo para tests: crea una conexión nueva cada vez (sin pool).
+        // En producción se usa el constructor DataSource con HikariCP.
+        this.dataSource = new javax.sql.DataSource() {
+            public Connection getConnection() throws SQLException {
+                return DriverManager.getConnection(jdbcUrl, username, password);
+            }
+            public Connection getConnection(String u, String p) throws SQLException {
+                return DriverManager.getConnection(jdbcUrl, u, p);
+            }
+            public <T> T unwrap(Class<T> iface) { throw new UnsupportedOperationException(); }
+            public boolean isWrapperFor(Class<?> iface) { return false; }
+            public java.io.PrintWriter getLogWriter() { return null; }
+            public void setLogWriter(java.io.PrintWriter pw) {}
+            public void setLoginTimeout(int s) {}
+            public int getLoginTimeout() { return 0; }
+            public java.util.logging.Logger getParentLogger() { return null; }
+        };
     }
 
     private Connection getConnection() throws SQLException {
-        return DriverManager.getConnection(jdbcUrl, username, password);
+        // Ahora pide la conexión al pool en lugar de crearla desde cero
+        return dataSource.getConnection();
     }
 
     @Override
