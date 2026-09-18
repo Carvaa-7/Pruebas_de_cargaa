@@ -1,14 +1,3 @@
-# Flujo de Integración Continua para las pruebas de carga.
-#
-# ESTE ARCHIVO NO SE EJECUTA DESDE perf/ci/.
-# GitHub Actions solo lee los workflows de .github/workflows/. Cópielo así:
-#
-#     mkdir -p .github/workflows
-#     cp perf/ci/github-actions.yml .github/workflows/perf.yml
-#
-# Se deja aquí como plantilla para que quede versionada junto al resto del
-# material de rendimiento.
-
 name: perf-tests
 
 on:
@@ -30,9 +19,6 @@ jobs:
           java-version: '17'
           cache: maven
 
-      # El workflow levanta el servicio EN EL PROPIO RUNNER.
-      # Sin este paso no habría nada que cargar: es el error más común al
-      # llevar pruebas de rendimiento a CI.
       - name: Empaquetar el servicio
         run: mvn -B -DskipTests clean package
         working-directory: registraduria
@@ -51,7 +37,10 @@ jobs:
 
       - name: Instalar k6
         run: |
-          curl -s https://dl.k6.io/key.gpg | sudo gpg --dearmor -o /usr/share/keyrings/k6-archive-keyring.gpg
+          sudo gpg --no-default-keyring \
+            --keyring /usr/share/keyrings/k6-archive-keyring.gpg \
+            --keyserver hkp://keyserver.ubuntu.com:80 \
+            --recv-keys C5AD17C747E3415A3642D57D77C6C491D6AC1D69
           echo "deb [signed-by=/usr/share/keyrings/k6-archive-keyring.gpg] https://dl.k6.io/deb stable main" \
             | sudo tee /etc/apt/sources.list.d/k6.list
           sudo apt-get update
@@ -60,35 +49,31 @@ jobs:
       - name: Preparar carpeta de resultados
         run: mkdir -p perf/results
 
-      # En un pull request solo se corre el escenario corto: 'load' dura casi
-      # 15 minutos y bloquearía la revisión. Los escenarios largos van en
-      # workflow_dispatch o en una ejecución nocturna.
+      # En PRs solo corre baseline (5 min). Los escenarios largos van en
+      # workflow_dispatch o ejecución nocturna.
+      # NOTA: el script define los escenarios via --env SCENARIO, no con
+      # --vus/--duration directos (esos flags entran en conflicto con el
+      # bloque 'scenarios' del script y abortan la ejecución).
       - name: Baseline de rendimiento
         run: |
-          k6 run perf/scripts/register_person_k6.js \
+          k6 run \
             --env BASE_URL=http://localhost:8080 \
             --env SCENARIO=baseline \
-            --duration 60s --vus 20
+            perf/scripts/register_person_k6.js
 
-      # Segundo gate: verifica el RESULTADO DE NEGOCIO, no solo la latencia.
-      # Un servicio que responde rápido pero mal sigue estando roto.
+      # Gate de negocio: verifica que el servicio devuelva el resultado
+      # correcto (VALID, UNDERAGE, DEAD, etc.), no solo HTTP 200.
       - name: Verificación de resultado de negocio
         run: |
-          k6 run perf/scripts/register_voter_k6.js \
+          k6 run \
             --env BASE_URL=http://localhost:8080 \
             --env SCENARIO=baseline \
-            --duration 60s --vus 20
-
-      # Los thresholds del script son el gate: si p95 supera el SLO o la tasa
-      # de error pasa del 1%, k6 termina con código distinto de 0 y el paso
-      # falla. No hace falta lógica adicional.
+            perf/scripts/register_voter_k6.js
 
       - name: Publicar artefactos
         if: always()
         uses: actions/upload-artifact@v4
         with:
           name: perf-results
-          # Solo los resúmenes. NO se sube el volcado de -o json=, que para
-          # una corrida de segundos puede pesar cientos de megabytes.
           path: perf/results/summary-*.json
           if-no-files-found: warn
